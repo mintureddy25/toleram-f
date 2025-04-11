@@ -32,7 +32,6 @@ export const baseApi = createApi({
   baseQuery: dynamicBaseQuery,
   tagTypes: [
     "Bets",
-    "Rounds",
     "Tournament",
     "History",
     "Question",

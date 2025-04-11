@@ -1,36 +1,42 @@
-import React, { useState, useEffect } from 'react'
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { CheckIcon, UserGroupIcon } from '@heroicons/react/24/outline'
+import React, { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
+import { CheckIcon, UserGroupIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
-import { useAddPlayerToTeamMutation, useUpdatePlayerDetailsMutation } from '../../../app/Services/Admin/AdminTeams';
-import { useParams } from 'react-router-dom';
-import UploadImage from '../../UploadImage/Index';
+import {
+  useAddPlayerToTeamMutation,
+  useUpdatePlayerDetailsMutation,
+} from "../../../app/Services/Admin/adminTeams";
+import { useParams } from "react-router-dom";
+import UploadImage from "../../UploadImage/Index";
 
-
-export default function AddTeamPlayerPopup({open, setOpen, player}) {
+export default function AddTeamPlayerPopup({ open, setOpen, player }) {
   const { teamId } = useParams();
-  const [addplayer, { isLoading, isError }] = useAddPlayerToTeamMutation(teamId);
-  const [updatePlayer, { isLoading: updatePlayerLoading, isError: updatePlayerError }] = useUpdatePlayerDetailsMutation(teamId);
-  
-  const [playerName, setPlayerName] = useState('');
+  const [addplayer, { isLoading, isError }] =
+    useAddPlayerToTeamMutation(teamId);
+  const [
+    updatePlayer,
+    { isLoading: updatePlayerLoading, isError: updatePlayerError },
+  ] = useUpdatePlayerDetailsMutation(teamId);
+
+  const [playerName, setPlayerName] = useState("");
   const [imageFile, setImageFile] = useState(null);
-  const [role, setRole] = useState('batsman'); 
+  const [role, setRole] = useState("batsman");
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     if (player) {
-      setPlayerName(player.name || '');
-      setRole(player.player_role || 'batsman');
+      setPlayerName(player.name || "");
+      setRole(player.player_role || "batsman");
     }
   }, [player]);
 
-  const playerRoles = [
-    'batsman',
-    'bowler',
-    'all-rounder',
-    'wicket-keeper'
-  ];
-  
+  const playerRoles = ["batsman", "bowler", "all-rounder", "wicket-keeper"];
+
   const onSubmit = async () => {
     try {
       if (player) {
@@ -40,9 +46,9 @@ export default function AddTeamPlayerPopup({open, setOpen, player}) {
           role: role,
           teamId: teamId,
           imageUrl: imageUrl,
-          playerId: player.id // Assuming player object has an id field
+          playerId: player.id, // Assuming player object has an id field
         }).unwrap();
-        toast.success('Player updated successfully');
+        toast.success("Player updated successfully");
       } else {
         // Add new player
         const res = await addplayer({
@@ -51,31 +57,32 @@ export default function AddTeamPlayerPopup({open, setOpen, player}) {
           teamId: teamId,
           imageUrl: imageUrl,
         }).unwrap();
-        toast.success('Player added successfully');
+        toast.success("Player added successfully");
       }
       resetForm();
       setOpen(false);
     } catch (error) {
-      toast.error(error?.data?.message || `Failed to ${player ? 'update' : 'add'} player`);
-      console.error('Error details:', error);
+      toast.error(
+        error?.data?.message || `Failed to ${player ? "update" : "add"} player`
+      );
+      console.error("Error details:", error);
     }
   };
 
-  
   const resetForm = () => {
-    setPlayerName('');
+    setPlayerName("");
     setImageFile(null);
-    setRole('batsman');
+    setRole("batsman");
     setImageUrl("");
   };
 
   return (
-    <Dialog 
-      open={open} 
+    <Dialog
+      open={open}
       onClose={() => {
         resetForm();
         setOpen(false);
-      }} 
+      }}
       className="relative z-[45]"
     >
       <DialogBackdrop
@@ -91,11 +98,17 @@ export default function AddTeamPlayerPopup({open, setOpen, player}) {
           >
             <div>
               <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-green-100">
-                <UserGroupIcon aria-hidden="true" className="size-6 text-green-600" />
+                <UserGroupIcon
+                  aria-hidden="true"
+                  className="size-6 text-green-600"
+                />
               </div>
               <div className="mt-3 text-center sm:mt-5">
-                <DialogTitle as="h3" className="text-base font-semibold text-gray-100">
-                  {player ? 'Edit Player' : 'Add New Player'}
+                <DialogTitle
+                  as="h3"
+                  className="text-base font-semibold text-gray-100"
+                >
+                  {player ? "Edit Player" : "Add New Player"}
                 </DialogTitle>
                 <div className="mt-4 space-y-4">
                   <input
@@ -105,7 +118,7 @@ export default function AddTeamPlayerPopup({open, setOpen, player}) {
                     placeholder="Enter player name"
                     className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                   />
-                  
+
                   <select
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
@@ -131,12 +144,18 @@ export default function AddTeamPlayerPopup({open, setOpen, player}) {
                 onClick={onSubmit}
                 className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                {isLoading ? (player ? 'Updating...' : 'Adding...') : (player ? 'Update Player' : 'Add Player')}
+                {isLoading
+                  ? player
+                    ? "Updating..."
+                    : "Adding..."
+                  : player
+                  ? "Update Player"
+                  : "Add Player"}
               </button>
             </div>
           </DialogPanel>
         </div>
       </div>
     </Dialog>
-  )
+  );
 }

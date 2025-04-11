@@ -1,67 +1,114 @@
+import React, { useMemo, useState } from "react";
+import CustomAreaChart from "../Charts/CustomAreaChart";
 import {
-  ArrowRightIcon,
-  ArrowsRightLeftIcon,
-  TrophyIcon,
-  UserGroupIcon,
-} from "@heroicons/react/24/outline";
-import React from "react";
-const people = [
-  {
-    name: "Teams",
-    icon: UserGroupIcon,
-    lastSeen: "3h ago",
-    href: "/admin/teams",
-    lastSeenDateTime: "2023-01-23T13:23Z",
-  },
-  {
-    name: "Matches",
-    icon: ArrowsRightLeftIcon,
-    lastSeen: "3h ago",
-    href: "/admin/matches",
-    lastSeenDateTime: "2023-01-23T13:23Z",
-  },
-  {
-    name: "Tournament",
-    icon: TrophyIcon,
-    lastSeen: null,
-    href: "/admin/tournament",
-  },
-];
+  useGetMatchBetAnalyticsQuery,
+  useGetRoundBetAnalyticsQuery,
+  useGetTournamenBetAnalyticsQuery,
+} from "../../app/Services/Admin/analyticsApi";
+import Loader from "../Loader";
+import numeral from "numeral";
 
 export default function AdminDashboard() {
+  const { data: matchBets, isLoading: matchBetsLoading } =
+    useGetMatchBetAnalyticsQuery();
+
+  const { data: roundBets, isLoading: roundBetsLoading } =
+    useGetRoundBetAnalyticsQuery();
+
+  const { data: tournamentBets, isLoading: tournamentBetsLoading } =
+    useGetTournamenBetAnalyticsQuery();
+
+  const matchData = useMemo(() => {
+    if (!matchBets) return { chartData: [] };
+    return matchBets.map((item) => ({
+      name: item.matchTitle,
+      bets: item.totalBets,
+      amount: item.totalAmount,
+    }));
+  }, [matchBets]);
+  const roundData = useMemo(() => {
+    if (!roundBets) return { chartData: [] };
+    return roundBets.map((item) => ({
+      name: item.roundName,
+      bets: item.totalBets,
+      amount: item.totalAmount,
+    }));
+  }, [roundBets]);
+  console.log(roundBets);
+
+  if (matchBetsLoading || roundBetsLoading || tournamentBetsLoading) {
+    return <Loader />;
+  }
   return (
-    <ul role="list" className="max-w-2xl mx-auto space-y-4 py-8 px-4">
-      {people.map((person) => (
-        <a
-          href={person.href}
-          key={person.email}
-          className="flex items-center gap-x-6 p-4 rounded-xl transition-all duration-300 
-              hover:bg-gray-800/50 hover:scale-102 hover:shadow-lg hover:shadow-gray-800/30
-              bg-gray-900/50 bg-gray-800"
-        >
-          <div className="flex items-center gap-x-4">
-            <div className="relative">
-              <person.icon
-                className="size-12 rounded-lg p-2.5 text-gray-100
-                    bg-gradient-to-br from-gray-700 to-gray-800 
-                    shadow-inner shadow-gray-950/50"
-              />
-              <div className="absolute inset-0 rounded-lg bg-gray-400/10 backdrop-blur-sm -z-10" />
+    <div className="mx-10 pl-10 my-10 pb-10">
+      <h1 className="text-2xl font-bold">Tournament Dashboard</h1>
+      <Stats
+        stats={[
+          { name: "Match Bets", stat: tournamentBets?.totalMatchesBets || 0 },
+          {
+            name: "Round Bets",
+            stat: tournamentBets?.totalRoundsBets || 0,
+          },
+          { name: "Dream 11 Bets", stat: tournamentBets.totalDream11Bets || 0 },
+          {
+            name: "Total Match Bet Amout",
+            stat: tournamentBets?.totalMatchesbetAmount || 0,
+          },
+          {
+            name: "Total Round Bet Amount",
+            stat: tournamentBets?.totalRoundsBetAmount || 0,
+          },
+        ]}
+      />
+      <CustomAreaChart
+        title={"Match Bets"}
+        chartdata={matchData}
+        categories={["bets"]}
+        colors={["blue"]}
+      />
+      <CustomAreaChart
+        title={"Match Amounts"}
+        chartdata={matchData}
+        categories={["amount"]}
+        colors={["yellow"]}
+      />
+      <CustomAreaChart
+        title={"Round Bets"}
+        chartdata={roundData}
+        categories={["bets"]}
+        colors={["pink"]}
+      />
+      <CustomAreaChart
+        title={"Round Amounts"}
+        chartdata={roundData}
+        categories={["amount"]}
+        colors={["purple"]}
+      />
+    </div>
+  );
+}
+
+function Stats({ stats }) {
+  return (
+    <div>
+      <h3 className="text-base font-semibold text-gray-900">Last 30 days</h3>
+      <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        {stats.map((item) => {
+          return (
+            <div
+              key={item.name}
+              className="overflow-hidden rounded-lg bg-gray-800 px-4 py-5 shadow sm:p-6"
+            >
+              <dt className="truncate text-sm font-medium text-gray-100">
+                {item.name}
+              </dt>
+              <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-200">
+                {numeral(item.stat).format("0,0")}
+              </dd>
             </div>
-            <div>
-              <p className="text-lg font-medium text-gray-100 tracking-wide">
-                {person.name}
-              </p>
-              <p className="text-sm text-gray-400 mt-0.5">
-                Manage {person.name.toLowerCase()}
-              </p>
-            </div>
-            <div>
-              <ArrowRightIcon className="size-4 text-gray-400" />
-            </div>
-          </div>
-        </a>
-      ))}
-    </ul>
+          );
+        })}
+      </dl>
+    </div>
   );
 }

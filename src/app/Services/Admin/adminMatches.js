@@ -86,6 +86,30 @@ const betsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => ["Question"],
     }),
+    updateMatchStatus: builder.mutation({
+      query: (matchData) => ({
+        url: `/admin/matches/${matchData.id}`,
+        method: "PATCH",
+        body: matchData,
+      }),
+      invalidatesTags: (result, error, arg) => ["Question"],
+    }),
+    setProcessing: builder.mutation({
+      query: (matchData) => ({
+        url: `/admin/matches/${matchData.id}/process-bet`,
+        method: "PATCH",
+        body: matchData,
+      }),
+      invalidatesTags: (result, error, arg) => ["Question"],
+    }),
+    updateBetStatus: builder.mutation({
+      query: (matchData) => ({
+        url: `/admin/matches/${matchData.id}/process-bet`,
+        method: "PATCH",
+        body: matchData,
+      }),
+      invalidatesTags: (result, error, arg) => ["Question"],
+    }),
   }),
   overrideExisting: false,
 });
@@ -103,4 +127,6 @@ export const {
   useAddQuestionMutation,
   useUpdateQuestionMutation,
   useUpdateCorrectAnswerMutation,
+  useUpdateMatchStatusMutation,
+  useUpdateBetStatusMutation,
 } = betsApi;

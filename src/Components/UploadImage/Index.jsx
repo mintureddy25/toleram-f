@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { useAddImageUrlMutation } from "../../app/Services/Admin/AdminTeams";
+import { useAddImageUrlMutation } from "../../app/Services/Admin/adminTeams";
 import Loader from "../Loader";
 import { toast } from "react-toastify";
 import { XCircleIcon } from "@heroicons/react/24/outline";

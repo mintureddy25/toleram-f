@@ -11,7 +11,7 @@ import {
   useAddImageUrlMutation,
   useCreateTeamMutation,
   useUpdateTeamsDetailsMutation,
-} from "../../../app/Services/Admin/AdminTeams";
+} from "../../../app/Services/Admin/adminTeams";
 import UploadImage from "../../UploadImage/Index";
 import PopUpStructure from "../../PopUp/PopUpStructure";
 

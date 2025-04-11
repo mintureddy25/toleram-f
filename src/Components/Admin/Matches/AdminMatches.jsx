@@ -1,145 +1,233 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useGetmatchesQuery, useGetMatchQuery } from "../../../app/Services/Admin/AdminMatches";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useGetmatchesQuery, useGetMatchQuery, useUpdateMatchStatusMutation, useUpdateBetStatusMutation } from "../../../app/Services/Admin/adminMatches";
 import Loader from "../../Loader";
 import CreateNewMatch from "./AddNewmatchPopup";
-import {ChevronRightIcon, PencilSquareIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, ChevronRightIcon, PencilSquareIcon, PlusIcon } from "@heroicons/react/24/outline";
+import moment from "moment";
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { Switch } from '@headlessui/react'
 
 export default function AdminMatches() {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-    const [selectedMatch, setSelectedMatch] = useState(null);
     const [matchId, setMatchId] = useState(null);
     const { data: matches, isLoading, isError } = useGetmatchesQuery();
     const { data: match, isLoading: matchLoading, isError: matchError, } = useGetMatchQuery(matchId);
-
-console.log(match);
-
+    const [updateMatchStatus, { isLoading: isUpdating }] = useUpdateMatchStatusMutation();
+    const [updateBetStatus, { isLoading: isUpdatingBet }] = useUpdateBetStatusMutation();
+    const statusFillColor = {
+        dont_process: "fill-red-500",
+        process: "fill-yellow-500",
+        competed: "fill-green-500",
+    };
+    const formatDateTime = (dateTimeStr) => {
+        return `${moment(dateTimeStr).utc().format("h:mm a")} | ${moment(dateTimeStr).utc().format("Do MMM")}`;
+    };
     if (isLoading) return <Loader />
 
     return (
         <div className="py-8">
-            <div className="px-6 lg:px-8">
-                <div className="bg-gray-800 rounded-lg inset-x-0 bottom-0 flex flex-col justify-between gap-x-8 gap-y-4 p-6 ring-1 ring-gray-900/10 md:flex-row md:items-center lg:px-8">
-                    <div className="flex items-center">
-                        <p className="max-w-4xl text-gray-100 text-xl font-semibold">
-                            Matches
-                        </p>
-                    </div>
-                    <div className="flex flex-none items-center gap-x-5">
-                        <button
-                            type="button"
-                            onClick={() => setOpen(true)}
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-white text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 flex items-center gap-2"
-                        >
-                            <PlusIcon className="size-5" />
-                            Create match
-                        </button>
-                    </div>
+            {!matches || matches?.matches.length === 0 ? (
+                <div className="text-center py-12 flex flex-col items-center justify-center col-span-2 bg-gray-800 rounded-2xl">
+                    <svg
+                        className="mx-auto h-24 w-24 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
+                        />
+                    </svg>
+                    <h3 className="mt-4 text-xl font-semibold text-gray-100">No matches yet</h3>
+                    <p className="mt-2 text-gray-400">Get started by creating your first match.</p>
+                    <button
+                        type="button"
+                        onClick={() => setOpen(true)}
+                        className="mt-6 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                        Create Match
+                    </button>
                 </div>
-            </div>
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl lg:max-w-none">
-                    <div className="mt-4 sm:mt-6">
-                            {matches?.matches.length === 0 ? (
-                                <div className="text-center py-12 flex flex-col items-center justify-center col-span-2 bg-gray-800 rounded-2xl">
-                                    <svg
-                                        className="mx-auto h-24 w-24 text-gray-400"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={1.5}
-                                            d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
-                                        />
-                                    </svg>
-                                    <h3 className="mt-4 text-xl font-semibold text-gray-100">No matches yet</h3>
-                                    <p className="mt-2 text-gray-400">Get started by creating your first match.</p>
-                                    <button
-                                        type="button"
-                                        onClick={() => setOpen(true)}
-                                        className="mt-6 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                    >
-                                        Create Match
-                                    </button>
+            ) : (
+                <div className="bg-gray-900">
+                    <div className="mx-auto max-w-7xl">
+                        <div className="bg-gray-900 py-10">
+                            <div className="px-4 sm:px-6 lg:px-8">
+                                <div className="sm:flex sm:items-center text-left">
+                                    <div className="sm:flex-auto">
+                                        <h1 className="text-base font-semibold text-white">Matches</h1>
+                                        <p className="mt-2 text-sm text-gray-300">
+                                            A list of all the matches in your account.
+                                        </p>
+                                    </div>
+                                    <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+                                        <button
+                                            type="button"
+                                            onClick={() => setOpen(true)}
+                                            className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                                        >
+                                            Create Match
+                                        </button>
+                                    </div>
                                 </div>
-                            ) : (
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-6">
-                                {matches?.matches.map((match) => (
-                                    <article key={match.id} className="relative flex flex-col items-start justify-between bg-gray-800 rounded-lg">
-                                        <div className="w-full">
-                                            <div className="p-6">
-                                            <div className="flex justify-between items-center mb-6">
-                                                <h3 className="text-lg font-semibold text-gray-200">
-                                                    {match.match_title}
-                                                </h3>
-                                            </div>
-                                            <div className="flex items-center justify-between gap-4">
-                                                <div className="flex flex-col items-center flex-1">
-                                                    <img
-                                                        src={match.team_one_logo}
-                                                        alt={match.team_one_name}
-                                                        className="w-24 h-24 rounded-full object-cover mb-3"
-                                                    />
-                                                    <p className="text-gray-100 text-center text-sm">
-                                                        {match.team_one_name}
-                                                    </p>
-                                                </div>
+                                <div className="mt-8 flow-root">
+                                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div className="inline-block min-w-full py-2 text-left sm:px-6 lg:px-8">
+                                            <table className="min-w-full divide-y divide-gray-700">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0">
+                                                            Match
+                                                        </th>
+                                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                                                            Bet Processing State
+                                                        </th>
+                                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                                                            Date & Time
+                                                        </th>
+                                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                                                            Can Bet
+                                                        </th>
+                                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                                                            Match Status
+                                                        </th>
+                                                        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                                                            More
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="divide-y divide-gray-800">
+                                                    {matches?.matches.map((match) => (
+                                                        <tr key={match.match_title}>
+                                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0 max-w-[8rem] truncate">
+                                                                <Link to={`/admin/matches/${match.id}`}>{match.match_title}</Link>
+                                                            </td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
+                                                                <span className="inline-flex items-center gap-x-1.5 rounded-md px-2 py-1 text-xs font-medium text-gray-300">
+                                                                    <svg viewBox="0 0 6 6" aria-hidden="true"
+                                                                        className={`size-1.5 fill-${match.bet_status === 'process' ? 'yellow' : match.bet_status === 'completed' ? 'green' : match.bet_status === 'dont_process' ? 'red' : 'gray'}-500`}>
+                                                                        <circle r={3} cx={3} cy={3} />
+                                                                    </svg>
+                                                                    {match.bet_status}
+                                                                </span>
+                                                            </td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{formatDateTime(match.match_time)}</td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
 
-                                                <div className="flex flex-col items-center">
-                                                <div class="vs flex justify-center align-middle"><img src="/vs.png" alt="VS" class="vs-image w-16"/></div>
-                                                    <span className="text-gray-100 text-sm">
-                                                        {new Date(match.match_time).toLocaleDateString()}
-                                                    </span>
-                                                </div>
+                                                                <Switch
+                                                                    checked={match.can_bet === "1"}
+                                                                    onChange={(e) => {
+                                                                        setMatchId(match.id);
+                                                                        updateMatchStatus({
+                                                                            id: match.id,
+                                                                            canBet: e ? "1" : "0",
+                                                                        });
+                                                                    }}
+                                                                    className="group relative inline-flex h-5 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
+                                                                >
+                                                                    <span className="sr-only">Use setting</span>
 
-                                                <div className="flex flex-col items-center flex-1">
-                                                    <img
-                                                        src={match.team_two_logo}
-                                                        alt={match.team_two_name}
-                                                        className="w-24 h-24 rounded-full object-cover mb-3"
-                                                    />
-                                                    <p className="text-gray-100 text-center text-sm">
-                                                        {match.team_two_name}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div className="">
-                                                <div className="-mt-px flex divide-x divide-gray-700">
-                                                    <div className="flex w-0 flex-1">
-                                                        <button
-                                                            onClick={() => { setOpen(true); setMatchId(match.id) }}
-                                                            className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-gray-700 py-4 text-sm font-semibold border-r-gray-700"
-                                                        >
-                                                            Edit 
-                                                            <PencilSquareIcon className="size-5" />
-                                                        </button>
-                                                    </div>
-                                                    <div className="-ml-px flex w-0 flex-1">
-                                                        <button
-                                                            onClick={() => navigate(`/admin/matches/${match.id}`)}
-                                                            className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-gray-700 py-4 text-sm font-semibold border-l-gray-700"
-                                                        >
-                                                            View
-                                                            <ChevronRightIcon className="size-5" />
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                                    {/* Outer ring (track) */}
+                                                                    <span
+                                                                        aria-hidden="true"
+                                                                        className="pointer-events-none absolute mx-auto h-4 w-9 rounded-full bg-gray-700 transition-colors duration-200 ease-in-out group-data-[checked]:bg-indigo-500"
+                                                                    />
+
+                                                                    {/* Inner dot (thumb) */}
+                                                                    <span
+                                                                        aria-hidden="true"
+                                                                        className="pointer-events-none absolute left-0 inline-block size-5 transform rounded-full border border-gray-600 bg-gray-900 shadow ring-0 transition-transform duration-200 ease-in-out group-data-[checked]:translate-x-5"
+                                                                    />
+                                                                </Switch>
+
+
+
+                                                            </td>
+                                                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
+                                                                <button onClick={() => {
+                                                                    setMatchId(match.id);
+                                                                    updateBetStatus({
+                                                                        id: match.id,
+                                                                        betStatus: match.bet_status === "dont_process" ? "process" : "dont_process",
+                                                                    });
+                                                                }} className="bg-indigo-500 text-white px-2 py-1 rounded-md">
+
+                                                                    {match.bet_status === "dont_process" ? "Process" : "Restart"}
+                                                                </button>
+                                                            </td>
+                                                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
+                                                                <Menu as="div" className="relative inline-block text-left">
+                                                                    <div>
+                                                                        <MenuButton className="flex items-center rounded-full text-gray-400">
+                                                                            <span className="sr-only">Open options</span>
+                                                                            <EllipsisVerticalIcon aria-hidden="true" className="size-5" />
+                                                                        </MenuButton>
+                                                                    </div>
+
+                                                                    <MenuItems
+                                                                        transition
+                                                                        className="absolute right-0 z-10 mt-2 w-28 origin-top-right rounded-md bg-gray-800 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                                                                    >
+                                                                        <div className="py-1">
+                                                                            <MenuItem>
+                                                                                {({ active }) => (
+                                                                                    <a
+                                                                                        href={`/admin/matches/${match.id}`}
+                                                                                        className={`group flex items-center px-4 py-2 text-sm text-gray-100 bg-gray-800 ${active ? 'bg-gray-900 text-gray-100' : ''
+                                                                                            }`}
+                                                                                    >
+                                                                                        <ArrowRightIcon
+                                                                                            className="mr-3 size-5 text-gray-400 group-hover:text-gray-500"
+                                                                                            aria-hidden="true"
+                                                                                        />
+                                                                                        View
+                                                                                    </a>
+                                                                                )}
+                                                                            </MenuItem>
+                                                                            <MenuItem>
+                                                                                {({ active }) => (
+                                                                                    <button
+                                                                                        onClick={() => {
+                                                                                            setOpen(true);
+                                                                                            setMatchId(match.id);
+                                                                                        }}
+                                                                                        className={`group flex w-full items-center px-4 py-2 text-sm text-left text-gray-100 bg-gray-800 ${active ? 'bg-gray-900 text-gray-100' : ''
+                                                                                            }`}
+                                                                                    >
+                                                                                        <PencilSquareIcon
+                                                                                            className="mr-3 size-5 text-gray-400 group-hover:text-gray-500"
+                                                                                            aria-hidden="true"
+                                                                                        />
+                                                                                        Edit
+                                                                                    </button>
+                                                                                )}
+                                                                            </MenuItem>
+
+                                                                        </div>
+                                                                    </MenuItems>
+                                                                </Menu>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
                                         </div>
-                                    </article>
-                                ))}
+                                    </div>
                                 </div>
-                            )}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {open && <CreateNewMatch open={open} setOpen={setOpen} matchId={matchId}/>}
+            )}
+            {open && <CreateNewMatch open={open} setOpen={setOpen} matchId={matchId} />}
         </div>
+
     )
 }

@@ -5,7 +5,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { ChevronLeftIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 import BackButton from "../../BackButton";
 import { toast } from "react-hot-toast";
-import { useGetRoundQuery, useGetRoundQuestionsQuery, useUpdateCorrectAnswerTournamentMutation } from "../../../app/Services/Admin/AdminTournament";
+import { useGetRoundQuery, useGetRoundQuestionsQuery, useUpdateCorrectAnswerTournamentMutation } from "../../../app/Services/Admin/adminTournament";
 import CreateNewQuestionPopup from "./CreateNewQuestionPopup";
 import { useGetRoundByIdQuery } from "../../../app/Services/roundsApi";
 
@@ -41,7 +41,7 @@ export default function AdminRoundDetails() {
     return (
         <div className="">
             <div className="pt-8 px-4 sm:px-8">
-                <p className="text-gray-200 text-2xl font-medium mb-6">{round?.round.roundName}</p>
+                <p className="text-gray-200 text-2xl font-medium mb-6">{round?.round.round_name}</p>
                 <div className="bg-gray-800 rounded-2xl inset-x-0 bottom-0 flex flex-col justify-between gap-x-8 gap-y-4 p-6 ring-1 ring-gray-900/10 md:flex-row md:items-center lg:px-8">
                     <div className="flex items-center gap-x-4">
                         <p className="max-w-4xl text-gray-100 text-xl font-semibold">
@@ -67,7 +67,7 @@ export default function AdminRoundDetails() {
                                 <div className="mx-auto max-w-7xl px-6 py-6 sm:py-12 lg:px-8 lg:py-8">
                                     <div className="mx-auto max-w-4xl">
                                         <dl className="divide-y divide-gray-900/10">
-                                            {questions?.questions.length === 0 ? (
+                                            {!questions || questions?.questions.length === 0 ? (
                                                 <div className="text-center py-12 flex flex-col items-center justify-center">
                                                     <svg
                                                         className="mx-auto h-24 w-24 text-gray-400"
@@ -100,7 +100,15 @@ export default function AdminRoundDetails() {
                                                             <>
                                                                 <dt>
                                                                     <DisclosureButton className="group flex w-full items-start justify-between text-left text-gray-100">
-                                                                        <span className="text-base/7 font-semibold">{faq.question}</span>
+
+                                                                        <div className="flex items-center gap-x-2">
+                                                                            <span className="text-base/7 font-semibold">{faq.question}</span>
+                                                                            {faq.correct_option && (
+                                                                                <span className="inline-flex items-center rounded-md bg-green-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-400/20">
+                                                                                    Answer Set
+                                                                                </span>
+                                                                            )}
+                                                                        </div>
                                                                         <span className="ml-6 flex h-7 items-center">
                                                                             {!open ? (
                                                                                 <PlusSmallIcon aria-hidden="true" className="size-6" />
@@ -159,12 +167,16 @@ export default function AdminRoundDetails() {
                                                                                                     toast.error('Failed to update correct answer');
                                                                                                 }
                                                                                             }}
-                                                                                            className="flex items-center justify-center w-5 h-5 border border-gray-400 rounded hover:bg-gray-600"
+                                                                                            className="flex items-center justify-center w-5 h-5 border border-gray-400 rounded-full hover:bg-gray-600"
                                                                                         >
-                                                                                            {+faq.correct_option === option.id && (
-                                                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-                                                                                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                                                                                </svg>
+                                                                                            {editingQuestionId === faq.id && (
+                                                                                                <div
+                                                                                                    className="flex items-center justify-center w-5 h-5 rounded-full border border-gray-400"
+                                                                                                >
+                                                                                                    {+faq.correct_option === option.id && (
+                                                                                                        <div className="w-3 h-3 rounded-full bg-indigo-500"></div>
+                                                                                                    )}
+                                                                                                </div>
                                                                                             )}
                                                                                         </button>
                                                                                     )}
@@ -226,7 +238,7 @@ export default function AdminRoundDetails() {
                     </div>
                 </div>
             </div>
-            {open && <CreateNewQuestionPopup open={open} setOpen={setOpen} round={round.round} question={question}/>}
+            {open && <CreateNewQuestionPopup open={open} setOpen={setOpen} round={round.round} question={question} />}
         </div>
     )
 }

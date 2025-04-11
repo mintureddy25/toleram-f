@@ -5,45 +5,59 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { CheckIcon, UserGroupIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {
+  CheckIcon,
+  UserGroupIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
 import {
   useAddImageUrlMutation,
   useCreateTeamMutation,
   useUpdateTeamsDetailsMutation,
-} from "../../../app/Services/Admin/AdminTeams";
+} from "../../../app/Services/Admin/adminTeams";
 import UploadImage from "../../UploadImage/Index";
-import { useAddQuestionMutation, useUpdateQuestionMutation } from "../../../app/Services/Admin/AdminMatches";
+import {
+  useAddQuestionMutation,
+  useUpdateQuestionMutation,
+} from "../../../app/Services/Admin/adminMatches";
 import { useParams } from "react-router-dom";
 
-export default function CreateNewQuestionPopup({ open, setOpen, question, match }) {
+export default function CreateNewQuestionPopup({
+  open,
+  setOpen,
+  question,
+  match,
+}) {
   const { matchId } = useParams();
-console.log(question)
-  const [addQuestion, { isLoading: isAddQuestionLoading }] = useAddQuestionMutation();
-  const [updateQuestion, { isLoading: isUpdateQuestionLoading }] = useUpdateQuestionMutation();
-
+  console.log(question);
+  const [addQuestion, { isLoading: isAddQuestionLoading }] =
+    useAddQuestionMutation();
+  const [updateQuestion, { isLoading: isUpdateQuestionLoading }] =
+    useUpdateQuestionMutation();
 
   // State for question form
   const [questionData, setQuestionData] = useState({
     question: "",
     options: [
       { text: "", odds: "", isCorrect: false },
-      { text: "", odds: "", isCorrect: false }
-    ]
+      { text: "", odds: "", isCorrect: false },
+    ],
   });
 
-  const [showCorrectOptionDropdown, setShowCorrectOptionDropdown] = useState(false);
+  const [showCorrectOptionDropdown, setShowCorrectOptionDropdown] =
+    useState(false);
 
   // Populate form with existing question data when editing
   useEffect(() => {
     if (open && question) {
       setQuestionData({
         question: question.question,
-        options: question.options.map(opt => ({
+        options: question.options.map((opt) => ({
           text: opt.option,
           odds: opt.odds.toString(),
-          isCorrect: opt.isCorrect
-        }))
+          isCorrect: opt.isCorrect,
+        })),
       });
     }
   }, [open, question]);
@@ -57,7 +71,10 @@ console.log(question)
   const addOption = () => {
     setQuestionData({
       ...questionData,
-      options: [...questionData.options, { text: "", odds: "", isCorrect: false }],
+      options: [
+        ...questionData.options,
+        { text: "", odds: "", isCorrect: false },
+      ],
     });
   };
 
@@ -66,21 +83,23 @@ console.log(question)
       toast.error("Minimum 2 options are required");
       return;
     }
-    const newOptions = questionData.options.filter((_, index) => index !== indexToDelete);
+    const newOptions = questionData.options.filter(
+      (_, index) => index !== indexToDelete
+    );
     setQuestionData({
       ...questionData,
-      options: newOptions
+      options: newOptions,
     });
   };
 
   const handleCorrectOptionUpdate = (index) => {
     const newOptions = questionData.options.map((opt, idx) => ({
       ...opt,
-      isCorrect: idx === index
+      isCorrect: idx === index,
     }));
     setQuestionData({
       ...questionData,
-      options: newOptions
+      options: newOptions,
     });
   };
 
@@ -96,25 +115,26 @@ console.log(question)
     }
 
     // Validate that all options have text and odds
-    const invalidOptions = questionData.options.some(opt => !opt.text.trim() || !opt.odds.trim());
+    const invalidOptions = questionData.options.some(
+      (opt) => !opt.text.trim() || !opt.odds.trim()
+    );
     if (invalidOptions) {
       toast.error("All options must have text and odds");
       return;
     }
 
     try {
-
       const formattedOptions = questionData.options.map((opt, index) => ({
         id: index + 1,
         option: opt.text,
         odds: parseFloat(opt.odds) || 0,
-        isCorrect: opt.isCorrect
+        isCorrect: opt.isCorrect,
       }));
 
       const payload = {
         question: questionData.question,
         options: formattedOptions,
-        matchId: matchId
+        matchId: matchId,
       };
 
       if (question) {
@@ -128,7 +148,10 @@ console.log(question)
       }
       setOpen(false);
     } catch (error) {
-      toast.error(error?.data?.message || `Failed to ${question ? 'update' : 'create'} question`);
+      toast.error(
+        error?.data?.message ||
+          `Failed to ${question ? "update" : "create"} question`
+      );
       console.error("Error details:", error);
     }
   };
@@ -140,15 +163,19 @@ console.log(question)
         <div className="flex min-h-full items-center justify-center p-4">
           <DialogPanel className="relative bg-gray-900 rounded-lg p-4 sm:p-6 w-full max-w-md mx-2">
             <DialogTitle className="text-lg sm:text-xl font-semibold text-gray-100 mb-4">
-            {question ? 'Edit Question' : 'Create New Question - '}
-              <p className="text-gray-200 text-sm font-normal">Match: {match?.match_title}</p>
+              {question ? "Edit Question" : "Create New Question - "}
+              <p className="text-gray-200 text-sm font-normal">
+                Match: {match?.match_title}
+              </p>
             </DialogTitle>
 
             <div className="space-y-4">
               <input
                 type="text"
                 value={questionData.question}
-                onChange={(e) => setQuestionData({ ...questionData, question: e.target.value })}
+                onChange={(e) =>
+                  setQuestionData({ ...questionData, question: e.target.value })
+                }
                 placeholder="Enter your question"
                 className="w-full bg-gray-800 rounded-md border border-gray-700 px-2 sm:px-3 py-2 text-white text-sm sm:text-base"
               />
@@ -160,10 +187,14 @@ console.log(question)
                       <input
                         type="text"
                         value={option.text}
-                        onChange={(e) => handleOptionChange(index, 'text', e.target.value)}
+                        onChange={(e) =>
+                          handleOptionChange(index, "text", e.target.value)
+                        }
                         placeholder={`Option ${index + 1}`}
                         className={`w-full bg-gray-800 rounded-md border ${
-                          option.isCorrect ? 'border-indigo-500' : 'border-gray-700'
+                          option.isCorrect
+                            ? "border-indigo-500"
+                            : "border-gray-700"
                         } px-2 sm:px-3 py-2 text-white text-sm sm:text-base`}
                       />
                     </div>
@@ -171,7 +202,9 @@ console.log(question)
                       <input
                         type="number"
                         value={option.odds}
-                        onChange={(e) => handleOptionChange(index, 'odds', e.target.value)}
+                        onChange={(e) =>
+                          handleOptionChange(index, "odds", e.target.value)
+                        }
                         placeholder="Odds"
                         className="flex-1 sm:w-24 bg-gray-800 rounded-md border border-gray-700 px-2 sm:px-3 py-2 text-white text-sm sm:text-base"
                       />
@@ -202,9 +235,13 @@ console.log(question)
                 onClick={onSubmit}
                 className="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-500 text-sm sm:text-base"
               >
-                {isAddQuestionLoading || isUpdateQuestionLoading 
-                  ? (question ? "Updating..." : "Creating...") 
-                  : (question ? "Update Question" : "Create Question")}
+                {isAddQuestionLoading || isUpdateQuestionLoading
+                  ? question
+                    ? "Updating..."
+                    : "Creating..."
+                  : question
+                  ? "Update Question"
+                  : "Create Question"}
               </button>
             </div>
           </DialogPanel>

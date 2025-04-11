@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
   useGetTeamPlayersListQuery,
   useGetTeamQuery,
-} from "../../../app/Services/Admin/AdminTeams";
+} from "../../../app/Services/Admin/adminTeams";
 import { useParams } from "react-router-dom";
 import AddTeamPlayerPopup from "./AddTeamPlayerPopup";
 import CreateTeamPopup from "./CreateOrEditTeamPopup";
@@ -36,24 +36,24 @@ export default function AdminTeamDetails() {
         </div>
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-      <div className="flex justify-between items-center bg-gray-800 rounded-lg px-6 lg:px-8 py-4">
-        <h2 className="text-sm font-semibold tracking-tight text-gray-100 sm:text-xl text-center ">
-          Team Players
-        </h2>
-        <button
-          type="button"
-          onClick={() => {
-            setOpen(true);
-            setPlayer(null);
-          }}
-          className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          <PlusIcon className="size-5" />
-          Add Player
-        </button>
+        <div className="flex justify-between items-center bg-gray-800 rounded-lg px-6 lg:px-8 py-4">
+          <h2 className="text-sm font-semibold tracking-tight text-gray-100 sm:text-xl text-center ">
+            Team Players
+          </h2>
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(true);
+              setPlayer(null);
+            }}
+            className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            <PlusIcon className="size-5" />
+            Add Player
+          </button>
+        </div>
       </div>
-      </div>
-     
+
       <div className="px-6 lg:px-8">
         {players?.teamPlayers?.length === 0 ? (
           <div className="mt-12 text-center">
@@ -79,11 +79,18 @@ export default function AdminTeamDetails() {
                     d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
                   />
                 </svg>
-                <h3 className="mt-4 text-xl font-semibold text-gray-100">No team players yet</h3>
-                <p className="mt-2 text-gray-400">Get started by adding your first team player.</p>
+                <h3 className="mt-4 text-xl font-semibold text-gray-100">
+                  No team players yet
+                </h3>
+                <p className="mt-2 text-gray-400">
+                  Get started by adding your first team player.
+                </p>
                 <button
                   type="button"
-                  onClick={() => { setOpen(true); setQuestion("") }}
+                  onClick={() => {
+                    setOpen(true);
+                    setQuestion("");
+                  }}
                   className="mt-6 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Add Team Players
@@ -107,7 +114,9 @@ export default function AdminTeamDetails() {
                     <h3 className="mt-4 text-lg font-semibold tracking-tight text-gray-100">
                       {player.name}
                     </h3>
-                    <p className="text-sm text-gray-400">{player.player_role}</p>
+                    <p className="text-sm text-gray-400">
+                      {player.player_role}
+                    </p>
                     <button
                       onClick={() => {
                         setOpen(true);
@@ -122,8 +131,6 @@ export default function AdminTeamDetails() {
               </ul>
             )}
           </>
-
-
         )}
       </div>
       <AddTeamPlayerPopup

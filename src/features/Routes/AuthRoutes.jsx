@@ -51,8 +51,11 @@ function AuthRoutes() {
         <Route path="matches/:matchId" Component={AdminMatchDetails} />
         <Route path="tournament" Component={Tournamet} />
         <Route path="user" Component={User} />
-        <Route path="/admin/tournament/rounds/:roundId" Component={AdminRoundDetails} />
-        <Route index Component={AdminDashboard} />
+        <Route
+          path="tournament/rounds/:roundId"
+          Component={AdminRoundDetails}
+        />
+        <Route path="dashboard" Component={AdminDashboard} />
       </Route>
 
       <Route path="/players" Component={Players} />
