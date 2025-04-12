@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { CheckIcon, UserGroupIcon } from "@heroicons/react/24/outline";
+import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
 import {
-  useAddImageUrlMutation,
   useCreateTeamMutation,
   useUpdateTeamsDetailsMutation,
 } from "../../../app/Services/Admin/adminTeams";
@@ -19,8 +15,6 @@ export default function CreateOrEditTeamPopup({ open, setOpen, selectedTeam }) {
   const [createTeam, { isLoading: isCreateLoading }] = useCreateTeamMutation();
   const [updateTeam, { isLoading: isUpdateLoading }] =
     useUpdateTeamsDetailsMutation(selectedTeam?.id);
-  const [addImageUrl, { isLoading: isAddImageLoading }] =
-    useAddImageUrlMutation();
   const cancelButtonRef = React.useRef(null);
 
   // Use useEffect to reset the form when the popup opens/closes or selectedTeam changes

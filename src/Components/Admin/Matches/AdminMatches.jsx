@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useGetmatchesQuery, useGetMatchQuery, useUpdateMatchStatusMutation, useUpdateBetStatusMutation } from "../../../app/Services/Admin/adminMatches";
+import { Link } from "react-router-dom";
+import { useGetmatchesQuery, useUpdateMatchStatusMutation, useUpdateBetStatusMutation } from "../../../app/Services/Admin/adminMatches";
 import Loader from "../../Loader";
 import CreateNewMatch from "./AddNewmatchPopup";
-import { ArrowRightIcon, ChevronRightIcon, PencilSquareIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import moment from "moment";
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { Switch } from '@headlessui/react'
+import { betProcessStateCtaText, betStatus } from "../../../Utils/constants";
 
 export default function AdminMatches() {
-    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [matchId, setMatchId] = useState(null);
     const { data: matches, isLoading, isError } = useGetmatchesQuery();
-    const { data: match, isLoading: matchLoading, isError: matchError, } = useGetMatchQuery(matchId);
     const [updateMatchStatus, { isLoading: isUpdating }] = useUpdateMatchStatusMutation();
     const [updateBetStatus, { isLoading: isUpdatingBet }] = useUpdateBetStatusMutation();
     const statusFillColor = {
@@ -115,7 +114,7 @@ export default function AdminMatches() {
                                                                         className={`size-1.5 fill-${match.bet_status === 'process' ? 'yellow' : match.bet_status === 'completed' ? 'green' : match.bet_status === 'dont_process' ? 'red' : 'gray'}-500`}>
                                                                         <circle r={3} cx={3} cy={3} />
                                                                     </svg>
-                                                                    {match.bet_status}
+                                                                    {betStatus[match.bet_status]}
                                                                 </span>
                                                             </td>
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{formatDateTime(match.match_time)}</td>
@@ -125,7 +124,7 @@ export default function AdminMatches() {
                                                                     checked={match.can_bet === "1"}
                                                                     onChange={(e) => {
                                                                         setMatchId(match.id);
-                                                                        updateMatchStatus({
+                                                                        updateBetStatus({
                                                                             id: match.id,
                                                                             canBet: e ? "1" : "0",
                                                                         });
@@ -153,13 +152,13 @@ export default function AdminMatches() {
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
                                                                 <button onClick={() => {
                                                                     setMatchId(match.id);
-                                                                    updateBetStatus({
+                                                                    updateMatchStatus({
                                                                         id: match.id,
                                                                         betStatus: match.bet_status === "dont_process" ? "process" : "dont_process",
                                                                     });
                                                                 }} className="bg-indigo-500 text-white px-2 py-1 rounded-md">
 
-                                                                    {match.bet_status === "dont_process" ? "Process" : "Restart"}
+                                                                    {betProcessStateCtaText[match.bet_status]}
                                                                 </button>
                                                             </td>
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
@@ -178,8 +177,8 @@ export default function AdminMatches() {
                                                                         <div className="py-1">
                                                                             <MenuItem>
                                                                                 {({ active }) => (
-                                                                                    <a
-                                                                                        href={`/admin/matches/${match.id}`}
+                                                                                    <Link
+                                                                                        to={`/admin/matches/${match.id}`}
                                                                                         className={`group flex items-center px-4 py-2 text-sm text-gray-100 bg-gray-800 ${active ? 'bg-gray-900 text-gray-100' : ''
                                                                                             }`}
                                                                                     >
@@ -188,7 +187,7 @@ export default function AdminMatches() {
                                                                                             aria-hidden="true"
                                                                                         />
                                                                                         View
-                                                                                    </a>
+                                                                                    </Link>
                                                                                 )}
                                                                             </MenuItem>
                                                                             <MenuItem>

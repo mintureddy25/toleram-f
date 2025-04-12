@@ -1,6 +1,7 @@
 import React from "react";
-import { AreaChart, BarChart } from "@tremor/react";
+import { AreaChart, BarChart, BarList } from "@tremor/react";
 import { useState } from "react";
+import numeral from "numeral";
 
 export default function CustomAreaChart({
   title,
@@ -8,21 +9,20 @@ export default function CustomAreaChart({
   categories,
   colors,
 }) {
-  const [value, setValue] = useState();
   return (
-    <>
-      <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong">
+    <div className=" dark:bg-dark-tremor-bg rounded-lg shadow-md p-5 border border-gray-100 my-4 pr-4">
+      <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong mt-2 text-left">
         {title}
       </h3>
-      <BarChart
-        className="mx-5"
-        data={chartdata}
-        index="name"
-        categories={categories}
-        colors={colors}
-        onValueChange={(v) => setValue(v)}
+      <BarList
+        className="mx-5 mt-1"
+        data={chartdata.map((item) => ({
+          name: item.name,
+          value: item[categories[0]],
+        }))}
+        valueFormatter={(value) => numeral(value).format("0,0")}
         showAnimation={true}
       />
-    </>
+    </div>
   );
 }

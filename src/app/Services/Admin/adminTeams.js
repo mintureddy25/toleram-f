@@ -20,18 +20,6 @@ const betsApi = baseApi.injectEndpoints({
         return ["players"];
       },
     }),
-    getTeamPlayers: builder.query({
-      query: () => `/players`,
-      providesTags: (result, error, arg) => {
-        return ["players"];
-      },
-    }),
-    getPlayerDetails: builder.query({
-      query: (playrId) => `/players/${playrId}`,
-      providesTags: (result, error, arg) => {
-        return ["players"];
-      },
-    }),
     createTeam: builder.mutation({
       query: ({ teamName, imageUrl }) => ({
         url: "/admin/teams",
@@ -89,8 +77,6 @@ export const {
   useGetTeamsQuery,
   useGetTeamQuery,
   useGetTeamPlayersListQuery,
-  useGetPlayerDetailsQuery,
-  useGetTeamPlayers,
   useCreateTeamMutation,
   useAddPlayerToTeamMutation,
   useUpdateTeamsDetailsMutation,

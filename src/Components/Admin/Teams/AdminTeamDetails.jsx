@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import AddTeamPlayerPopup from "./AddTeamPlayerPopup";
 import CreateTeamPopup from "./CreateOrEditTeamPopup";
 import Loader from "../../Loader";
-import { ChevronLeftIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 export default function AdminTeamDetails() {
   const { teamId } = useParams();

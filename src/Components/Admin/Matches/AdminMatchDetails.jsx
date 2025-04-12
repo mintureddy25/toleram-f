@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useGetMatchQuestionsQuery } from "../../../app/Services/matchesApi";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "../../Loader";
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { ChevronLeftIcon, MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
+import { Disclosure, DisclosureButton } from '@headlessui/react'
+import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 import CreateNewQuestionPopup from "./CreateNewQuestionPopup";
 import CreateNewMatch from "./AddNewmatchPopup";
 import { useGetAdminQuestionsQuery, useGetMatchQuery, useUpdateCorrectAnswerMutation } from "../../../app/Services/Admin/adminMatches";
-import BackButton from "../../BackButton";
 import { toast } from "react-hot-toast";
 
 

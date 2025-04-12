@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useGetTeamsQuery } from "../../../app/Services/Admin/adminTeams";
 import CreateTeamPopup from "./CreateOrEditTeamPopup";
 import Loader from "../../Loader";
@@ -9,7 +8,6 @@ import {
 import TeamCard from "./TeamCard";
 
 export default function AdminTeams() {
-  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
   const { data: teams, isLoading, isError } = useGetTeamsQuery();

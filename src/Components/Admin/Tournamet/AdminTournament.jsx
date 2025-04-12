@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Loader from "../../Loader";
 import AddNewTournament from "./AddNewTournament";
-import { ArrowRightIcon, ChevronRightIcon, PencilSquareIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { ArrowRightIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import { useGetRoundsQuery } from "../../../app/Services/roundsApi";
-import { useUpdateRoundStatusMutation, useUpdateRoundBetStatusMutation } from "../../../app/Services/Admin/adminTournament";
 import { Link } from "react-router-dom";
 import { Switch } from '@headlessui/react'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { useGetTournamentRoundsQuery, useUpdateRoundBetStatusMutation, useUpdateRoundStatusMutation } from "../../../app/Services/Admin/adminTournament";
+import { betProcessStateCtaText, betStatus } from "../../../Utils/constants";
+
 
 export default function Tournamet() {
-    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [round, setRound] = useState(null);
     const [roundId, setRoundId] = useState(null);
-    const { data: rounds, isLoading, isError } = useGetRoundsQuery();
+    const { data: rounds, isLoading, isError } = useGetTournamentRoundsQuery();
     const [updateRoundStatus, { isLoading: isUpdatingRound }] = useUpdateRoundStatusMutation();
     const [updateRoundBetStatus, { isLoading: isUpdatingRoundBet }] = useUpdateRoundBetStatusMutation();
     if (isLoading) return <Loader />
@@ -105,7 +105,7 @@ export default function Tournamet() {
                                                                         className={`size-1.5 fill-${round.bet_status === 'process' ? 'yellow' : round.bet_status === 'completed' ? 'green' : round.bet_status === 'dont_process' ? 'red' : 'gray'}-500`}>
                                                                         <circle r={3} cx={3} cy={3} />
                                                                     </svg>
-                                                                    {round.bet_status}
+                                                                    {betStatus[round.bet_status]}
                                                                 </span>
                                                             </td>
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
@@ -148,7 +148,7 @@ export default function Tournamet() {
                                                                     });
                                                                 }} className="bg-indigo-500 text-white px-2 py-1 rounded-md">
 
-                                                                    {round.bet_status === "dont_process" ? "Process" : "Restart"}
+                                                                    {betProcessStateCtaText[round.bet_status]}
                                                                 </button>
                                                             </td>
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
@@ -167,8 +167,8 @@ export default function Tournamet() {
                                                                         <div className="py-1">
                                                                             <MenuItem>
                                                                                 {({ active }) => (
-                                                                                    <a
-                                                                                        href={`/admin/tournament/rounds/${round.id}`}
+                                                                                    <Link
+                                                                                        to={`/admin/tournament/rounds/${round.id}`}
                                                                                         className={`group flex items-center px-4 py-2 text-sm text-gray-100 bg-gray-800 ${active ? 'bg-gray-900 text-gray-100' : ''
                                                                                             }`}
                                                                                     >
@@ -177,7 +177,7 @@ export default function Tournamet() {
                                                                                             aria-hidden="true"
                                                                                         />
                                                                                         View
-                                                                                    </a>
+                                                                                    </Link>
                                                                                 )}
                                                                             </MenuItem>
                                                                             <MenuItem>

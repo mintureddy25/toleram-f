@@ -6,8 +6,6 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import {
-  CheckIcon,
-  UserGroupIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
@@ -80,17 +78,6 @@ export default function CreateNewQuestionPopup({
     const newOptions = questionData.options.filter(
       (_, index) => index !== indexToDelete
     );
-    setQuestionData({
-      ...questionData,
-      options: newOptions,
-    });
-  };
-
-  const handleCorrectOptionUpdate = (index) => {
-    const newOptions = questionData.options.map((opt, idx) => ({
-      ...opt,
-      isCorrect: idx === index,
-    }));
     setQuestionData({
       ...questionData,
       options: newOptions,

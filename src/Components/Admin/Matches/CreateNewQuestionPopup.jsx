@@ -6,17 +6,9 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import {
-  CheckIcon,
-  UserGroupIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
 import { toast } from "react-toastify";
-import {
-  useAddImageUrlMutation,
-  useCreateTeamMutation,
-  useUpdateTeamsDetailsMutation,
-} from "../../../app/Services/Admin/adminTeams";
-import UploadImage from "../../UploadImage/Index";
 import {
   useAddQuestionMutation,
   useUpdateQuestionMutation,
@@ -44,9 +36,6 @@ export default function CreateNewQuestionPopup({
       { text: "", odds: "", isCorrect: false },
     ],
   });
-
-  const [showCorrectOptionDropdown, setShowCorrectOptionDropdown] =
-    useState(false);
 
   // Populate form with existing question data when editing
   useEffect(() => {
