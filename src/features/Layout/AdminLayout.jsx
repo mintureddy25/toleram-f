@@ -9,6 +9,7 @@ import {
   ArrowsRightLeftIcon,
   Cog6ToothIcon,
   HomeIcon,
+  ChartBarIcon,
   TrophyIcon,
   UserGroupIcon,
   UserIcon,
@@ -51,10 +52,15 @@ const nav = [
     icon: TrophyIcon,
   },
   {
+    name: "Dream 11",
+    href: "/admin/dream11",
+    icon: ChartBarIcon,
+  },
+  {
     name: "User",
     href: "/admin/user",
     icon: UserIcon,
-  },
+  }
 ];
 
 export default function AdminLayout() {

@@ -10,7 +10,7 @@ export default function CustomAreaChart({
   colors,
 }) {
   return (
-    <div className=" dark:bg-dark-tremor-bg rounded-lg shadow-md p-5 border border-gray-100 my-4 pr-4">
+    <div className=" dark:bg-dark-tremor-bg rounded-lg shadow-md p-5 bg-gray-800 my-4 pr-4">
       <h3 className="text-lg font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong mt-2 text-left">
         {title}
       </h3>

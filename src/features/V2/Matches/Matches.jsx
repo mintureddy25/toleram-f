@@ -6,6 +6,7 @@ import MenuTabs from "../../Layout/MenuTabs";
 import { FireIcon } from "@heroicons/react/20/solid";
 import moment from "moment";
 import AddPopup from "../../../Components/PopUp/AddPopup";
+import CommentsSection from "../../../Components/comments/CommentsSection";
 // import "../../../styles/matches.css";
 
 function Matches() {
@@ -32,7 +33,7 @@ function Matches() {
   return (
     <>
       <MenuTabs>
-        <div className="matches-container grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto mt-12">
+        <div className="matches-container grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto">
           {filteredMatches.map((match) => {
             if (match.can_bet == "0") {
               return <></>;
@@ -40,12 +41,13 @@ function Matches() {
             return (
               <div
                 key={match.id}
-                className="match flex align-middle justify-center flex-col p-4 md:max-w-xl "
+                className="match flex align-middle justify-center flex-col p-4 md:max-w-2xl "
               >
                 <Link
                   to={`/matches/${match.id}`}
                   className="bg-gray-800 rounded-xl relative"
                 >
+                  <div className="p-4">
                   {match.can_bet == "1" && (
                     <div className="relative">
                       <FireIcon className=" absolute h-6 w-6 text-green-500  top-2 right-2 animate-ping" />
@@ -54,14 +56,14 @@ function Matches() {
                   )}
 
                   <div className="py-4 mx-7 ">{match.match_title}</div>
-                  <div className="shadow-xl px-1 grid grid-cols-3">
+                  <div className="px-1 grid grid-cols-3">
                     <div className="team flex flex-col align-middle my-3">
                       <img
                         className="inline-block h-24 w-20 rounded-lg mx-auto"
                         src={match.team_one_logo}
                         alt=""
                       />
-                      <p className="team-name mt-1 text-center text-gray-200 overflow-auto break-words freeman-regular">
+                      <p className="team-name mt-1 text-center text-gray-200 overflow-auto break-words freeman-regular truncate text-sm">
                         {match.team_one_name}
                       </p>
                     </div>
@@ -81,10 +83,11 @@ function Matches() {
                         src={match.team_two_logo}
                         alt=""
                       />
-                      <p className="team-name mt-1 text-center text-gray-200 overflow-auto break-words">
+                      <p className="team-name mt-1 text-center text-gray-200 overflow-auto break-words truncate text-sm">
                         {match.team_two_name}
                       </p>
                     </div>
+                  </div>
                   </div>
                   <button
                     className={`${
@@ -107,12 +110,13 @@ function Matches() {
             return (
               <div
                 key={match.id}
-                className="match flex align-middle justify-center flex-col p-4 md:max-w-xl "
+                className="match flex align-middle justify-center flex-col p-4 md:max-w-2xl "
               >
                 <div
                   to={`/matches/${match.id}`}
                   className="bg-gray-800 rounded-xl relative"
                 >
+                  <div className="p-4">
                   {match.can_bet == "1" && (
                     <div className="relative">
                       <FireIcon className=" absolute h-6 w-6 text-green-500  top-2 right-2 animate-ping" />
@@ -121,14 +125,14 @@ function Matches() {
                   )}
 
                   <div className="py-4">{match.match_title}</div>
-                  <div className="shadow-xl grid grid-cols-3 px-1">
+                  <div className="grid grid-cols-3 px-1">
                     <div className="team flex flex-col align-middle">
                       <img
                         className="inline-block h-24 w-20 rounded-lg mx-auto"
                         src={match.team_one_logo}
                         alt=""
                       />
-                      <p className="team-name mt-1 text-center text-gray-200 overflow-auto break-words">
+                      <p className="team-name mt-1 text-center text-gray-200 overflow-auto break-words truncate text-sm">
                         {match.team_one_name}
                       </p>
                     </div>
@@ -148,16 +152,17 @@ function Matches() {
                         src={match.team_two_logo}
                         alt=""
                       />
-                      <p className="team-name mt-1 text-center text-gray-200 overflow-auto break-words">
+                      <p className="team-name mt-1 text-center text-gray-200 overflow-auto break-words truncate text-sm">
                         {match.team_two_name}
                       </p>
                     </div>
+                  </div>
                   </div>
                   <button
                     className={`${
                       match.can_bet == "1"
                         ? "bg-green-500 font-semibold text-lg"
-                        : " bg-gray-500 "
+                        : "bg-gray-600 text-gray-300 text-lg"
                     } text-white w-full py-2 rounded-b-xl`}
                   >
                     {" "}
@@ -169,6 +174,7 @@ function Matches() {
           })}
         </div>
       </MenuTabs>
+      <CommentsSection roomName="all-matches" />
       <AddPopup/>
     </>
   );

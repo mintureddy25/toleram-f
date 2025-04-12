@@ -122,7 +122,7 @@ const CommentsSection = ({ roomName }) => {
 
   return (
     <>
-      <div className="bg-gray mt-4 mx-2 flex items-start space-x-4 px-1 sticky top-0 z-10">
+      <div className="bg-gray-900 mt-4 mx-2 flex items-start space-x-4 px-1 sticky top-0 z-10 max-w-6xl mx-auto px-8 sm:px-0">
         <div className="shrink-0">
           <div
             className={`flex items-center justify-center size-10 rounded-full text-white font-semibold ${getRandomColor(
@@ -151,7 +151,7 @@ const CommentsSection = ({ roomName }) => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="Add your comment..."
-                className="block w-full resize-none text-base text-gray-900 rounded-md placeholder:text-gray-400 sm:text-sm/6"
+                className="bg-gray-900 block w-full resize-none text-base text-gray-100 rounded-md placeholder:text-gray-400 sm:text-sm/6"
               />
             </div>
             <div className="flex justify-end pt-2">
@@ -168,7 +168,7 @@ const CommentsSection = ({ roomName }) => {
           </form>
         </div>
       </div>
-      <div className="px-2 overflow-y-auto max-h-96 overflow-hidden scrollbar-hide">
+      <div className="px-2 overflow-y-auto max-h-96 overflow-hidden scrollbar-hide max-w-6xl mx-auto px-8 sm:px-0">
         {roomLoading || commentsLoading ? (
           <div className="flex justify-center py-4">
             <p className="text-gray-400">Loading comments...</p>
