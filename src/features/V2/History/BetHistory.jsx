@@ -18,7 +18,9 @@ function BetHistory() {
     return (
       <>
         <div className="max-w-7xl mx-auto py-2 sm:px-2 lg:px-8">
-          No bets placed yet..
+          <h1 className="text-2xl font-bold text-gray-500">
+            🧙 The betting magic hasn't begun. Cast your first spell!
+          </h1>
         </div>
       </>
     );

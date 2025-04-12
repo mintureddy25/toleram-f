@@ -19,22 +19,21 @@ export default function AdminDashboard() {
     useGetTournamenBetAnalyticsQuery();
 
   const matchData = useMemo(() => {
-    if (!matchBets) return { chartData: [] };
-    return matchBets.map((item) => ({
+    if (!matchBets) return [];
+    return matchBets?.map((item) => ({
       name: item.matchTitle,
       bets: item.totalBets,
       amount: item.totalAmount,
     }));
   }, [matchBets]);
   const roundData = useMemo(() => {
-    if (!roundBets) return { chartData: [] };
-    return roundBets.map((item) => ({
+    if (!roundBets) return [];
+    return roundBets?.map((item) => ({
       name: item.roundName,
       bets: item.totalBets,
       amount: item.totalAmount,
     }));
   }, [roundBets]);
-  console.log(roundBets);
 
   if (matchBetsLoading || roundBetsLoading || tournamentBetsLoading) {
     return <Loader />;
@@ -49,7 +48,10 @@ export default function AdminDashboard() {
             name: "Round Bets",
             stat: tournamentBets?.totalRoundsBets || 0,
           },
-          { name: "Dream 11 Bets", stat: tournamentBets.totalDream11Bets || 0 },
+          {
+            name: "Dream 11 Bets",
+            stat: tournamentBets?.totalDream11Bets || 0,
+          },
           {
             name: "Total Match Bet Amout",
             stat: tournamentBets?.totalMatchesbetAmount || 0,
@@ -80,7 +82,7 @@ export default function AdminDashboard() {
       />
       <CustomAreaChart
         title={"Round Amounts"}
-        chartdata={roundData}
+        chartdata={roundData ? roundData : []}
         categories={["amount"]}
         colors={["purple"]}
       />

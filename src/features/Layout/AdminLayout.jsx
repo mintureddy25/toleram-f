@@ -18,12 +18,7 @@ import {
 } from "@heroicons/react/24/outline";
 import React from "react";
 import { useSelector } from "react-redux";
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { isAdmin } from "../../Utils/Helpers";
 
 function classNames(...classes) {
@@ -72,7 +67,6 @@ export default function AdminLayout() {
     navigate("/matches");
   }
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
 
   const navigation = nav.map((item) => {
     return {
@@ -84,18 +78,28 @@ export default function AdminLayout() {
   return (
     <>
       <div>
-      <div className="lg:hidden flex justify-end">
-        <button
-          type="button"
-          className="text-gray-100 hover:text-gray-600 focus:outline-none"
-          onClick={() => setSidebarOpen(true)}
-        >
-          <span className="sr-only">Open sidebar</span>
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
+        <div className="lg:hidden flex justify-end">
+          <button
+            type="button"
+            className="text-gray-100 hover:text-gray-600 focus:outline-none"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <span className="sr-only">Open sidebar</span>
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
         <Dialog
           open={sidebarOpen}
           onClose={setSidebarOpen}
@@ -126,7 +130,7 @@ export default function AdminLayout() {
                   </button>
                 </div>
               </TransitionChild>
-              
+
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-800 px-6 pb-4">
                 <div className="flex h-16 shrink-0 items-center">
                   <img
@@ -145,10 +149,11 @@ export default function AdminLayout() {
                               to={item.href}
                               className={classNames(
                                 item.current
-                                ? "bg-gray-800 text-gray-100 border border-gray-700"
-                                : "text-gray-400 hover:bg-gray-700 hover:text-white",
-                              "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
+                                  ? "bg-gray-800 text-gray-100 border border-gray-700"
+                                  : "text-gray-400 hover:bg-gray-700 hover:text-white",
+                                "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
                               )}
+                              onClick={() => setSidebarOpen(false)}
                             >
                               <item.icon
                                 aria-hidden="true"
@@ -172,9 +177,7 @@ export default function AdminLayout() {
           </div>
         </Dialog>
         <div className="max-w-7xl mx-auto min-h-full">
-         
           <div className="hidden lg:fixed lg:inset-y-3 lg:z-50 lg:flex lg:w-72 lg:flex-col mt-[6.5rem] border-r border-gray-700">
-            
             <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 mt-12">
               <nav className="flex flex-1 flex-col">
                 <ul role="list" className="flex flex-1 flex-col gap-y-7">
