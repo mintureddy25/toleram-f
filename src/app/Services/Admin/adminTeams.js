@@ -56,7 +56,6 @@ const betsApi = baseApi.injectEndpoints({
         method: "POST",
         body: imageData,
       }),
-      invalidatesTags: ["teams"],
     }),
     updatePlayerDetails: builder.mutation({
         query: ({name, imageUrl, playerId}) => ({

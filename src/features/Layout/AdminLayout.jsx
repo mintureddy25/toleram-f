@@ -47,11 +47,6 @@ const nav = [
     icon: TrophyIcon,
   },
   {
-    name: "Dream 11",
-    href: "/admin/dream11",
-    icon: ChartBarIcon,
-  },
-  {
     name: "User",
     href: "/admin/user",
     icon: UserIcon,
@@ -185,8 +180,8 @@ export default function AdminLayout() {
                     <ul role="list" className="-mx-2 space-y-1">
                       {navigation.map((item) => (
                         <li key={item.name}>
-                          <a
-                            href={item.href}
+                          <Link
+                            to={item.href}
                             className={classNames(
                               item.current
                                 ? "bg-gray-800 text-gray-100 border border-gray-700"
@@ -204,7 +199,7 @@ export default function AdminLayout() {
                               )}
                             />
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>

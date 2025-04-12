@@ -29,7 +29,7 @@ export default function AdminMatches() {
     return (
         <div className="py-8">
             {!matches || matches?.matches.length === 0 ? (
-                <div className="text-center py-12 flex flex-col items-center justify-center col-span-2 bg-gray-800 rounded-2xl">
+                <div className="text-center py-12 flex flex-col items-center justify-center col-span-2 bg-gray-800 rounded-2xl px-8 mx-8">
                     <svg
                         className="mx-auto h-24 w-24 text-gray-400"
                         fill="none"
@@ -76,7 +76,7 @@ export default function AdminMatches() {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="mt-8 flow-root">
+                                <div className="mt-8 flow-root mb-12">
                                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                         <div className="inline-block min-w-full py-2 text-left sm:px-6 lg:px-8">
                                             <table className="min-w-full divide-y divide-gray-700">

@@ -20,6 +20,7 @@ import User from "../../Components/Admin/User";
 import BetHistoryWithLayout from "../V2/History/BetHistoryWithLayout";
 import AdminRoundDetails from "../../Components/Admin/Tournamet/AdminTournamentDetails";
 import Tournamet from "../../Components/Admin/Tournamet/AdminTournament";
+import ScoreDashboard from "../../Components/Admin/Matches/MatchScore/ScoreDashboard";
 
 function AuthRoutes() {
   return (
@@ -50,6 +51,7 @@ function AuthRoutes() {
         <Route path="matches" Component={AdminMatches} />
         <Route path="matches/:matchId" Component={AdminMatchDetails} />
         <Route path="tournament" Component={Tournamet} />
+        <Route path="match/:matchId/score" Component={ScoreDashboard} />
         <Route path="user" Component={User} />
         <Route
           path="tournament/rounds/:roundId"

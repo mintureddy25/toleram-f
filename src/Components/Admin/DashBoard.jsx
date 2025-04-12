@@ -39,7 +39,7 @@ export default function AdminDashboard() {
     return <Loader />;
   }
   return (
-    <div className="mx-10 pl-10 my-10 pb-10">
+    <div className="mx-10 pl-0 sm:pl-10 my-10 pb-10">
       <h1 className="text-2xl font-bold">Tournament Dashboard</h1>
       <Stats
         stats={[
@@ -95,10 +95,11 @@ function Stats({ stats }) {
     <div>
       <h3 className="text-base font-semibold text-gray-900">Last 30 days</h3>
       <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-        {stats.map((item) => {
-          return (
-            <div
-              key={item.name}
+        {stats.length > 0 ? (
+          stats.map((item) => {
+            return (
+              <div
+                key={item.name}
               className="overflow-hidden rounded-lg bg-gray-800 px-4 py-5 shadow sm:p-6"
             >
               <dt className="truncate text-sm font-medium text-gray-100">
@@ -108,8 +109,11 @@ function Stats({ stats }) {
                 {numeral(item.stat).format("0,0")}
               </dd>
             </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <div className="text-center text-gray-500">No data available</div>
+        )}
       </dl>
     </div>
   );

@@ -76,7 +76,6 @@ const betsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => ["Match"],
     }),
-  
     updateBetStatus: builder.mutation({
       query: (matchData) => ({
         url: `/admin/matches/${matchData.id}`,
@@ -84,6 +83,20 @@ const betsApi = baseApi.injectEndpoints({
         body: matchData,
       }),
       invalidatesTags: (result, error, arg) => ["Match"],
+    }),
+    getMatchPlayers: builder.query({
+      query: (matchId) => `/admin/matches/${matchId}/players`,
+      providesTags: (result, error, arg) => {
+        return ["PlayerScore"];
+      },
+    }),
+    updatePlayerScore: builder.mutation({
+      query: (playerData) => ({
+        url: `/admin/matches/${playerData.matchId}/players/${playerData.playerId}`,
+        method: "PATCH",
+        body: playerData.stats,
+      }),
+      invalidatesTags: (result, error, arg) => ["PlayerScore"],
     }),
   }),
   overrideExisting: false,
@@ -101,4 +114,6 @@ export const {
   useUpdateCorrectAnswerMutation,
   useUpdateMatchStatusMutation,
   useUpdateBetStatusMutation,
+  useGetMatchPlayersQuery,
+  useUpdatePlayerScoreMutation,
 } = betsApi;

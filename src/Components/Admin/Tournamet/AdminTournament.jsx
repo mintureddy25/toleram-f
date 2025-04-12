@@ -22,7 +22,7 @@ export default function Tournamet() {
     return (
         <div className="py-8">
             {!rounds || rounds?.rounds.length === 0 ? (
-                <div className="text-center py-12 flex flex-col items-center justify-center col-span-2 bg-gray-800 rounded-2xl">
+                <div className="text-center py-12 flex flex-col items-center justify-center col-span-2 bg-gray-800 rounded-2xl mx-8">
                     <svg
                         className="mx-auto h-24 w-24 text-gray-400"
                         fill="none"
