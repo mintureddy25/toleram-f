@@ -49,7 +49,7 @@ function ScoreDashboard({ team }) {
                                         scope="col"
                                         className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-100"
                                     >
-                                        Force
+                                        Fours
                                     </th>
                                     <th
                                         scope="col"
@@ -61,13 +61,13 @@ function ScoreDashboard({ team }) {
                                         scope="col"
                                         className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-100"
                                     >
-                                        Vikets
+                                        Wickets
                                     </th>
                                     <th
                                         scope="col"
                                         className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-100"
                                     >
-                                        Maden Overs
+                                        Maiden Overs
                                     </th>
                                     <th
                                         scope="col"
