@@ -47,7 +47,7 @@ const TeamDetails = ({ teamData, handleEdit }) => {
               </div>
             </div>
           </div>
-          <button
+         {teamData?.canEdit && ( <button
             onClick={handleEdit}
             className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 py-2 px-4 w-full sm:w-auto justify-center"
           >
@@ -66,7 +66,7 @@ const TeamDetails = ({ teamData, handleEdit }) => {
               />
             </svg>
             Edit Team
-          </button>
+          </button>)}
         </div>
       </div>
 

@@ -43,7 +43,7 @@ const CreateTeam = () => {
           </p>
           <button
             onClick={handCreateTeam}
-            className="flex items-center justify-center bg-blue-500 text-white rounded-full px-6 py-2 shadow-lg hover:bg-blue-600 transition duration-300"
+            className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-white text-md font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             <span className="text-2xl">+</span>
             <span className="ml-2">Create Team</span>
