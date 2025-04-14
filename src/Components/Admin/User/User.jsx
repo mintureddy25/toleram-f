@@ -11,6 +11,7 @@ export default function User() {
   const [email, setEmail] = useState("");
   const {
     data: analyticsData,
+    isError,
     error,
     isLoading,
   } = useGetUserAnalyticsQuery(email, {
@@ -21,63 +22,25 @@ export default function User() {
     e.preventDefault();
     if (searchQuery.trim()) {
       setEmail(searchQuery.trim());
-      setUserData(null);
+      if (searchQuery.trim() !== email) {
+        setUserData(null);
+      }
     }
   };
+  console.log(analyticsData);
 
   useEffect(() => {
     if (analyticsData) {
       setUserData(analyticsData);
     }
-  }, [analyticsData]);
+  }, [analyticsData, error]);
 
-  const getAllBets = () => {
-    if (!userData) return [];
-
-    let allBets = [];
-    userData.matchBets.forEach((match) => {
-      match.bets.forEach((bet) => {
-        allBets.push({
-          type: "Match",
-          matchId: match.matchId,
-          question: bet.question,
-          selectedOption:
-            bet.options.find((opt) => opt.id === bet.choseOption)?.option ||
-            `Option ${bet.choseOption}`,
-          betAmount: bet.betAmount,
-          result: bet.correctOption
-            ? bet.correct === "Yes"
-              ? "Won"
-              : "Lost"
-            : "Pending",
-          odds:
-            bet.options.find((opt) => opt.id === bet.choseOption)?.odds || 0,
-        });
-      });
-    });
-    userData.roundBets.forEach((round) => {
-      round.bets.forEach((bet) => {
-        allBets.push({
-          type: "Round",
-          roundId: round.roundId,
-          question: bet.question,
-          selectedOption:
-            bet.options.find((opt) => opt.id === bet.choseOption)?.option ||
-            `Option ${bet.choseOption}`,
-          betAmount: bet.betAmount,
-          result: bet.correctOption
-            ? bet.correct === "Yes"
-              ? "Won"
-              : "Lost"
-            : "Pending",
-          odds:
-            bet.options.find((opt) => opt.id === bet.choseOption)?.odds || 0,
-        });
-      });
-    });
-
-    return allBets;
-  };
+  useEffect(() => {
+    if (isError) {
+      console.error(error);
+      setUserData(null);
+    }
+  }, [isError, error]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -121,8 +84,11 @@ export default function User() {
       ) : userData ? (
         <div className="max-w-7xl mx-auto py-6 px-6">
           <Analytics userData={userData} />
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
-            <BettingHistory allBets={getAllBets()} />
+          <div className="grid grid-cols-1 gap-6 lg:col-span-2">
+            <BettingHistory
+              matchBets={userData.matchBets}
+              roundBets={userData.roundBets}
+            />
             <Dream11Team dream11={userData?.dream11} />
           </div>
         </div>

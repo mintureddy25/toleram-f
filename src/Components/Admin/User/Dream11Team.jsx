@@ -2,7 +2,7 @@ import React from "react";
 
 const Dream11Team = ({ dream11 }) => {
   return (
-    <div className="lg:col-span-2 bg-gray-800 rounded-lg p-6 shadow">
+    <div className="bg-gray-800 rounded-lg p-6 shadow">
       <div className="flex items-center justify-between mb-4">
         <h3 className="tracking-tight text-gray-100 sm:text-xl">
           Dream11 Team
