@@ -19,7 +19,7 @@ const Dream11 = () => {
     return <Loader />;
   }
 
-  if (isError && errorMessage?.status !== 404) {
+  if (isError) {
     return (
       <div className="p-4 text-2xl text-red-500">
         <p>{errorMessage?.data?.message || 'Something went wrong, please try again later'}</p>

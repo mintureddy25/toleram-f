@@ -114,7 +114,6 @@ const CommentsSection = ({ title = '', description = '', roomName }) => {
 
 
   const formatTime = (date) =>{
-    console.log(moment().format('YYYY-MM-DD HH:mm:ss'), moment(date).format('YYYY-MM-DD HH:mm:ss'), date,"date");
     return moment(date).from(moment.utc());
 
 

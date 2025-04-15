@@ -666,9 +666,11 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
     return(<Loader/>)
   }
 
-  if(error){
-    return(<div className="flex flex-col items-center justify-center h-screen text-center">
-      <p className="text-xl text-white font-medium mb-4">Unable to load players. Please try again later !</p>
+  if(!allPlayers || allPlayers.length === 0){
+    return( <div className="flex flex-col items-center justify-center">
+      <h1 className="text-2xl font-bold text-gray-500">
+      🏏 No players yet. The pitch is empty! 🏟️
+      </h1>
     </div>)
   }
 
