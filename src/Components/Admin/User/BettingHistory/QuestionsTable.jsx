@@ -43,7 +43,7 @@ const BettingDetailsTable = ({ bets }) => {
           bet.choseOption.toString() === bet.correctOption
         ) {
           result = "Won";
-        } else if (bet.correct === "Yes") {
+        } else if (bet.correct === "No" && bet.correctOption) {
           result = "Lost";
         }
         return <ResultBadge result={result} />;
