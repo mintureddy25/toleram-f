@@ -5,6 +5,8 @@ import {
   Bars3Icon,
   ChatBubbleLeftRightIcon,
   HashtagIcon,
+  InformationCircleIcon,
+  TrophyIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
@@ -119,6 +121,20 @@ const CustomMenu = () => {
                   </Link>
                 )}
               </Menu.Item>
+              <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      to={"/points"}
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "flex px-4 py-2 text-sm"
+                      )}
+                    >
+                      <TrophyIcon className="mr-3 h-5 w-5 text-gray-400" />
+                      <span>Dream11 Rules</span>
+                    </Link>
+                  )}
+                </Menu.Item>
               {isAdmin(token) ? (
                 <Menu.Item>
                   {({ active }) => (
