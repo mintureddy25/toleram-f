@@ -5,5 +5,5 @@ export const isAdmin = (token) => {
 };
 
 export function isEmptyObject(obj) {
-  return Object.keys(obj || {}).length === 0;
+  return obj && typeof obj === 'object' && !Array.isArray(obj) && Object.keys(obj).length === 0;
 }

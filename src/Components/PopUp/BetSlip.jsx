@@ -4,7 +4,6 @@ import Text from "../Text";
 import { useForm } from "react-hook-form";
 import { XMarkIcon } from "@heroicons/react/16/solid";
 import { Cog8ToothIcon, CogIcon } from "@heroicons/react/20/solid";
-import { format, formatFixed } from "indian-number-format";
 import numeral from "numeral";
 import { isEmptyObject } from "../../Utils/Helpers";
 
@@ -46,7 +45,7 @@ function BetSlip({
     const newFormData = { ...formData };
     delete newFormData[key];
     setFormData(newFormData);
-    if (isEmptyObject(newFormData).length == 0) {
+    if (isEmptyObject(newFormData)) {
       setShow(false);
     }
   };
@@ -57,13 +56,13 @@ function BetSlip({
   useEffect(() => {
     // calculate the total amount
     let amount = 0;
-    isEmptyObject(formData)?.map((key) => {
+    Object.keys(formData)?.map((key) => {
       const val = isNaN(formData[key].amount) ? 0 : formData[key].amount
       amount += parseInt(val);
     });
 
     let potentialAmount = 0;
-    isEmptyObject(formData)?.map((key) => {
+    Object.keys(formData)?.map((key) => {
       let odds = questions?.questions
         ?.find((i) => i.id == key)
         ?.options.find((i) => i.id == formData[key].option)?.odds;
@@ -93,8 +92,8 @@ function BetSlip({
         </button>
         <ul role="list" className="divide-y divide-gray-100 m-2 sm:m-4 md:m-6">
           <form className="" onSubmit={handleSubmit(onSubmit)} id="bets">
-            {isEmptyObject(formData).length > 0 ? (
-              isEmptyObject(formData)?.map((key, index) => {
+            {Object.keys(formData).length > 0 ? (
+              Object.keys(formData)?.map((key, index) => {
                 const question = questions?.questions?.find((i) => i.id == key);
                 const option = questions?.questions
                   ?.find((i) => i.id == key)

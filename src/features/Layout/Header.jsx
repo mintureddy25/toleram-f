@@ -3,6 +3,7 @@ import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   ArrowRightStartOnRectangleIcon,
   Bars3Icon,
+  ChatBubbleLeftRightIcon,
   HashtagIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
@@ -136,6 +137,20 @@ const CustomMenu = () => {
               ) : (
                 <></>
               )}
+               <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      to={"/discussions"}
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "flex px-4 py-2 text-sm"
+                      )}
+                    >
+                      <ChatBubbleLeftRightIcon className="mr-3 h-5 w-5 text-gray-400" />
+                      <span>Discussions</span>
+                    </Link>
+                  )}
+                </Menu.Item>
 
               <Menu.Item>
                 {({ active }) => (

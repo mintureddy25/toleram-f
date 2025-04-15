@@ -10,7 +10,6 @@ import AllQuestions from "../../../Components/AllQuestions";
 import { toast } from "react-toastify";
 import BackButton from "../../../Components/BackButton";
 import BackButtonWithRules from "../../../Components/BackButtonWithRules";
-import { isEmptyObject } from "../../../Utils/Helpers";
 
 function Players() {
   const { data: questions, isLoading, isError } = useGetPlayerQuestionsQuery();
@@ -32,7 +31,7 @@ function Players() {
   const onSubmit = async () => {
     const highestCanBet = import.meta.env.VITE_REACT_APP_PLAYERS_AMOUNT;
     let totalAmount = 0;
-    isEmptyObject(formData)?.map((key) => {
+    Object.keys(formData)?.map((key) => {
       totalAmount += parseInt(formData[key].amount);
     });
     if (totalAmount > highestCanBet) {
@@ -58,7 +57,7 @@ function Players() {
     if (bets) {
       const newBets = {};
       const existingBets = bets?.bets;
-      isEmptyObject(existingBets)?.map((key) => {
+      Object.keys(existingBets)?.map((key) => {
         if (
           existingBets?.[key]?.option != null &&
           existingBets?.[key]?.amount != 0

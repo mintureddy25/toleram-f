@@ -21,6 +21,7 @@ import BetHistoryWithLayout from "../V2/History/BetHistoryWithLayout";
 import AdminRoundDetails from "../../Components/Admin/Tournamet/AdminTournamentDetails";
 import Tournamet from "../../Components/Admin/Tournamet/AdminTournament";
 import ScoreDashboard from "../../Components/Admin/Matches/MatchScore/ScoreDashboard";
+import CommentsSection from "../../Components/comments/CommentsSection";
 
 function AuthRoutes() {
   return (
@@ -36,6 +37,10 @@ function AuthRoutes() {
 
       <Route path="/dream11">
         <Route index Component={Dream11} />
+      </Route>
+
+      <Route path="/discussions">
+        <Route index element={<CommentsSection roomName={'tolaram-discussions'} title="Discussions" description=" Join the conversation! Share your thoughts"/>} />
       </Route>
 
       <Route path="/history">

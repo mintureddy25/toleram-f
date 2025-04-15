@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import QuestionWithOptions from "./QuetionWithOptions";
 import BetSlip from "./PopUp/BetSlip";
-import { isEmptyObject } from "../Utils/Helpers";
 
 function AllQuestions({ questions, formData, setFormData, onSubmit, show, setShow,totalBetAllowed }) {
   // const [show, setShow] = useState(false);
@@ -41,7 +40,7 @@ function AllQuestions({ questions, formData, setFormData, onSubmit, show, setSho
       >
         <span className="px-2 py-1 rounded-full text-white bg-red-600">
           {" "}
-          {isEmptyObject(formData).length}{" "}
+          {Object.keys(formData).length}{" "}
         </span>
         <br />
         BET SLIP

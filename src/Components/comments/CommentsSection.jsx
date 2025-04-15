@@ -26,7 +26,7 @@ const getInitials = (name) => {
   return name.charAt(0).toUpperCase();
 };
 
-const CommentsSection = ({ roomName }) => {
+const CommentsSection = ({ title = '', description = '', roomName }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const [postComment, { isLoading: postLoading }] = usePostCommentMutation();
@@ -122,7 +122,16 @@ const CommentsSection = ({ roomName }) => {
 
   return (
     <>
-      <div className="bg-gray-900 mt-4 mx-2 flex items-start space-x-4 px-1 sticky top-0 z-10 max-w-6xl mx-auto px-8 sm:px-0">
+     <div className="p-3 rounded-lg shadow-md">
+     {title && ( <h2 className="text-2xl font-semibold text-gray-100">
+        {title}
+      </h2>)}
+      {description && <p className="text-gray-300">
+        {description}
+      </p>}
+    </div>
+      <div className="bg-gray-900 mt-4 mx-1 flex items-start space-x-4 px-1 sticky top-0 z-10 max-w-6xl mx-auto px-8 sm:px-0">
+
         <div className="shrink-0">
           <div
             className={`flex items-center justify-center size-10 rounded-full text-white font-semibold ${getRandomColor(
@@ -175,7 +184,7 @@ const CommentsSection = ({ roomName }) => {
           </div>
         ) : comments.length === 0 ? (
           <div className="flex justify-center py-4">
-            <p className="text-gray-400">No comments found</p>
+            <p className="text-gray-400">No discussions yet. Start one!</p>
           </div>
         ) : (
           <>
@@ -194,7 +203,7 @@ const CommentsSection = ({ roomName }) => {
                       <p className="text-sm/6 font-semibold text-white-900">
                         {comment.user_name}
                       </p>
-                      <p className="flex-none text-xs text-gray-600">
+                      <p className="flex-none text-xs text-gray-300">
                         <time dateTime={comment.created_at}>
                           {comment.pending
                             ? "Sending..."
@@ -204,7 +213,7 @@ const CommentsSection = ({ roomName }) => {
                     </div>
                     <p
                       className={`mt-1 line-clamp-2 text-sm/6 break-words text-left ${
-                        comment.pending ? "text-gray-500" : "text-gray-400"
+                        comment.pending ? "text-gray-500" : "text-gray-300"
                       }`}
                     >
                       {comment.comment}

@@ -7,8 +7,7 @@ import { isEmptyObject } from "../../../../Utils/Helpers";
 function ScoreDashboard({matchId}) {
     const { data: matchPlayers, isLoading } = useGetMatchPlayersQuery(matchId);
     if (isLoading) return <Loader />
-
-    if(isEmptyObject(matchPlayers?.team2).length === 0 || isEmptyObject(matchPlayers?.team1).length === 0 || isEmptyObject(matchPlayers?.team2).length === 0) return <div>Please add players to the teams</div>
+    if(isEmptyObject(matchPlayers?.team2) || isEmptyObject(matchPlayers?.team1) || isEmptyObject(matchPlayers?.team2)) return <div>Please add players to the teams</div>
 
     return <div className="py-8">
         <PlayersTable team={matchPlayers.team1}/>
