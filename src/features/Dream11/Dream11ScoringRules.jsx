@@ -37,7 +37,7 @@ export default function Dream11ScoringRules() {
   };
 
   return (
-    <div className="max-w-full mx-auto bg-gray-900 rounded-lg shadow-md overflow-hidden text-sm">
+    <div className="max-w-3xl mx-auto bg-gray-900 rounded-lg shadow-md overflow-hidden text-sm">
       <BackButton/>
       <div className="bg-indigo-600 px-4 py-3 m-2 rounded-md">
         <h1 className="text-lg font-bold text-white">Dream11 Scoring Rules</h1>
