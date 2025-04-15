@@ -5,19 +5,19 @@ const betsApi = baseApi.injectEndpoints({
     getTeams: builder.query({
       query: () => `/teams`,
       providesTags: (result, error, arg) => {
-        return ["teams"];
+        return ["Teams"];
       },
     }),
     getTeam: builder.query({
       query: (teamId) => `/teams/${teamId}`,
       providesTags: (result, error, arg) => {
-        return ["teams"];
+        return ["Teams"];
       },
     }),
     getTeamPlayersList: builder.query({
       query: (teamId) => `/teams/${teamId}/players`,
       providesTags: (result, error, arg) => {
-        return ["players"];
+        return ["Player"];
       },
     }),
     createTeam: builder.mutation({
@@ -29,7 +29,7 @@ const betsApi = baseApi.injectEndpoints({
           imageUrl: imageUrl,
         },
       }),
-      invalidatesTags: ["teams"],
+      invalidatesTags: ["Teams"],
     }),
     addPlayerToTeam: builder.mutation({
       query: (playerData) => ({
@@ -37,7 +37,7 @@ const betsApi = baseApi.injectEndpoints({
         method: "POST",
         body: playerData,
       }),
-      invalidatesTags: ["players"],
+      invalidatesTags: ["Player"],
     }),
     updateTeamsDetails: builder.mutation({
       query: ({ teamName, imageUrl, teamId }) => ({
@@ -48,7 +48,7 @@ const betsApi = baseApi.injectEndpoints({
           imageUrl: imageUrl,
         },
       }),
-      invalidatesTags: ["teams"],
+      invalidatesTags: ["Teams"],
     }),
     addImageUrl: builder.mutation({
       query: (imageData) => ({
@@ -66,7 +66,7 @@ const betsApi = baseApi.injectEndpoints({
                 imageUrl: imageUrl && imageUrl,
             },
         }),
-        invalidatesTags: ['players'],
+        invalidatesTags: ['Player'],
     }),
   }),
   overrideExisting: false,

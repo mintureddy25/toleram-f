@@ -3,3 +3,7 @@ export const isAdmin = (token) => {
   const role = JSON.parse(token)?.role;
   return role === "admin";
 };
+
+export function isEmptyObject(obj) {
+  return Object.keys(obj || {}).length === 0;
+}

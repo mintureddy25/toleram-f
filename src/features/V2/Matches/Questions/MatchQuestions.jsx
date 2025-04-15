@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import BackButton from "../../../../Components/BackButton";
 import BackButtonWithRules from "../../../../Components/BackButtonWithRules";
 import CommentsSection from "../../../../Components/comments/CommentsSection";
+import { isEmptyObject } from "../../../../Utils/Helpers";
 
 function MatchQuestions() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ function MatchQuestions() {
   const onSubmit = async () => {
     const highestCanBet = import.meta.env.VITE_REACT_APP_TOTAL_AMOUNT;
     let totalAmount = 0;
-    Object.keys(formData)?.map((key) => {
+    isEmptyObject(formData)?.map((key) => {
       totalAmount += parseInt(formData[key].amount);
     });
     if (totalAmount > highestCanBet) {
@@ -75,7 +76,7 @@ function MatchQuestions() {
     if (bets) {
       const newBets = {};
       const existingBets = bets?.bets;
-      Object.keys(existingBets)?.map((key) => {
+      isEmptyObject(existingBets)?.map((key) => {
         if (
           existingBets?.[key]?.option != null &&
           existingBets?.[key]?.amount != 0

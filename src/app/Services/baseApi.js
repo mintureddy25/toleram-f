@@ -39,7 +39,8 @@ export const baseApi = createApi({
     "Player",
     "RoundQuestion",
     "TournamentRound",
-    "PlayerScore"
+    "PlayerScore",
+    "PlayersBets",
   ],
   endpoints: () => ({}),
 });

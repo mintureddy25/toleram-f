@@ -37,7 +37,7 @@ function RoundQuestions() {
   const onSubmit = async () => {
     const highestCanBet = import.meta.env.VITE_REACT_APP_ROUNDS_AMOUNT;
     let totalAmount = 0;
-    Object.keys(formData)?.map((key) => {
+    isEmptyObject(formData)?.map((key) => {
       totalAmount += parseInt(formData[key].amount);
     });
     if (totalAmount > highestCanBet) {
@@ -64,7 +64,7 @@ function RoundQuestions() {
     if (bets) {
       const newBets = {};
       const existingBets = bets?.bets;
-      Object.keys(existingBets)?.map((key) => {
+      isEmptyObject(existingBets)?.map((key) => {
         if (
           existingBets?.[key]?.option != null &&
           existingBets?.[key]?.amount != 0

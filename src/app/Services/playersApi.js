@@ -5,13 +5,13 @@ const betsApi = baseApi.injectEndpoints({
         getPlayers: builder.query({
             query: () => `players`,
             providesTags: (result, error, arg) => {
-              return ["Players"];  
+              return ["Player"];
             },
           }),
         getPlayerQuestions: builder.query({
             query: () => `bestplayers/questions`,
             providesTags: (result, error, arg) => {
-                return ["Players"];
+                return ["Player"];
             },
         }),
         getPlayersBets: builder.query({

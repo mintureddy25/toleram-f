@@ -17,38 +17,42 @@ export default function CreateOrEditTeamPopup({ open, setOpen, selectedTeam }) {
     useUpdateTeamsDetailsMutation(selectedTeam?.id);
   const cancelButtonRef = React.useRef(null);
 
-  // Use useEffect to reset the form when the popup opens/closes or selectedTeam changes
+  const [formData, setFormData] = useState({
+    teamName: "",
+    imageFile: null,
+    imageUrl: "",
+  });
+
+  // Update useEffect to use new state structure
   useEffect(() => {
     if (open) {
-      setTeamName(selectedTeam?.team_name || "");
-      setImageFile(null);
-      setImageUrl("");
+      setFormData({
+        teamName: selectedTeam?.team_name || "",
+        imageFile: null,
+        imageUrl: "",
+      });
     }
   }, [open, selectedTeam]);
-
-  const [teamName, setTeamName] = useState("");
-  const [imageFile, setImageFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
 
   const isLoading = isCreateLoading || isUpdateLoading;
   const isEditMode = Boolean(selectedTeam);
 
   const onSubmit = async () => {
-    if (!teamName.trim()) {
+    if (!formData.teamName.trim()) {
       toast.error("Team name is required");
       return;
     }
 
-    if (!imageUrl && !isEditMode) {
+    if (!formData.imageUrl && !isEditMode) {
       toast.error("Team image is required");
       return;
     }
 
     try {
       const payload = {
-        teamName,
+        teamName: formData.teamName,
         teamId: selectedTeam?.id,
-        imageUrl: imageUrl,
+        imageUrl: formData.imageUrl,
       };
 
       if (isEditMode) {
@@ -94,8 +98,10 @@ export default function CreateOrEditTeamPopup({ open, setOpen, selectedTeam }) {
               <div className="mt-4">
                 <input
                   type="text"
-                  value={teamName}
-                  onChange={(e) => setTeamName(e.target.value)}
+                  value={formData.teamName}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, teamName: e.target.value }))
+                  }
                   placeholder="Enter team name"
                   className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
@@ -104,7 +110,9 @@ export default function CreateOrEditTeamPopup({ open, setOpen, selectedTeam }) {
           </div>
           <UploadImage
             placeholder={"Upload team logo"}
-            updateImageUrl={setImageUrl}
+            updateImageUrl={(url) =>
+              setFormData((prev) => ({ ...prev, imageUrl: url }))
+            }
             existingImageUrl={selectedTeam?.team_logo}
           />
           <div className="mt-5 sm:mt-6">

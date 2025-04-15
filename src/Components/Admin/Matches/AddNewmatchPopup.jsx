@@ -172,38 +172,6 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
                       </option>
                     ))}
                   </select>
-
-                  {/* <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={matchData.canBet === "1"}
-                        onChange={(e) => setMatchData({...matchData, canBet: e.target.checked ? "1" : "0"})}
-                        className="mr-2"
-                      />
-                      Can Bet
-                    </label>
-
-                    <label className="flex items-center">
-                      <input
-                        type="checkbox"
-                        checked={matchData.canShow === "1"}
-                        onChange={(e) => setMatchData({...matchData, canShow: e.target.checked ? "1" : "0"})}
-                        className="mr-2"
-                      />
-                      Can Show
-                    </label>
-                  </div> */}
-
-                  {/* <select
-                    value={matchData.betStatus}
-                    onChange={(e) => setMatchData({...matchData, betStatus: e.target.value})}
-                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  >
-                    <option value="dont_process">Don't Process</option>
-                    <option value="processing">Processing</option>
-                    <option value="completed">Completed</option>
-                  </select> */}
                 </div>
               </div>
             </div>

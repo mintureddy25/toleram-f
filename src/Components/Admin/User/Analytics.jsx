@@ -1,27 +1,16 @@
 import React from "react";
 
 const Analytics = ({ userData }) => {
-  const calculateTotalBetAmount = () => {
+  // Match-related calculations
+  const calculateMatchBetsTotal = () => {
     if (!userData) return 0;
-
-    let total = 0;
-    userData.matchBets.forEach((match) => {
-      match.bets.forEach((bet) => {
-        total += bet.betAmount;
-      });
-    });
-    userData.roundBets.forEach((round) => {
-      round.bets.forEach((bet) => {
-        total += bet.betAmount;
-      });
-    });
-
-    return total;
+    return userData.matchBets.reduce((total, match) => {
+      return total + match.bets.reduce((matchTotal, bet) => matchTotal + bet.betAmount, 0);
+    }, 0);
   };
 
-  const calculateWinRate = () => {
+  const calculateMatchWinRate = () => {
     if (!userData) return 0;
-
     let totalBets = 0;
     let wonBets = 0;
     userData.matchBets.forEach((match) => {
@@ -30,6 +19,21 @@ const Analytics = ({ userData }) => {
         if (bet.correct === "Yes") wonBets++;
       });
     });
+    return totalBets > 0 ? Math.round((wonBets / totalBets) * 100) : 0;
+  };
+
+  // Round-related calculations
+  const calculateRoundBetsTotal = () => {
+    if (!userData) return 0;
+    return userData.roundBets.reduce((total, round) => {
+      return total + round.bets.reduce((roundTotal, bet) => roundTotal + bet.betAmount, 0);
+    }, 0);
+  };
+
+  const calculateRoundWinRate = () => {
+    if (!userData) return 0;
+    let totalBets = 0;
+    let wonBets = 0;
     userData.roundBets.forEach((round) => {
       round.bets.forEach((bet) => {
         if (bet.correct !== null) {
@@ -38,9 +42,39 @@ const Analytics = ({ userData }) => {
         }
       });
     });
-
     return totalBets > 0 ? Math.round((wonBets / totalBets) * 100) : 0;
   };
+
+  // Combined calculations
+  const calculateTotalBetAmount = () => {
+    return calculateMatchBetsTotal() + calculateRoundBetsTotal();
+  };
+
+  const calculateWinRate = () => {
+    const matchStats = userData?.matchBets.reduce((acc, match) => {
+      match.bets.forEach(bet => {
+        acc.total++;
+        if (bet.correct === "Yes") acc.won++;
+      });
+      return acc;
+    }, { total: 0, won: 0 }) || { total: 0, won: 0 };
+
+    const roundStats = userData?.roundBets.reduce((acc, round) => {
+      round.bets.forEach(bet => {
+        if (bet.correct !== null) {
+          acc.total++;
+          if (bet.correct === "Yes") acc.won++;
+        }
+      });
+      return acc;
+    }, { total: 0, won: 0 }) || { total: 0, won: 0 };
+
+    const totalBets = matchStats.total + roundStats.total;
+    const totalWon = matchStats.won + roundStats.won;
+
+    return totalBets > 0 ? Math.round((totalWon / totalBets) * 100) : 0;
+  };
+
   return (
     <>
       {" "}
