@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useCreateDream11TeamMutation } from "../../app/Services/dream11Api";
-import Dream11TeamSelector from "./Dream11TeamSelector";
+
 import { toast } from "react-toastify";
+import Dream11TeamSelector from "./TeamSelector";
 
 const CreateTeam = () => {
   const [createDream11Team, { isLoading: creatTeamLoading }] =
@@ -12,12 +13,12 @@ const CreateTeam = () => {
     const teamData = {
       players: selectedTeam.team.map((player) => {
         if (player.id === selectedTeam.captain) {
-          return { playerId: player.id, roleType: "captain" };
+          return { playerId: player.id, roleType: "captain" ,gender:player.gender, type: player.player_role, credits: player.credits};
         }
         if (player.id === selectedTeam.viceCaptain) {
-          return { playerId: player.id, roleType: "vice-captain" };
+          return { playerId: player.id, roleType: "vice-captain", gender:player.gender, type: player.player_role, credits: player.credits};
         }
-        return { playerId: player.id, roleType: "player" };
+        return { playerId: player.id, roleType: "player", gender:player.gender, type: player.player_role, credits: player.credits };
       }),
     };
     try {

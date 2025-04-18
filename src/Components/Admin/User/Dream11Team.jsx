@@ -1,4 +1,5 @@
 import React from "react";
+import { PLAYER_IMAGE } from "../../../constants/teamLimits";
 
 const Dream11Team = ({ dream11 }) => {
   return (
@@ -37,7 +38,7 @@ const Dream11Team = ({ dream11 }) => {
           >
             <div className="w-10 h-10 rounded-full bg-gray-700 overflow-hidden flex-shrink-0">
               <img
-                src={player.player_logo}
+                src={player.player_logo || PLAYER_IMAGE}
                 alt={player.player_name}
                 className="w-full h-full"
               />
