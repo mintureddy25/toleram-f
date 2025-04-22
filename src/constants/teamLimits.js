@@ -15,4 +15,4 @@ export const DEFAULT_GENDER_LIMITS = {
   others: { min: 0, max: 11 },
 };
 
-export const PLAYER_IMAGE = 'https://tplmania.s3.eu-west-2.amazonaws.com/toleram/f55e62e0-dc2f-4909-a06f-ea583818f9da-cricket-player-llustration-with-silhouette-style-vector-2J4E41P.jpg'
+export const PLAYER_IMAGE = 'https://tplmania.s3.eu-west-2.amazonaws.com/toleram/cf762a40-af15-4269-b42a-b7cd1a557ead-player%20(1).jpg'

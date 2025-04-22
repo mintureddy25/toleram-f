@@ -23,6 +23,7 @@ import Tournamet from "../../Components/Admin/Tournamet/AdminTournament";
 import ScoreDashboard from "../../Components/Admin/Matches/MatchScore/ScoreDashboard";
 import CommentsSection from "../../Components/comments/CommentsSection";
 import Dream11ScoringRules from "../Dream11/Dream11ScoringRules";
+import Dream11Leaderboard from "../Dream11/Leaderboard";
 
 function AuthRoutes() {
   return (
@@ -38,6 +39,7 @@ function AuthRoutes() {
 
       <Route path="/dream11">
         <Route index Component={Dream11} />
+        <Route path="leaderboard" Component={Dream11Leaderboard} />
       </Route>
 
       <Route path="/points">

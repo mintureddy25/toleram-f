@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import Loader from "../../../../Components/Loader";
 import {
   useGetMatchBetsQuery,
+  useGetMatchQuery,
   useGetMatchQuestionsQuery,
   useUpdateMatchBetsMutation,
 } from "../../../../app/Services/matchesApi";
@@ -22,6 +23,7 @@ function MatchQuestions() {
     isLoading,
     isError,
   } = useGetMatchQuestionsQuery(matchId);
+  const {data: match} = useGetMatchQuery(matchId);
 
   const {
     data: bets,
@@ -42,7 +44,7 @@ function MatchQuestions() {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const onSubmit = async () => {
-    const highestCanBet = import.meta.env.VITE_REACT_APP_TOTAL_AMOUNT;
+    const highestCanBet = match?.match?.max_bet_amount;
     let totalAmount = 0;
     Object.keys(formData)?.map((key) => {
       totalAmount += parseInt(formData[key].amount);

@@ -182,6 +182,7 @@ export default function CreateNewQuestionPopup({
                     <div className="flex items-center gap-2 w-full sm:w-1/2">
                       <input
                         type="number"
+                        min="0"
                         value={option.odds}
                         onChange={(e) =>
                           handleOptionChange(index, "odds", e.target.value)

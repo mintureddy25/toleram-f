@@ -58,13 +58,10 @@ const betsApi = baseApi.injectEndpoints({
       }),
     }),
     updatePlayerDetails: builder.mutation({
-        query: ({name, imageUrl, playerId}) => ({
-            url: `/admin/players/${playerId}`,
+        query: (playerData) => ({
+            url: `/admin/players/${playerData.playerId}`,
             method: 'PATCH',
-            body: {
-                name,
-                imageUrl: imageUrl && imageUrl,
-            },
+            body: playerData,
         }),
         invalidatesTags: ['Player'],
     }),

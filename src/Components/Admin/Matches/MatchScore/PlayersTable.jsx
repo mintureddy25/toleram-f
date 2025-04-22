@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ScorePopup from "./ScorePopup";
 import { useParams } from "react-router-dom";
-
+import { PLAYER_IMAGE } from "../../../../constants/teamLimits";
 function ScoreDashboard({ team }) {
     const matchId = useParams();
     const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ function ScoreDashboard({ team }) {
     const getPlayerData = (player) => [
         { content: (
             <div className="flex items-center gap-2">
-                <img src={player.playerLogo} alt={player.name} className="w-8 h-8 rounded-full" />
+                <img src={player.playerLogo || PLAYER_IMAGE} alt={player.name} className="w-8 h-8 rounded-full" />
                 {player.name}
             </div>
         )},

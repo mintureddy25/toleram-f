@@ -1,50 +1,53 @@
-import React from 'react';
-import { useGetDream11TeamQuery } from '../../app/Services/dream11Api';
-import Dream11TeamDisplay from './ViewTeam';
-import Loader from '../../Components/Loader';
-import CreateTeam from './CreateTeam';
-import ViewTeam from './ViewTeam';
-import MenuTabs from '../Layout/MenuTabs';
+import React from "react";
+import Dream11Leaderboard from "./Leaderboard";
 
+import { Tab } from "@headlessui/react";
+import MenuTabs from "../Layout/MenuTabs";
+import Dream11Team from "./Team";
 
-const Dream11 = () => {
-  const {
-    data: teamData,
-    isLoading: teamLoading,
-    isError,
-    error: errorMessage,
-  } = useGetDream11TeamQuery();
-
-  if (teamLoading) {
-    return <Loader />;
-  }
-
-  if (isError) {
-    return (
-      <div className="p-4 text-2xl text-red-500">
-        <p>{errorMessage?.data?.message || 'Something went wrong, please try again later'}</p>
-        
-      </div>
-    );
-  }
-
-  const hasTeam = teamData?.team && teamData.team.length > 0;
-
+function Dream11() {
   return (
     <MenuTabs>
-    <div className="team-container rounded-lg shadow-sm">
-      {hasTeam ? (
-        <ViewTeam teamData={teamData} />
-      ) : teamData?.canCreate ? (
-        <CreateTeam />
-      ) : (
-        <div className="p-4 text-2xl font-bold text-gray-500">
-          <p>Tournament already started. You cannot create a team now.</p>
-        </div>
-      )}
-    </div>
-  </MenuTabs>
+      <div className="">
+        <Tab.Group defaultIndex={0}>
+          <Tab.List className="flex justify-center justify-items-center space-x-4 px-4 sm:px-8 mb-6">
+            <Tab
+              className={({ selected }) =>
+                `px-4 py-2 rounded-lg text-sm font-medium focus:outline-none ${
+                  selected
+                    ? "bg-indigo-600 text-white"
+                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                }`
+              }
+            >
+              Team
+            </Tab>
+            <Tab
+              className={({ selected }) =>
+                `px-4 py-2 rounded-lg text-sm font-medium focus:outline-none ${
+                  selected
+                    ? "bg-indigo-600 text-white"
+                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                }`
+              }
+            >
+              Leaderboard
+            </Tab>
+          </Tab.List>
+
+          <Tab.Panels>
+            <Tab.Panel>
+              <Dream11Team />
+            </Tab.Panel>
+
+            <Tab.Panel className="leaderboard">
+              <Dream11Leaderboard />
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
+      </div>
+    </MenuTabs>
   );
-};
+}
 
 export default Dream11;

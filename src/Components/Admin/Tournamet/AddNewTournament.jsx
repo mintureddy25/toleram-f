@@ -17,6 +17,7 @@ export default function AddNewTournament({ open, setOpen, round }) {
 
   const [roundData, setRoundData] = useState({
     roundName: "",
+    maxBetAmount: "",
   });
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function AddNewTournament({ open, setOpen, round }) {
       setRoundData({
         ...roundData,
         roundName: round.round_name,
+        maxBetAmount: round.max_bet_amount || "",
       });
     }
   }, [round]);
@@ -34,16 +36,23 @@ export default function AddNewTournament({ open, setOpen, round }) {
       return;
     }
 
+    if (!roundData.maxBetAmount || roundData.maxBetAmount <= 0) {
+      toast.error("Valid max bet amount is required");
+      return;
+    }
+
     try {
       if (round) {
         await updateRound({
           id: round.id,
           roundName: roundData.roundName,
+          maxBetAmount: Number(roundData.maxBetAmount),
         }).unwrap();
         toast.success("Round updated successfully");
       } else {
         await addTournamentRound({
           roundName: roundData.roundName,
+          maxBetAmount: Number(roundData.maxBetAmount),
         }).unwrap();
         toast.success("Round created successfully");
       }
@@ -91,6 +100,16 @@ export default function AddNewTournament({ open, setOpen, round }) {
                       setRoundData({ ...roundData, roundName: e.target.value })
                     }
                     placeholder="Enter round name"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                  <input
+                    type="number"
+                    min="0"
+                    value={roundData.maxBetAmount}
+                    onChange={(e) =>
+                      setRoundData({ ...roundData, maxBetAmount: e.target.value })
+                    }
+                    placeholder="Enter max bet amount"
                     className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>

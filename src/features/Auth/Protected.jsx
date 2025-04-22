@@ -11,7 +11,8 @@ function Protected(props) {
         const user = {
             name : localStorage.getItem('name'),
             email : JSON.parse(storage_token).email,
-            token : localStorage.getItem('encodedToken')
+            token : localStorage.getItem('encodedToken'),
+            id : JSON.parse(storage_token).id
         }
         dispatch(setCredentials(user));
     }

@@ -51,3 +51,22 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   filter: invert(1); /* Makes the icon white */
   cursor: pointer;
 }
+
+/* For Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161e31; /* Dark background */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #111725; /* Scrollbar thumb color */
+  border-radius: 10px;
+  border: 3px solid #151e33; /* Matches the track for padding illusion */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+}

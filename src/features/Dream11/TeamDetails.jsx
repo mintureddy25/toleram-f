@@ -1,5 +1,6 @@
 import React from "react";
 import { PLAYER_IMAGE } from "../../constants/teamLimits";
+import { Link } from "react-router-dom";
 
 const TeamDetails = ({ teamData, handleEdit }) => {
   const calculatedTotalPoints = teamData.team.reduce(
@@ -48,26 +49,28 @@ const TeamDetails = ({ teamData, handleEdit }) => {
               </div>
             </div>
           </div>
-         {teamData?.canEdit && ( <button
-            onClick={handleEdit}
-            className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 py-2 px-4 w-full sm:w-auto justify-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
+          {teamData?.canEdit && (
+            <button
+              onClick={handleEdit}
+              className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 py-2 px-4 w-full sm:w-auto justify-center"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-              />
-            </svg>
-            Edit Team
-          </button>)}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                />
+              </svg>
+              Edit Team
+            </button>
+          )}
         </div>
       </div>
 
@@ -77,7 +80,6 @@ const TeamDetails = ({ teamData, handleEdit }) => {
             {captain && (
               <div className="relative rounded-xl overflow-hidden bg-gray-800 shadow">
                 <div className="absolute top-0 right-0 bg-red-600 text-white px-3 py-1 rounded-bl-lg font-bold flex items-center text-xs">
-    
                   CAPTAIN
                 </div>
                 <div className="p-4 flex items-center gap-4">
@@ -109,8 +111,6 @@ const TeamDetails = ({ teamData, handleEdit }) => {
             {viceCaptain && (
               <div className="relative  rounded-xl overflow-hidden bg-gray-800 shadow">
                 <div className="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 rounded-bl-lg font-bold flex items-center text-xs">
-                  
-          
                   VICE CAPTAIN
                 </div>
                 <div className="p-4 flex items-center gap-4">

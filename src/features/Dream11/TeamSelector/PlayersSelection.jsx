@@ -98,15 +98,15 @@ const PlayerSelection = ({
                 </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-2 mb-2">
+            <div className="flex flex-wrap gap-1 mb-2 mt-3">
               {["All", "batsman", "bowler", "all-rounder", "wicket-keeper"].map(
                 (role) => (
                   <button
                     key={role}
                     onClick={() => setFilter(role)}
-                    className={`px-1 sm:px-1 py-1 rounded-full text-xs font-medium ${
+                    className={`px-2 sm:px-1 py-1 rounded-full text-xs font-medium ${
                       filter === role
-                        ? "bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        ? "bg-indigo-600 text-white text-xs font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         : "bg-gray-800 text-gray-100 hover:bg-indigo-500"
                     }`}
                   >

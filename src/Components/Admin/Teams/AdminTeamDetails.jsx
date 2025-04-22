@@ -8,6 +8,7 @@ import AddTeamPlayerPopup from "./AddTeamPlayerPopup";
 import CreateTeamPopup from "./CreateOrEditTeamPopup";
 import Loader from "../../Loader";
 import { PlusIcon } from "@heroicons/react/24/outline";
+import { PLAYER_IMAGE } from "../../../constants/teamLimits";
 
 export default function AdminTeamDetails() {
   const { teamId } = useParams();
@@ -108,7 +109,7 @@ export default function AdminTeamDetails() {
                   >
                     <img
                       alt={player.name}
-                      src={player.player_logo}
+                      src={player.player_logo || PLAYER_IMAGE}
                       className="mx-auto size-16 rounded-full"
                     />
                     <h3 className="mt-4 text-lg font-semibold tracking-tight text-gray-100">

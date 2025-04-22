@@ -26,7 +26,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
 
   const { data: teams } = useGetTeamsQuery();
 
-  const [matchData, setMatchData] = useState({
+  const initialMatchData = {
     teamOneId: "",
     teamTwoId: "",
     matchTitle: "",
@@ -34,7 +34,10 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
     canBet: "0",
     canShow: "1",
     betStatus: "dont_process",
-  });
+    maxBetAmount: "",
+  };
+
+  const [matchData, setMatchData] = useState(initialMatchData);
 
   useEffect(() => {
     if (match) {
@@ -46,6 +49,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
         canBet: match?.match?.can_bet,
         canShow: match?.match?.can_show,
         betStatus: match?.match?.bet_status,
+        maxBetAmount: Number(match?.match?.max_bet_amount) || 0,
       });
     }
   }, [match]);
@@ -121,6 +125,17 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
                       setMatchData({ ...matchData, matchTitle: e.target.value })
                     }
                     placeholder="Enter match title"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+
+                  <input
+                    type="number"
+                    min="0"
+                    value={matchData.maxBetAmount}
+                    onChange={(e) =>
+                      setMatchData({ ...matchData, maxBetAmount: Number(e.target.value) })
+                    }
+                    placeholder="Enter bet amount"
                     className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
 

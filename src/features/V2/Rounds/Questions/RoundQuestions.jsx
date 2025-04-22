@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetRoundBetsQuery,
   useGetRoundQuestionsQuery,
+  useGetRoundQuery,
   useUpdateRoundBetsMutation,
 } from "../../../../app/Services/roundsApi";
 import Loader from "../../../../Components/Loader";
@@ -19,6 +20,7 @@ function RoundQuestions() {
     isLoading,
     isError,
   } = useGetRoundQuestionsQuery(roundId);
+  const {data: round} = useGetRoundQuery(roundId);
 
   const {
     data: bets,
@@ -35,7 +37,7 @@ function RoundQuestions() {
   const [show, setShow] = useState(false);
 
   const onSubmit = async () => {
-    const highestCanBet = import.meta.env.VITE_REACT_APP_ROUNDS_AMOUNT;
+    const highestCanBet = round?.round?.max_bet_amount;
     let totalAmount = 0;
     Object.keys(formData)?.map((key) => {
       totalAmount += parseInt(formData[key].amount);

@@ -8,6 +8,12 @@ const betsApi = baseApi.injectEndpoints({
                 return ["matches"];
             },
         }),
+        getMatch: builder.query({
+            query: (matchId) => `/matches/${matchId}`,
+            providesTags: (result, error, arg) => {
+                return ["matches"];
+            },
+        }),
         getMatchQuestions: builder.query({
             query: (matchId) => `/matches/${matchId}/questions`,
             providesTags: (result, error, arg) => {
@@ -34,6 +40,7 @@ const betsApi = baseApi.injectEndpoints({
 
 export const {
     useGetMatchesQuery,
+    useGetMatchQuery,
     useGetMatchQuestionsQuery,
     useGetMatchBetsQuery,
     useUpdateMatchBetsMutation,

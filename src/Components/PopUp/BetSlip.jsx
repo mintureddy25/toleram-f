@@ -131,6 +131,7 @@ function BetSlip({
                           <Text
                             register={register}
                             name={"number" + key}
+                            min="0"
                             type="number"
                             value={formData?.[key]?.amount}
                             onChange={(i) => {

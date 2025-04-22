@@ -5,6 +5,9 @@ const betsApi = baseApi.injectEndpoints({
         getRounds: builder.query({
             query: () => `/rounds`,
         }),
+        getRound: builder.query({
+            query: (roundId) => `/rounds/${roundId}`,
+        }),
         getRoundById: builder.query({
             query: (roundId) => `/rounds/${roundId}`,
         }),
@@ -31,6 +34,7 @@ const betsApi = baseApi.injectEndpoints({
 
 export const {
     useGetRoundsQuery,
+    useGetRoundQuery,
     useGetRoundByIdQuery,
     useGetRoundQuestionsQuery,
     useGetRoundBetsQuery,

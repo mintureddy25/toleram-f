@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import UploadImage from "../../UploadImage/Index";
 
 export default function AddTeamPlayerPopup({ open, setOpen, player }) {
+
   const { teamId } = useParams();
   const [addplayer, { isLoading, isError }] =
     useAddPlayerToTeamMutation(teamId);
@@ -26,37 +27,50 @@ export default function AddTeamPlayerPopup({ open, setOpen, player }) {
   const [playerName, setPlayerName] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [role, setRole] = useState("batsman");
+  const [gender, setGender] = useState("male");
+  const [credits, setCredits] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     if (player) {
       setPlayerName(player.name || "");
       setRole(player.player_role || "batsman");
+      setGender(player.gender || "male");
+      setCredits(player.credits?.toString() || "");
+      setImageUrl(player.player_logo || "");
     }
   }, [player]);
 
   const playerRoles = ["batsman", "bowler", "all-rounder", "wicket-keeper"];
-
+  const genderOptions = ["male", "female", "others"];
   const onSubmit = async () => {
     try {
+      const playerData = {
+        name: playerName,
+        role: role,
+        id: player?.id,
+        gender: gender,
+        credits: credits === "" ? 0 : parseFloat(credits),
+        teamId: teamId,
+        imageUrl: imageUrl || player?.player_logo,
+      };
+      console.log(playerData)
+
       if (player) {
-        // Update existing player
+        // Update existing player - now sending all fields
         const res = await updatePlayer({
-          name: playerName,
-          role: role,
-          teamId: teamId,
-          imageUrl: imageUrl,
-          playerId: player.id, // Assuming player object has an id field
+          name: playerData.name,
+          role: playerData.role,
+          gender: playerData.gender,
+          credits: playerData.credits,
+          imageUrl: playerData.imageUrl,
+          teamId: playerData.teamId,
+          playerId: playerData.id,
         }).unwrap();
         toast.success("Player updated successfully");
       } else {
         // Add new player
-        const res = await addplayer({
-          name: playerName,
-          role: role,
-          teamId: teamId,
-          imageUrl: imageUrl,
-        }).unwrap();
+        const res = await addplayer(playerData).unwrap();
         toast.success("Player added successfully");
       }
       resetForm();
@@ -73,6 +87,8 @@ export default function AddTeamPlayerPopup({ open, setOpen, player }) {
     setPlayerName("");
     setImageFile(null);
     setRole("batsman");
+    setGender("male");
+    setCredits("");
     setImageUrl("");
   };
 
@@ -118,7 +134,14 @@ export default function AddTeamPlayerPopup({ open, setOpen, player }) {
                     placeholder="Enter player name"
                     className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                   />
-
+                  <input
+                    type="number"
+                    min="0"
+                    value={credits}
+                    onChange={(e) => setCredits(e.target.value)}
+                    placeholder="Enter player credits"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                  />
                   <select
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
@@ -127,6 +150,17 @@ export default function AddTeamPlayerPopup({ open, setOpen, player }) {
                     {playerRoles.map((role) => (
                       <option key={role} value={role} className="bg-gray-900">
                         {role.charAt(0).toUpperCase() + role.slice(1)}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                  >
+                    {genderOptions.map((option) => (
+                      <option key={option} value={option} className="bg-gray-900">
+                        {option.charAt(0).toUpperCase() + option.slice(1)}
                       </option>
                     ))}
                   </select>
