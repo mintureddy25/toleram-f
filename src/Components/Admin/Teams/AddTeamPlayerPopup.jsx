@@ -15,7 +15,6 @@ import { useParams } from "react-router-dom";
 import UploadImage from "../../UploadImage/Index";
 
 export default function AddTeamPlayerPopup({ open, setOpen, player }) {
-
   const { teamId } = useParams();
   const [addplayer, { isLoading, isError }] =
     useAddPlayerToTeamMutation(teamId);
@@ -41,7 +40,7 @@ export default function AddTeamPlayerPopup({ open, setOpen, player }) {
     }
   }, [player]);
 
-  const playerRoles = ["batsman", "bowler", "all-rounder", "wicket-keeper"];
+  const playerRoles = ["batsman", "bowler", "all-rounder"];
   const genderOptions = ["male", "female", "others"];
   const onSubmit = async () => {
     try {
@@ -54,7 +53,7 @@ export default function AddTeamPlayerPopup({ open, setOpen, player }) {
         teamId: teamId,
         imageUrl: imageUrl || player?.player_logo,
       };
-      console.log(playerData)
+      console.log(playerData);
 
       if (player) {
         // Update existing player - now sending all fields
@@ -159,7 +158,11 @@ export default function AddTeamPlayerPopup({ open, setOpen, player }) {
                     className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
                   >
                     {genderOptions.map((option) => (
-                      <option key={option} value={option} className="bg-gray-900">
+                      <option
+                        key={option}
+                        value={option}
+                        className="bg-gray-900"
+                      >
                         {option.charAt(0).toUpperCase() + option.slice(1)}
                       </option>
                     ))}

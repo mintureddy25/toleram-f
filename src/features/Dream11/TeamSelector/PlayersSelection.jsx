@@ -1,5 +1,6 @@
 import React from "react";
 import { PLAYER_IMAGE } from "../../../constants/teamLimits";
+import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 const PlayerSelection = ({
   playersLoading,
@@ -31,9 +32,9 @@ const PlayerSelection = ({
       ) : (
         <>
           <div className="flex-shrink-0">
-            <div className="overflow-x-auto pb-1 mb-2"></div>
+            <div className="overflow-x-auto pb-1"></div>
             <div className="mb-2">
-              <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex flex-col">
                 <div className="relative flex-1">
                   <input
                     type="search"
@@ -60,60 +61,94 @@ const PlayerSelection = ({
                     />
                   </svg>
                 </div>
-                <div className="flex gap-3">
-                  <div className="flex items-center gap-2">
-                    <label htmlFor="gender" className="text-xs text-white">
-                      Gender:
-                    </label>
+                <div className="w-full py-2 pb-1">
+                  <div className="relative w-full">
                     <select
-                      id="gender"
-                      value={genderFilter}
-                      onChange={(e) => setGenderFilter(e.target.value)}
-                      className="border rounded-lg px-2 py-1 bg-gray-800 text-xs text-white"
-                    >
-                      {["All", "male", "female", "others"].map((gender) => (
-                        <option key={gender} value={gender}>
-                          {gender.charAt(0).toUpperCase() + gender.slice(1)}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <label htmlFor="gender" className="text-xs text-white">
-                      Teams:
-                    </label>
-
-                    <select
+                      id="team"
                       value={teamFilter}
                       onChange={(e) => setTeamFilter(e.target.value)}
-                      className="border rounded-lg px-2 py-1 bg-gray-800 text-white text-xs"
+                      className="w-full border rounded-lg px-4 py-2 bg-gray-800 text-sm text-white appearance-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     >
                       {getUniqueTeams().map((team) => (
-                        <option key={team} value={team}>
+                        <option className="w-4/5" key={team} value={team}>
                           {team}
                         </option>
                       ))}
                     </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-white">
+                      {/* Heroicon - Chevron Down */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="flex flex-wrap gap-1 mb-2 mt-3">
-              {["All", "batsman", "bowler", "all-rounder", "wicket-keeper"].map(
-                (role) => (
-                  <button
-                    key={role}
-                    onClick={() => setFilter(role)}
-                    className={`px-2 sm:px-1 py-1 rounded-full text-xs font-medium ${
-                      filter === role
-                        ? "bg-indigo-600 text-white text-xs font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        : "bg-gray-800 text-gray-100 hover:bg-indigo-500"
-                    }`}
-                  >
-                    {role}
-                  </button>
-                )
-              )}
+            <div className="flex flex-wrap justify-center mb-2 mt-3">
+              <div className="flex w-full max-w-md border border-gray-700 rounded-md overflow-hidden">
+                <button
+                  onClick={() => {
+                    setFilter("All");
+                    setGenderFilter("female");
+                  }}
+                  className={`flex-1 py-2 text-xs font-medium ${
+                    genderFilter === "female"
+                      ? "bg-indigo-600 text-white"
+                      : "bg-gray-800 text-gray-100 hover:bg-gray-700"
+                  }`}
+                >
+                  female
+                </button>
+                <button
+                  onClick={() => {
+                    setGenderFilter("All");
+                    setFilter("batsman");
+                  }}
+                  className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${
+                    filter === "batsman"
+                      ? "bg-indigo-600 text-white"
+                      : "bg-gray-800 text-gray-100 hover:bg-gray-700"
+                  }`}
+                >
+                  batsman
+                </button>
+                <button
+                  onClick={() => {
+                    setGenderFilter("All");
+                    setFilter("bowler");
+                  }}
+                  className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${
+                    filter === "bowler"
+                      ? "bg-indigo-600 text-white"
+                      : "bg-gray-800 text-gray-100 hover:bg-gray-700"
+                  }`}
+                >
+                  bowler
+                </button>
+                <button
+                  onClick={() => {
+                    setGenderFilter("All");
+                    setFilter("all-rounder");
+                  }}
+                  className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${
+                    filter === "all-rounder"
+                      ? "bg-indigo-600 text-white"
+                      : "bg-gray-800 text-gray-100 hover:bg-gray-700"
+                  }`}
+                >
+                  all-rounder
+                </button>
+              </div>
             </div>
           </div>
 
@@ -123,7 +158,7 @@ const PlayerSelection = ({
                 No players found matching your filters
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                 {filteredPlayers.map((player) => {
                   const isSelected = isPlayerSelected(player.id);
                   const roleColor = getRoleColorClass(player.player_role);
@@ -133,10 +168,10 @@ const PlayerSelection = ({
                       key={player.id}
                       style={{ overflowAnchor: "none" }}
                       onClick={() => togglePlayerSelection(player)}
-                      className={`border rounded-lg overflow-hidden cursor-pointer transition-all ${
+                      className={`rounded-lg overflow-hidden cursor-pointer transition-all ${
                         isSelected
-                          ? "border-indigo-500 bg-gray-800"
-                          : "border-gray-200 hover:border-gray-300"
+                          ? "border border-indigo-600 shadow-md shadow-green-500/20 bg-gray-800"
+                          : "border border-gray-200 hover:border-gray-300 hover:shadow-sm"
                       }`}
                     >
                       <div className="flex items-center p-3">
@@ -149,8 +184,11 @@ const PlayerSelection = ({
                         </div>
                         <div className="flex-1">
                           <div className="flex justify-between items-center">
-                            <h3 className="font-medium text-xs text-gray-100">
+                            <h3 className="font-medium text-xs text-gray-100 flex items-center gap-1">
                               {player.name}
+                              {isSelected && (
+                                <CheckBadgeIcon className="h-4 w-4 text-indigo-600" />
+                              )}
                             </h3>
                             <div
                               className={`w-4 h-4 flex items-center justify-center rounded-full bg-${
@@ -175,10 +213,8 @@ const PlayerSelection = ({
                             <span className="text-gray-300">
                               {player.team_name}
                             </span>
-
-                            {/* Player credits to the right */}
                             <span className="ml-auto text-gray-100 font-semibold">
-                              +{player.credits} Cr
+                              +{player.credits} Pts
                             </span>
                           </div>
                         </div>

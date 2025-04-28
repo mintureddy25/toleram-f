@@ -9,12 +9,12 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { Switch } from '@headlessui/react'
 import { betProcessStateCtaText, betStatus } from "../../../Utils/constants";
+import CustomButton from "../../CustomButton";
 
 export default function AdminMatches() {
     const [open, setOpen] = useState(false);
     const [matchId, setMatchId] = useState(null);
     const { data: matches, isLoading, isError } = useGetmatchesQuery();
-    const [updateMatchStatus, { isLoading: isUpdating }] = useUpdateMatchStatusMutation();
     const [updateBetStatus, { isLoading: isUpdatingBet }] = useUpdateBetStatusMutation();
     const formatDateTime = (dateTimeStr) => {
         return `${moment(dateTimeStr).utc().format("h:mm a")} | ${moment(dateTimeStr).utc().format("Do MMM")}`;
@@ -116,6 +116,7 @@ export default function AdminMatches() {
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
 
                                                                 <Switch
+                                                                    disabled={match.bet_status === "completed" || match.bet_status === "process"}
                                                                     checked={match.can_bet === "1"}
                                                                     onChange={(e) => {
                                                                         setMatchId(match.id);
@@ -124,7 +125,11 @@ export default function AdminMatches() {
                                                                             canBet: e ? "1" : "0",
                                                                         });
                                                                     }}
-                                                                    className="group relative inline-flex h-5 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
+                                                                    className={`group relative inline-flex h-5 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 ${
+                                                                        (match.bet_status === "completed" || match.bet_status === "process") 
+                                                                        ? "disabled:opacity-50 disabled:cursor-not-allowed" 
+                                                                        : ""
+                                                                    }`}
                                                                 >
                                                                     <span className="sr-only">Use setting</span>
 
@@ -145,16 +150,7 @@ export default function AdminMatches() {
 
                                                             </td>
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
-                                                                <button onClick={() => {
-                                                                    setMatchId(match.id);
-                                                                    updateMatchStatus({
-                                                                        id: match.id,
-                                                                        betStatus: match.bet_status === "dont_process" ? "process" : "dont_process",
-                                                                    });
-                                                                }} className="bg-indigo-500 text-white px-2 py-1 rounded-md">
-
-                                                                    {betProcessStateCtaText[match.bet_status]}
-                                                                </button>
+                                                               <UpdateMatchStatusButton match={match} />
                                                             </td>
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
                                                                 <Menu as="div" className="relative inline-block text-left">
@@ -229,4 +225,20 @@ export default function AdminMatches() {
         </div>
 
     )
+}
+
+function UpdateMatchStatusButton({match}) {
+    const [updateMatchStatus, {isLoading}] = useUpdateMatchStatusMutation();
+    return <CustomButton
+    disabled={match.can_bet == "1"} 
+    isLoading={isLoading}
+    onClick={() => {
+        updateMatchStatus({
+            id: match.id,
+            betStatus: match.bet_status === "dont_process" ? "process" : "dont_process",
+        });
+    }} className={`bg-indigo-500 text-white px-2 py-1 rounded-md ${match.can_bet === "1" ? "disabled:opacity-50 disabled:cursor-not-allowed" : ""}`}>
+
+{betProcessStateCtaText[match.bet_status]}
+</CustomButton>
 }

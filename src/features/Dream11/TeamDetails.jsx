@@ -40,10 +40,10 @@ const TeamDetails = ({ teamData, handleEdit }) => {
             </svg>
 
             <div>
-              <h1 className="text-sm font-bold">My Dream11 Team</h1>
+              <h1 className="text-sm font-bold text-left">My Super 12 Team</h1>
               <div className="flex items-center">
                 <span className="text-gray-200 text-sm">Total Points:</span>
-                <span className="bg-gradient-to-r from-yellow-500 to-amber-600 text-white font-bold rounded-full px-3 py-0.5 ml-2">
+                <span className="bg-gradient-to-r from-yellow-500 to-amber-600 text-white text-sm font-bold rounded-full px-3 py-0.5 ml-2">
                   {totalPoints}
                 </span>
               </div>

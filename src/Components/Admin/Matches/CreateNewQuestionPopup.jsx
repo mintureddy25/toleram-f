@@ -34,6 +34,7 @@ export default function CreateNewQuestionPopup({
     options: [
       { text: "", odds: "", isCorrect: false },
       { text: "", odds: "", isCorrect: false },
+      { text: "void", odds: "1", isCorrect: false },
     ],
   });
 

@@ -10,7 +10,7 @@ import Loader from "../../../../Components/Loader";
 import AllQuestions from "../../../../Components/AllQuestions";
 import BackButton from "../../../../Components/BackButton";
 import { toast } from "react-toastify";
-import BackButtonWithRules from "../../../../Components/BackButtonWithRules";
+
 
 function RoundQuestions() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function RoundQuestions() {
     isLoading,
     isError,
   } = useGetRoundQuestionsQuery(roundId);
-  const {data: round} = useGetRoundQuery(roundId);
+  const { data: round } = useGetRoundQuery(roundId);
 
   const {
     data: bets,
@@ -85,18 +85,15 @@ function RoundQuestions() {
 
   return (
     <>
-      <BackButtonWithRules />
-      <div className="mx-5 max-w-3xl text-base leading-7 text-gray-700 mt-5">
-        <AllQuestions
-          questions={questions}
-          formData={formData}
-          setFormData={setFormData}
-          onSubmit={onSubmit}
-          show={show}
-          setShow={setShow}
-          totalBetAllowed={import.meta.env.VITE_REACT_APP_WINNERS_AMOUNT}
-        />
-      </div>
+      <AllQuestions
+        questions={questions}
+        formData={formData}
+        setFormData={setFormData}
+        onSubmit={onSubmit}
+        show={show}
+        setShow={setShow}
+        totalBetAllowed={import.meta.env.VITE_REACT_APP_WINNERS_AMOUNT}
+      />
     </>
   );
 }

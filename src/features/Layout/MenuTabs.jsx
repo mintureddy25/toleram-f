@@ -33,10 +33,10 @@ export default function MenuTabs(props) {
       current: location.pathname.includes("history"),
     },
     {
-      name: "Dream 11",
-      href: "/dream11",
+      name: "Super 12",
+      href: "/super12",
       icon: TrophyIcon,
-      current: location.pathname.includes("dream11"),
+      current: location.pathname.includes("super12"),
     },
   ];
 

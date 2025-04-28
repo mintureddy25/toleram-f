@@ -37,16 +37,55 @@ const BettingDetailsTable = ({ bets }) => {
     {
       label: "Result",
       render: (bet) => {
+        const correctOpt = bet.options.find(
+          (opt) => opt.id.toString() === bet.correctOption
+        );
+
         let result = "NA";
-        if (
+
+        if (correctOpt?.option?.toLowerCase() === "void") {
+          result = "NA";
+        } else if (
           bet.correct === "Yes" &&
           bet.choseOption.toString() === bet.correctOption
         ) {
           result = "Won";
-        } else if (bet.correct === "No" && bet.correctOption) {
+        } else if (
+          bet.correct === "No" &&
+          bet.choseOption.toString() !== bet.correctOption
+        ) {
           result = "Lost";
         }
+
         return <ResultBadge result={result} />;
+      },
+    },
+    {
+      label: "Points",
+      render: (bet) => {
+        const selected = bet.options.find((opt) => opt.id === bet.choseOption);
+        const correctOpt = bet.options.find(
+          (opt) => opt.id.toString() === bet.correctOption
+        );
+        const odds = selected?.odds || 0;
+        const amount = bet.betAmount;
+        let points = 0;
+
+        if (correctOpt?.option?.toLowerCase() === "void") {
+          points = 0;
+        } else if (
+          bet.correct === "Yes" &&
+          bet.choseOption.toString() === bet.correctOption
+        ) {
+          points = odds * amount - amount;
+        } else if (
+          bet.correct === "No" &&
+          bet.choseOption.toString() !== bet.correctOption
+        ) {
+          points = -amount;
+        }
+
+        return points;
       },
     },
   ];

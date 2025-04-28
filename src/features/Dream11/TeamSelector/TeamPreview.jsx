@@ -1,5 +1,5 @@
-import React from 'react';
-import { PLAYER_IMAGE } from '../../../constants/teamLimits';
+import React from "react";
+import { PLAYER_IMAGE } from "../../../constants/teamLimits";
 
 const TeamPreview = ({
   selectedPlayers,
@@ -15,8 +15,12 @@ const TeamPreview = ({
     <div className="flex flex-col h-full">
       <div className="flex-shrink-0">
         <div className="bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 p-4 rounded-lg mb-4">
-          <h2 className="text-md font-bold text-white mb-2">Your Dream 11 Team</h2>
-          <p className="text-white text-xs">Review your team before submitting</p>
+          <h2 className="text-md font-bold text-white mb-2">
+            Your Dream 11 Team
+          </h2>
+          <p className="text-white text-xs">
+            Review your team before submitting
+          </p>
         </div>
 
         <div className="mb-4 p-4 bg-gray-800 text-gray-100 border border-green-200 rounded-lg">
@@ -112,20 +116,22 @@ const TeamPreview = ({
                               {player.name}
                             </h3>
                             <div className="flex items-center text-xs mt-1">
-                              <span className="text-gray-300">{player.team_name}</span>
+                              <span className="text-gray-300">
+                                {player.team_name}
+                              </span>
                               <div
-                              className={`ml-auto w-4 h-4 flex items-center justify-center rounded-full bg-${
-                                genderColors[player.gender]
-                              }-400/10 text-${
-                                genderColors[player.gender]
-                              }-400 font-bold text-sm`}
-                            >
-                              {player.gender === "male"
-                                ? "M"
-                                : player.gender === "female"
-                                ? "F"
-                                : "O"}
-                            </div>
+                                className={`ml-auto w-4 h-4 flex items-center justify-center rounded-full bg-${
+                                  genderColors[player.gender]
+                                }-400/10 text-${
+                                  genderColors[player.gender]
+                                }-400 font-bold text-sm`}
+                              >
+                                {player.gender === "male"
+                                  ? "M"
+                                  : player.gender === "female"
+                                  ? "F"
+                                  : "O"}
+                              </div>
                             </div>
                           </div>
                         </div>

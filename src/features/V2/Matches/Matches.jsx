@@ -39,7 +39,7 @@ function Matches() {
             </h1>
           </div>
         )}
-        <div className="matches-container grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto mt-12">
+        <div className="matches-container grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto mt-0 sm:mt-2">
           {filteredMatches.map((match) => {
             if (match.can_bet == "0") {
               return <></>;
@@ -77,7 +77,7 @@ function Matches() {
                         <img src="/vs.png" alt="VS" className="vs-image w-16" />
                       </div>
                       <div className="match-details">
-                        <p className="match-date-time m-0 text-center text-green-600 font-semibold">
+                        <p className="match-date-time m-0 text-center text-sm text-green-600 font-semibold">
                           {formatDateTime(match.match_time)}
                         </p>
                       </div>

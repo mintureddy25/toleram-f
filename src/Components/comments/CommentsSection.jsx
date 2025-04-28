@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useGetCommentsQuery, usePostCommentMutation } from "../../app/Services/commentsApi";
+import {
+  useGetCommentsQuery,
+  usePostCommentMutation,
+} from "../../app/Services/commentsApi";
 import { useGetRoomQuery } from "../../app/Services/roomsApi";
 import moment from "moment";
-
 
 const getRandomColor = (name) => {
   const colors = [
@@ -26,7 +28,7 @@ const getInitials = (name) => {
   return name.charAt(0).toUpperCase();
 };
 
-const CommentsSection = ({ title = '', description = '', roomName }) => {
+const CommentsSection = ({ title = "", description = "", roomName }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const [postComment, { isLoading: postLoading }] = usePostCommentMutation();
@@ -112,127 +114,123 @@ const CommentsSection = ({ title = '', description = '', roomName }) => {
     }
   };
 
-
-  const formatTime = (date) =>{
+  const formatTime = (date) => {
     return moment(date).from(moment.utc());
-
-
   };
 
   return (
     <>
-     <div className="p-3 rounded-lg shadow-md">
-     {title && ( <h2 className="text-2xl font-semibold text-gray-100">
-        {title}
-      </h2>)}
-      {description && <p className="text-gray-300">
-        {description}
-      </p>}
-    </div>
-      <div className="bg-gray-900 mt-4 mx-1 flex items-start space-x-4 px-1 sticky top-0 z-10 max-w-6xl mx-auto px-8 sm:px-0">
-
-        <div className="shrink-0">
-          <div
-            className={`flex items-center justify-center size-10 rounded-full text-white font-semibold ${getRandomColor(
-              userDetails.name || "you"
-            )}`}
-          >
-            {getInitials(userDetails?.name || "You")}
-          </div>
+      <div className="overflow-hidden h-screen bg-gray-900 shadow-lg">
+        <div className="rounded-lg shadow-md">
+          {title && (
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-100">{title}</h2>
+          )}
+          {description && <p className="text-gray-300">{description}</p>}
         </div>
-        <div className="min-w-0 flex-1">
-          <form
-            action="#"
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSendMessage();
-            }}
-          >
-            <div className="pb-px">
-              <label htmlFor="comment" className="sr-only">
-                Add your comment
-              </label>
-              <textarea
-                id="comment"
-                name="comment"
-                rows={3}
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="Add your comment..."
-                className="bg-gray-900 block w-full resize-none text-base text-gray-100 rounded-md placeholder:text-gray-400 sm:text-sm/6"
-              />
+        <div className="bg-gray-900 mt-4 mx-1 flex items-start space-x-4 px-1 sticky top-0 z-10 max-w-6xl mx-auto">
+          <div className="shrink-0">
+            <div
+              className={`flex items-center justify-center size-10 rounded-full text-white font-semibold ${getRandomColor(
+                userDetails.name || "you"
+              )}`}
+            >
+              {getInitials(userDetails?.name || "You")}
             </div>
-            <div className="flex justify-end pt-2">
-              <div className="shrink-0">
-                <button
-                  type="submit"
-                  disabled={!room?.id || postLoading}
-                  className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-300"
-                >
-                  {postLoading ? "Posting..." : "Post comment"}
-                </button>
+          </div>
+          <div className="min-w-0 flex-1">
+            <form
+              action="#"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendMessage();
+              }}
+            >
+              <div className="pb-px">
+                <label htmlFor="comment" className="sr-only">
+                  Add your comment
+                </label>
+                <textarea
+                  id="comment"
+                  name="comment"
+                  rows={3}
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="Add your comment..."
+                  className="bg-gray-900 block w-full resize-none text-base text-gray-100 rounded-md placeholder:text-gray-400 sm:text-sm/6"
+                />
               </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div className="px-2 overflow-y-auto max-h-96 overflow-hidden scrollbar-hide max-w-6xl mx-auto px-8 sm:px-0">
-        {roomLoading || commentsLoading ? (
-          <div className="flex justify-center py-4">
-            <p className="text-gray-400">Loading comments...</p>
-          </div>
-        ) : comments.length === 0 ? (
-          <div className="flex justify-center py-4">
-            <p className="text-gray-400">No discussions yet. Start one!</p>
-          </div>
-        ) : (
-          <>
-            <ul role="list">
-              {comments.map((comment) => (
-                <li key={comment.id} className="flex gap-x-4 py-2">
-                  <div
-                    className={`flex items-center justify-center size-8 flex-none rounded-full text-white font-semibold ${getRandomColor(
-                      comment.user_name
-                    )}`}
+              <div className="flex justify-end pt-2">
+                <div className="shrink-0">
+                  <button
+                    type="submit"
+                    disabled={!room?.id || postLoading}
+                    className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-300"
                   >
-                    {getInitials(comment.user_name)}
-                  </div>
-                  <div className="flex-auto">
-                    <div className="flex items-baseline justify-between gap-x-4">
-                      <p className="text-sm/6 font-semibold text-white-900">
-                        {comment.user_name}
-                      </p>
-                      <p className="flex-none text-xs text-gray-300">
-                        <time dateTime={comment.created_at}>
-                          {comment.pending
-                            ? "Sending..."
-                            : formatTime(comment.created_at)}
-                        </time>
+                    {postLoading ? "Posting..." : "Post comment"}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="overflow-y-auto h-full overflow-hidden scrollbar-hide max-w-6xl mx-auto sm:px-0">
+          {roomLoading || commentsLoading ? (
+            <div className="flex justify-center py-4">
+              <p className="text-gray-400">Loading comments...</p>
+            </div>
+          ) : comments.length === 0 ? (
+            <div className="flex justify-center py-4">
+              <p className="text-gray-400">No discussions yet. Start one!</p>
+            </div>
+          ) : (
+            <>
+              <ul role="list">
+                {comments.map((comment) => (
+                  <li key={comment.id} className="flex gap-x-4 py-2">
+                    <div
+                      className={`flex items-center justify-center size-8 flex-none rounded-full text-white font-semibold ${getRandomColor(
+                        comment.user_name
+                      )}`}
+                    >
+                      {getInitials(comment.user_name)}
+                    </div>
+                    <div className="flex-auto">
+                      <div className="flex items-baseline justify-between gap-x-4">
+                        <p className="text-sm/6 font-semibold text-white-900">
+                          {comment.user_name}
+                        </p>
+                        <p className="flex-none text-xs text-gray-300">
+                          <time dateTime={comment.created_at}>
+                            {comment.pending
+                              ? "Sending..."
+                              : formatTime(comment.created_at)}
+                          </time>
+                        </p>
+                      </div>
+                      <p
+                        className={`mt-1 line-clamp-2 text-sm/6 break-words text-left ${
+                          comment.pending ? "text-gray-500" : "text-gray-300"
+                        }`}
+                      >
+                        {comment.comment}
                       </p>
                     </div>
-                    <p
-                      className={`mt-1 line-clamp-2 text-sm/6 break-words text-left ${
-                        comment.pending ? "text-gray-500" : "text-gray-300"
-                      }`}
-                    >
-                      {comment.comment}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            {nextToken && (
-              <div className="flex justify-center mt-4">
-                <button
-                  className="inline-flex items-center px-3 py-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500"
-                  onClick={loadMoreComments}
-                >
-                  Load more
-                </button>
-              </div>
-            )}
-          </>
-        )}
+                  </li>
+                ))}
+              </ul>
+              {nextToken && (
+                <div className="flex justify-center mt-4">
+                  <button
+                    className="inline-flex items-center px-3 py-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+                    onClick={loadMoreComments}
+                  >
+                    Load more
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </>
   );

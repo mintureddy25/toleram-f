@@ -1,10 +1,12 @@
 import React from "react";
+import CustomButton from "../../../Components/CustomButton";
 
 const NavigationBar = ({
   step,
   goBack,
   goToNextStep,
   handleSubmit,
+  buttonLoading,
   isTeamValid,
   captain,
   viceCaptain,
@@ -24,7 +26,7 @@ const NavigationBar = ({
         {step > 1 ? "Back" : "Cancel"}
       </button>
       <div className="text-sm font-semibold text-gray-100">
-        Credits Used: <span className="text-green-400">{usedCredits}</span> /{" "}
+        Points: <span className="text-green-400"> {usedCredits}</span> /{" "}
         {totalCredits}
       </div>
 
@@ -55,12 +57,13 @@ const NavigationBar = ({
           </svg>
         </button>
       ) : (
-        <button
+        <CustomButton
+          isLoading={buttonLoading}
           onClick={handleSubmit}
           className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition-colors"
         >
           Submit Team
-        </button>
+        </CustomButton>
       )}
     </div>
   );

@@ -10,6 +10,35 @@ export default {
     transparent: "transparent",
     current: "currentColor",
     extend: {
+      backgroundSize: {
+        '200%': '200% auto',
+      },
+      animation: {
+        shimmer: 'shimmer 2s infinite linear',
+        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+        'fade-slide-up': 'fadeSlideUp 0.5s ease-out forwards',
+        'pulse': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      keyframes: {
+        shimmer: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+        fadeInUp: {
+          '0%': { opacity: 0, transform: 'translateY(30px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
+        fadeSlideUp: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(30px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+      },
       colors: {
         // light mode
         tremor: {

@@ -20,9 +20,9 @@ function AddPopup() {
     >
       <div className="group aspect-h-1 aspect-w-2 overflow-hidden rounded-lg sm:aspect-none relative sm:h-full relative">
         <img
-          src="/VitaminCPost1.jpg"
+          src="https://tplmania.s3.eu-west-2.amazonaws.com/toleram/advertisement.png"
           alt="Wooden shelf with gray and olive drab green baseball caps, next to wooden clothes hanger with sweaters."
-          className="object-cover object-center group-hover:opacity-75"
+          className="object-cover object-center group-hover:opacity-75 bg-gray-900"
         />
         <div
           aria-hidden="true"

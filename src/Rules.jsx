@@ -4,6 +4,7 @@ import {
 } from "@heroicons/react/20/solid";
 import React from "react";
 import BackButton from "./Components/BackButton";
+import Dream11ScoringRules from "./features/Dream11/Dream11ScoringRules";
 
 export default function Rules() {
   const rules = [
@@ -110,6 +111,7 @@ export default function Rules() {
           );
         })}
       </div>
+      <Dream11ScoringRules />
     </>
   );
 }
