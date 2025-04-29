@@ -22,7 +22,7 @@ export default function CreateNewQuestionPopup({
   match,
 }) {
   const { matchId } = useParams();
-  console.log(question);
+
   const [addQuestion, { isLoading: isAddQuestionLoading }] =
     useAddQuestionMutation();
   const [updateQuestion, { isLoading: isUpdateQuestionLoading }] =

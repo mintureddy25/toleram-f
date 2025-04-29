@@ -19,12 +19,11 @@ export default function AdminRoundDetails() {
         isLoading: roundLoading,
         isError: roundError,
     } = useGetRoundByIdQuery(roundId);
-    console.log(roundId);
     
     const { data: questions, isLoading, isError } = useGetAdminRoundQuestionsQuery({roundId});
     const [updateCorrectAnswer, { isLoading: isUpdating }] = useUpdateCorrectAnswerTournamentMutation();
 
-    if (isLoading || isUpdating) return <Loader />
+    if (isLoading) return <Loader />
 
     return (
         <div className="">

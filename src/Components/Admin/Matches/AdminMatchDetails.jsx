@@ -8,7 +8,6 @@ import CreateNewMatch from "./AddNewmatchPopup";
 import { useGetAdminQuestionsQuery, useGetMatchQuery, useUpdateCorrectAnswerMutation } from "../../../app/Services/Admin/adminMatches";
 import { toast } from "react-hot-toast";
 import ScoreDashboard from "./MatchScore/ScoreDashboard";
-import QuestionsList from "./Panels/QuestionsList";
 import QuestionsPanel from "./Panels/QuestionsPanel";
 
 
@@ -24,22 +23,8 @@ export default function AdminMatches() {
         isError: matchError,
     } = useGetMatchQuery(matchId);
     const { data: questions, isLoading, isError } = useGetAdminQuestionsQuery(matchId);
-    const [updateCorrectAnswer, { isLoading: isUpdating }] = useUpdateCorrectAnswerMutation();
 
-    const handleAnswerSelect = async (questionId, option) => {
-        try {
-            await updateCorrectAnswer({
-                questionId,
-                correctOption: option
-            }).unwrap();
-            toast.success('Correct answer updated successfully!');
-        } catch (error) {
-            console.error('Failed to update correct answer:', error);
-            toast.error('Failed to update correct answer');
-        }
-    };
-
-    if (isLoading || isUpdating) return <Loader />
+    if (isLoading) return <Loader />
 
     return (
         <div className="py-8">
@@ -72,7 +57,6 @@ export default function AdminMatches() {
                             setQuestion={setQuestion}
                             editingQuestionId={editingQuestionId}
                             setEditingQuestionId={setEditingQuestionId}
-                            updateCorrectAnswer={updateCorrectAnswer}
                         />
                     </Tab.Panel>
 
