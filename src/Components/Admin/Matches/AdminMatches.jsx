@@ -87,6 +87,9 @@ export default function AdminMatches() {
                                                             Date & Time
                                                         </th>
                                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                                                            Max Bet Amount
+                                                        </th>
+                                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                                                             Can Bet
                                                         </th>
                                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
@@ -113,6 +116,7 @@ export default function AdminMatches() {
                                                                 </span>
                                                             </td>
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{formatDateTime(match.match_time)}</td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{match?.max_bet_amount}</td>
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
 
                                                                 <Switch

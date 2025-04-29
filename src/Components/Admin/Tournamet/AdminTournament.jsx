@@ -81,9 +81,11 @@ export default function Tournamet() {
                                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                                                             Bet Processing State
                                                         </th>
-
                                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                                                             Can Bet
+                                                        </th>
+                                                        <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
+                                                            Max Bet Amount
                                                         </th>
                                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                                                             Round Status
@@ -109,7 +111,6 @@ export default function Tournamet() {
                                                                 </span>
                                                             </td>
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-
                                                                 <Switch
                                                                     disabled={round.bet_status === "completed" || round.bet_status === "process"}
                                                                     checked={round.can_bet === "1"}
@@ -140,10 +141,8 @@ export default function Tournamet() {
                                                                         className="pointer-events-none absolute left-0 inline-block size-5 transform rounded-full border border-gray-600 bg-gray-900 shadow ring-0 transition-transform duration-200 ease-in-out group-data-[checked]:translate-x-5"
                                                                     />
                                                                 </Switch>
-
-
-
                                                             </td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{round?.max_bet_amount}</td>
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
                                                                 <button onClick={() => {
                                                                     setRoundId(round.id);

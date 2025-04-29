@@ -41,8 +41,9 @@ function MatchQuestions() {
   const [formData, setFormData] = useState(bets ? bets?.bets : {});
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
+  const highestCanBet = match?.match?.max_bet_amount;
+
   const onSubmit = async () => {
-    const highestCanBet = match?.match?.max_bet_amount;
     let totalAmount = 0;
     Object.keys(formData)?.map((key) => {
       totalAmount += parseInt(formData[key].amount);
@@ -104,7 +105,7 @@ function MatchQuestions() {
         onSubmit={onSubmit}
         show={show}
         setShow={setShow}
-        totalBetAllowed={import.meta.env.VITE_REACT_APP_TOTAL_AMOUNT}
+        totalBetAllowed={highestCanBet}
       />
     </>
   );
