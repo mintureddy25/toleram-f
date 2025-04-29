@@ -33,8 +33,7 @@ export default function CreateNewQuestionPopup({
     question: "",
     options: [
       { text: "", odds: "", isCorrect: false },
-      { text: "", odds: "", isCorrect: false },
-      { text: "void", odds: "1", isCorrect: false },
+      { text: "", odds: "", isCorrect: false }
     ],
   });
 
