@@ -9,6 +9,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { useGetTournamentRoundsQuery, useUpdateRoundBetStatusMutation, useUpdateRoundStatusMutation } from "../../../app/Services/Admin/adminTournament";
 import { betProcessStateCtaText, betStatus } from "../../../Utils/constants";
+import CustomButton from "../../CustomButton";
 
 
 export default function Tournamet() {
@@ -110,6 +111,7 @@ export default function Tournamet() {
                                                                     {betStatus[round.bet_status]}
                                                                 </span>
                                                             </td>
+                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{round?.max_bet_amount}</td>
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
                                                                 <Switch
                                                                     disabled={round.bet_status === "completed" || round.bet_status === "process"}
@@ -142,18 +144,8 @@ export default function Tournamet() {
                                                                     />
                                                                 </Switch>
                                                             </td>
-                                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{round?.max_bet_amount}</td>
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
-                                                                <button onClick={() => {
-                                                                    setRoundId(round.id);
-                                                                    updateRoundStatus({
-                                                                        id: round.id,
-                                                                        betStatus: round.bet_status === "dont_process" ? "process" : "dont_process",
-                                                                    });
-                                                                }} className="bg-indigo-500 text-white px-2 py-1 rounded-md">
-
-                                                                    {betProcessStateCtaText[round.bet_status]}
-                                                                </button>
+                                                               <UpdateRoundStatusButton round={round} />
                                                             </td>
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
                                                                 <Menu as="div" className="relative inline-block text-left">
@@ -219,4 +211,20 @@ export default function Tournamet() {
             {open && <AddNewTournament open={open} setOpen={setOpen} round={round} />}
         </div>
     )
+}
+
+function UpdateRoundStatusButton({round}) {
+    const [updateRoundStatus, {isLoading}] = useUpdateRoundStatusMutation();
+    return <CustomButton
+    disabled={round.can_bet == "1"}
+    isLoading={isLoading}
+    onClick={() => {
+        updateRoundStatus({
+            id: round.id,
+            betStatus: round.bet_status === "dont_process" ? "process" : "dont_process",
+        });
+    }} className={`bg-indigo-500 text-white px-2 py-1 rounded-md ${round.can_bet === "1" ? "disabled:opacity-50 disabled:cursor-not-allowed" : ""}`}>
+
+{betProcessStateCtaText[round.bet_status]}
+</CustomButton>
 }

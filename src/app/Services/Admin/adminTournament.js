@@ -16,9 +16,7 @@ const betsApi = baseApi.injectEndpoints({
     }),
     getRound: builder.query({
       query: (roundId) => `/admin/rounds/${roundId}`,
-      providesTags: (result, error, arg) => {
-        return [{ type: "Rounds", id: arg.roundId }];
-      },
+      providesTags: (result, error, roundId) => [{ type: "TournamentRound", id: roundId }],
     }),
     updateRound: builder.mutation({
       query: (roundData) => ({
@@ -26,13 +24,16 @@ const betsApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: roundData,
       }),
-      invalidatesTags: ["Rounds"]
+      invalidatesTags: (result, error, roundData) => [
+        { type: "TournamentRound", id: roundData.id },
+        "TournamentRound",
+      ],
     }),
     getAdminRoundQuestions: builder.query({
-      query: ({roundId}) => `/rounds/${roundId}/questions`,
-      providesTags: (result, error, arg) => {
-        return [{ type: "RoundQuestion", id: arg.id }];
-      }
+      query: ({ roundId }) => `/rounds/${roundId}/questions`,
+      providesTags: (result, error, { roundId }) => [
+        { type: "RoundQuestion", id: roundId },
+      ],
     }),
     addRoundQuestion: builder.mutation({
       query: (RoundData) => ({
@@ -40,9 +41,9 @@ const betsApi = baseApi.injectEndpoints({
         method: "POST",
         body: RoundData,
       }),
-      invalidatesTags: (result, error, arg) => {
-        return [{ type: "RoundQuestion", id: arg.id }];
-      }
+      invalidatesTags: (result, error, RoundData) => [
+        { type: "RoundQuestion", id: RoundData.roundId },
+      ],
     }),
     updateTournamentQuestion: builder.mutation({
       query: (questionsData) => ({
@@ -50,9 +51,9 @@ const betsApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: questionsData,
       }),
-      invalidatesTags: (result, error, arg) => {
-        return [{ type: "RoundQuestion", id: arg.id }];
-      }
+      invalidatesTags: (result, error, questionsData) => [
+        { type: "RoundQuestion", id: questionsData.roundId },
+      ],
     }),
     updateCorrectAnswerTournament: builder.mutation({
       query: (questionsData) => ({
@@ -60,9 +61,9 @@ const betsApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: questionsData,
       }),
-      invalidatesTags: (result, error, arg) => {
-        return [{ type: "RoundQuestion", id: arg.RoundId }];
-      }
+      invalidatesTags: (result, error, questionsData) => [
+        { type: "RoundQuestion", id: questionsData.roundId },
+      ],
     }),
     updateRoundStatus: builder.mutation({
       query: (roundData) => ({
@@ -94,6 +95,6 @@ export const {
   useUpdateRoundBetStatusMutation,
   useGetTournamentRoundsQuery,
   useAddTournamentRoundMutation,
-  useGetAdminRoundQuestionsQuery
-  
+  useGetAdminRoundQuestionsQuery,
+  useGetRoundQuery
 } = betsApi;
