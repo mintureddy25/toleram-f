@@ -59,7 +59,10 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
       toast.error("Match title is required");
       return;
     }
-
+    if (!matchData.maxBetAmount || Number(matchData.maxBetAmount) < 1000) {
+      toast.error("Max bet amount must be at least 1000");
+      return;
+    }
     if (!matchData.teamOneId || !matchData.teamTwoId) {
       toast.error("Both teams are required");
       return;
@@ -135,7 +138,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
                     onChange={(e) =>
                       setMatchData({ ...matchData, maxBetAmount: Number(e.target.value) })
                     }
-                    placeholder="Enter bet amount"
+                    placeholder="Enter max bet amount (min. 1000)"
                     className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
 

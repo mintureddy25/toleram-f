@@ -7,3 +7,8 @@ export const isAdmin = (token) => {
 export function isEmptyObject(obj) {
   return obj && typeof obj === 'object' && !Array.isArray(obj) && Object.keys(obj).length === 0;
 }
+
+export const getUsernameFromEmail = (email) => {
+  if (!email) return "unanonymous";
+  return email.split('@')[0];
+};

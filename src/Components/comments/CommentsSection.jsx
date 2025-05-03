@@ -7,6 +7,7 @@ import {
 import { useGetRoomQuery } from "../../app/Services/roomsApi";
 import moment from "moment";
 import BackButton from "../BackButton";
+import { getUsernameFromEmail } from "../../Utils/Helpers";
 
 const getRandomColor = (name) => {
   const colors = [
@@ -118,10 +119,7 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
   const formatTime = (date) => {
     return moment(date).from(moment.utc());
   };
-  const getUsernameFromEmail = (email) => {
-    if (!email) return "unanonymous";
-    return email.split('@')[0];
-  };
+
 
   return (
     <>

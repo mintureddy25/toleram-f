@@ -7,6 +7,7 @@ import {
   EllipsisHorizontalIcon,
 } from "@heroicons/react/24/solid";
 import { useSelector } from "react-redux";
+import { getUsernameFromEmail } from "../../Utils/Helpers";
 
 function Dream11Leaderboard() {
   const userDetails = useSelector((state) => state.auth.user);
@@ -228,7 +229,9 @@ function Dream11Leaderboard() {
                               index
                             )} text-white shadow-md flex items-center justify-center mr-3 text-sm font-medium`}
                           >
-                            {item.name.charAt(0).toUpperCase()}
+                            {(item.name || getUsernameFromEmail(item.email))
+                              .charAt(0)
+                              .toUpperCase()}
                           </div>
                           <div className="font-medium text-white">
                             {item.userId == userDetails.id ? (
@@ -238,7 +241,7 @@ function Dream11Leaderboard() {
                                 </span>
                               </span>
                             ) : (
-                              item.name
+                              item.name || getUsernameFromEmail(item.email)
                             )}
                           </div>
                         </div>
