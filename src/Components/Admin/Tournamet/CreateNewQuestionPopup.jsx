@@ -22,7 +22,6 @@ export default function CreateNewQuestionPopup({
   round,
 }) {
   const { roundId } = useParams();
-  console.log(round);
   const [addQuestion, { isLoading: isAddQuestionLoading }] =
     useAddRoundQuestionMutation();
   const [updateQuestion, { isLoading: isUpdateQuestionLoading }] =
@@ -208,7 +207,7 @@ export default function CreateNewQuestionPopup({
                   onClick={addOption}
                   className="text-indigo-400 text-sm hover:text-indigo-300"
                 >
-                  + Add Another Option
+                  + Edit Option
                 </button>
               </div>
 

@@ -60,6 +60,10 @@ export default function AdminDashboard() {
             name: "Total Round Bet Amount",
             stat: tournamentBets?.totalRoundsBetAmount || 0,
           },
+          {
+            name: "Total Round Bet Amount",
+            stat: tournamentBets?.totalRoundsBetAmount || 0,
+          },
         ]}
       />
       <CustomAreaChart

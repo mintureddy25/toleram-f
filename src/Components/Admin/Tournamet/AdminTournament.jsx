@@ -83,10 +83,10 @@ export default function Tournamet() {
                                                             Bet Processing State
                                                         </th>
                                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
-                                                            Can Bet
+                                                            Max Bet Amount
                                                         </th>
                                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
-                                                            Max Bet Amount
+                                                            Can Bet
                                                         </th>
                                                         <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                                                             Round Status

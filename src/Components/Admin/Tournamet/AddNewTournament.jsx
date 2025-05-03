@@ -36,8 +36,8 @@ export default function AddNewTournament({ open, setOpen, round }) {
       return;
     }
 
-    if (!roundData.maxBetAmount || roundData.maxBetAmount <= 0) {
-      toast.error("Valid max bet amount is required");
+    if (!roundData.maxBetAmount || Number(roundData.maxBetAmount) < 1000) {
+      toast.error("Max bet amount must be at least 1000");
       return;
     }
 
@@ -104,12 +104,11 @@ export default function AddNewTournament({ open, setOpen, round }) {
                   />
                   <input
                     type="number"
-                    min="0"
                     value={roundData.maxBetAmount}
                     onChange={(e) =>
                       setRoundData({ ...roundData, maxBetAmount: e.target.value })
                     }
-                    placeholder="Enter max bet amount"
+                    placeholder="Enter max bet amount (min. 1000)"
                     className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   />
                 </div>

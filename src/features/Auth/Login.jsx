@@ -6,9 +6,10 @@ import { setErrors } from "../../Utils/ErrorSlice";
 import { setCredentials } from "../../Utils/AuthSlice";
 import { useDispatch } from "react-redux";
 import FullText from "../../Components/FullText";
+import { toast } from "react-toastify";
 
 export default function Login({ setUserToken }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [login, { isLoading, isSuccess, isError }] = useLoginMutation();
 
   const [data, setData] = useState({
@@ -26,18 +27,18 @@ export default function Login({ setUserToken }) {
 
   const handleLogin = async (e) => {
     try {
-      const res = await login(data).unwrap()
+      const res = await login(data).unwrap();
       dispatch(setCredentials(res));
     } catch (error) {
-      if(error.status == 401 || error.status == 422)  {
-        setError('password',{ type: 'custom', message: error?.data?.message });
+      if (error.status == 401 || error.status == 422) {
+        setError("password", { type: "custom", message: error?.data?.message });
       }
-      if(error.status == 404) {
-        setError('email',{ type: 'custom', message: error?.data?.message });
+      if (error.status == 404) {
+        setError("email", { type: "custom", message: error?.data?.message });
       }
+      toast.error(error.data.message);
     }
   };
-
 
   const onChange = (e) => {
     clearErrors(e.target.name);

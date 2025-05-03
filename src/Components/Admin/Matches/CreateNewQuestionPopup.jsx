@@ -216,7 +216,7 @@ export default function CreateNewQuestionPopup({
                   onClick={addOption}
                   className="text-indigo-400 text-sm hover:text-indigo-300"
                 >
-                  + Add Another Option
+                  + Edit Option
                 </button>
               </div>
 

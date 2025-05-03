@@ -32,7 +32,7 @@ function Matches() {
   return (
     <>
       <MenuTabs>
-        {filteredMatches.length == 0 && (
+        {filteredMatches?.length == 0 && (
           <div className="flex flex-col items-center justify-center">
             <h1 className="text-2xl font-bold text-gray-500">
               🥷 No battles in progress. Our warriors are preparing!
@@ -40,7 +40,7 @@ function Matches() {
           </div>
         )}
         <div className="matches-container grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto mt-0 sm:mt-2">
-          {filteredMatches.map((match) => {
+          {filteredMatches?.map((match) => {
             if (match.can_bet == "0") {
               return <></>;
             }
@@ -107,7 +107,7 @@ function Matches() {
               </div>
             );
           })}
-          {filteredMatches.map((match) => {
+          {filteredMatches?.map((match) => {
             if (match.can_bet == "1") {
               return <></>;
             }

@@ -183,7 +183,7 @@ export default function AdminRoundDetails() {
                                                                             }}
                                                                             className="text-indigo-400 text-sm hover:text-indigo-300"
                                                                         >
-                                                                            + Add Another Option
+                                                                            + Edit Option
                                                                         </button>
                                                                         {editingQuestionId === faq.id ? (
                                                                             <button

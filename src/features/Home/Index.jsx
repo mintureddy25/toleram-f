@@ -1,29 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from 'react'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useState } from "react";
+import { Dialog, DialogPanel } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useGetTeamsQuery } from "../../app/Services/Admin/adminTeams";
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
-]
-
+  { name: "Product", href: "#" },
+  { name: "Features", href: "#" },
+  { name: "Marketplace", href: "#" },
+  { name: "Company", href: "#" },
+];
 
 function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: teams } = useGetTeamsQuery();
-  console.log(teams?.teams);
 
   return (
     <>
       {/* Hero Section */}
       <div className="bg-gray-900">
         <header className="absolute inset-x-0 top-0 z-50">
-          <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
+          <nav
+            aria-label="Global"
+            className="flex items-center justify-between p-6 lg:px-8"
+          >
             <div className="flex lg:flex-1">
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
@@ -46,7 +47,11 @@ function Index() {
             </div>
             <div className="hidden lg:flex lg:gap-x-12">
               {navigation.map((item) => (
-                <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-white">
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-sm/6 font-semibold text-white"
+                >
                   {item.name}
                 </a>
               ))}
@@ -57,7 +62,11 @@ function Index() {
               </Link>
             </div>
           </nav>
-          <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+          <Dialog
+            open={mobileMenuOpen}
+            onClose={setMobileMenuOpen}
+            className="lg:hidden"
+          >
             <div className="fixed inset-0 z-50" />
             <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
               <div className="flex items-center justify-between">
@@ -118,7 +127,7 @@ function Index() {
             <div
               style={{
                 clipPath:
-                  'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                  "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
               }}
               className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             />
@@ -133,8 +142,9 @@ function Index() {
                     </span>
                   </h1>
                   <p class="mt-8 text-pretty text-base sm:text-xl max-w-xl inline-block text-white bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
-                    Experience the thrill of premier cricket battles where legends are made.
-                    Watch the finest teams compete for glory in this prestigious tournament.
+                    Experience the thrill of premier cricket battles where
+                    legends are made. Watch the finest teams compete for glory
+                    in this prestigious tournament.
                   </p>
                 </section>
 
@@ -156,39 +166,47 @@ function Index() {
             <div
               style={{
                 clipPath:
-                  'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+                  "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
               }}
               className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
             />
           </div>
         </div>
-        <div className="py-12 sm:py-24 max-w-7xl mx-auto bg-gray-900">
+        {teams?.teams && <div className="py-12 sm:py-24 max-w-7xl mx-auto bg-gray-900">
           <p class="mt-8 text-pretty text-2xl sm:text-4xl font-bold max-w-xl inline-block text-white bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
             Watch Our Teams Play
           </p>
           <div className="mx-auto grid max-w-lg grid-cols-2 md:grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-5 py-12 sm:py-24">
             {teams?.teams.map((t, index) => (
-              <div
-                key={t.team_name}
+              <Link
+                to={`/team/${t.id}`}
                 className="group flex flex-col items-center transition-all duration-300 hover:scale-110 animate-fade-slide-up"
                 style={{
                   animationDelay: `${index * 150}ms`,
                 }}
               >
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 p-4 shadow-[0_0_15px_rgba(139,92,246,0.2)] group-hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] border border-purple-500/10 motion-safe:animate-pulse">
-                  <img
-                    className="h-28 w-24 object-contain"
-                    src={t.team_logo}
-                    alt={t.team_name}
-                  />
+                <div
+                  key={t.team_name}
+                  className="group flex flex-col items-center transition-all duration-300 hover:scale-110 animate-fade-slide-up"
+                  style={{
+                    animationDelay: `${index * 150}ms`,
+                  }}
+                >
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 p-4 shadow-[0_0_15px_rgba(139,92,246,0.2)] group-hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] border border-purple-500/10 motion-safe:animate-pulse">
+                    <img
+                      className="h-28 w-24 object-contain"
+                      src={t.team_logo}
+                      alt={t.team_name}
+                    />
+                  </div>
+                  <div className="mt-4 text-base font-medium text-gray-300 group-hover:text-cyan-400 transition-colors">
+                    {t.team_name}
+                  </div>
                 </div>
-                <div className="mt-4 text-base font-medium text-gray-300 group-hover:text-cyan-400 transition-colors">
-                  {t.team_name}
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
-        </div>
+        </div>}
       </div>
     </>
   );

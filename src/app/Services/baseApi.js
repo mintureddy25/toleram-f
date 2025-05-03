@@ -38,6 +38,7 @@ export const baseApi = createApi({
     "Match",
     "Player",
     "RoundQuestion",
+    "Rounds",
     "TournamentRound",
     "PlayerScore",
     "PlayersBets",

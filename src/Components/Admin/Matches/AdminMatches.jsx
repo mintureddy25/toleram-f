@@ -118,7 +118,6 @@ export default function AdminMatches() {
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{formatDateTime(match.match_time)}</td>
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{match?.max_bet_amount}</td>
                                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">
-
                                                                 <Switch
                                                                     disabled={match.bet_status === "completed" || match.bet_status === "process"}
                                                                     checked={match.can_bet === "1"}
@@ -149,9 +148,6 @@ export default function AdminMatches() {
                                                                         className="pointer-events-none absolute left-0 inline-block size-5 transform rounded-full border border-gray-600 bg-gray-900 shadow ring-0 transition-transform duration-200 ease-in-out group-data-[checked]:translate-x-5"
                                                                     />
                                                                 </Switch>
-
-
-
                                                             </td>
                                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-0">
                                                                <UpdateMatchStatusButton match={match} />

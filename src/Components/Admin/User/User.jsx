@@ -27,7 +27,6 @@ export default function User() {
       }
     }
   };
-  console.log(analyticsData);
 
   useEffect(() => {
     if (analyticsData) {

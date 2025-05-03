@@ -92,7 +92,7 @@ function RoundQuestions() {
         onSubmit={onSubmit}
         show={show}
         setShow={setShow}
-        totalBetAllowed={import.meta.env.VITE_REACT_APP_WINNERS_AMOUNT}
+        totalBetAllowed={round?.round?.max_bet_amount}
       />
     </>
   );
