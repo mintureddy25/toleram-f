@@ -83,7 +83,9 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
 
     const newComment = {
       id: tempId,
-      name: userDetails.name || (userDetails.email ? getUsernameFromEmail(userDetails.email): 'You'),
+      name:
+        userDetails.name ||
+        (userDetails.email ? getUsernameFromEmail(userDetails.email) : "You"),
       comment,
       created_at: "Sending...",
       pending: true,
@@ -104,7 +106,7 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
             ? {
                 ...c,
                 id: data.id,
-            
+
                 pending: false,
               }
             : c
@@ -120,14 +122,14 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
     return moment(date).from(moment.utc());
   };
 
-
   return (
     <>
-    <div className="flex"><BackButton/></div>
       <div className="overflow-hidden h-screen bg-gray-900 shadow-lg">
         <div className="rounded-lg shadow-md">
           {title && (
-            <h2 className="text-xl sm:text-2xl font-semibold text-gray-100">{title}</h2>
+            <h2 className="text-xl sm:text-2xl font-semibold text-gray-100">
+              {title}
+            </h2>
           )}
           {description && <p className="text-gray-300">{description}</p>}
         </div>
@@ -135,10 +137,18 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
           <div className="shrink-0">
             <div
               className={`flex items-center justify-center size-10 rounded-full text-white font-semibold ${getRandomColor(
-                userDetails.name || (userDetails.email ? getUsernameFromEmail(userDetails.email): 'You')
+                userDetails.name ||
+                  (userDetails.email
+                    ? getUsernameFromEmail(userDetails.email)
+                    : "You")
               )}`}
             >
-              {getInitials(userDetails.name || (userDetails.email ? getUsernameFromEmail(userDetails.email): 'You'))}
+              {getInitials(
+                userDetails.name ||
+                  (userDetails.email
+                    ? getUsernameFromEmail(userDetails.email)
+                    : "You")
+              )}
             </div>
           </div>
           <div className="min-w-0 flex-1">
@@ -193,15 +203,26 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
                   <li key={comment.id} className="flex gap-x-4 py-2">
                     <div
                       className={`flex items-center justify-center size-8 flex-none rounded-full text-white font-semibold ${getRandomColor(
-                        comment.name || (comment.email ? getUsernameFromEmail(comment.email): 'unanonymous')
+                        comment.name ||
+                          (comment.email
+                            ? getUsernameFromEmail(comment.email)
+                            : "unanonymous")
                       )}`}
                     >
-                      {getInitials(comment.name || (comment.email ? getUsernameFromEmail(comment.email): 'unanonymous'))}
+                      {getInitials(
+                        comment.name ||
+                          (comment.email
+                            ? getUsernameFromEmail(comment.email)
+                            : "unanonymous")
+                      )}
                     </div>
                     <div className="flex-auto">
                       <div className="flex items-baseline justify-between gap-x-4">
                         <p className="text-sm/6 font-semibold text-white-900">
-                          {comment.name || (comment.email ? getUsernameFromEmail(comment.email): 'unanonymous')}
+                          {comment.name ||
+                            (comment.email
+                              ? getUsernameFromEmail(comment.email)
+                              : "unanonymous")}
                         </p>
                         <p className="flex-none text-xs text-gray-300">
                           <time dateTime={comment.created_at}>
