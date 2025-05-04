@@ -229,7 +229,7 @@ function Dream11Leaderboard() {
                               index
                             )} text-white shadow-md flex items-center justify-center mr-3 text-sm font-medium`}
                           >
-                            {(item.name || getUsernameFromEmail(item.email))
+                            {(item.name || (item.email))
                               .charAt(0)
                               .toUpperCase()}
                           </div>
@@ -241,7 +241,7 @@ function Dream11Leaderboard() {
                                 </span>
                               </span>
                             ) : (
-                              item.name || getUsernameFromEmail(item.email)
+                              item.name || (item.email)
                             )}
                           </div>
                         </div>

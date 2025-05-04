@@ -85,7 +85,7 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
       id: tempId,
       name:
         userDetails.name ||
-        (userDetails.email ? getUsernameFromEmail(userDetails.email) : "You"),
+        (userDetails.email ? (userDetails.email) : "You"),
       comment,
       created_at: "Sending...",
       pending: true,
@@ -139,14 +139,14 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
               className={`flex items-center justify-center size-10 rounded-full text-white font-semibold ${getRandomColor(
                 userDetails.name ||
                   (userDetails.email
-                    ? getUsernameFromEmail(userDetails.email)
+                    ? (userDetails.email)
                     : "You")
               )}`}
             >
               {getInitials(
                 userDetails.name ||
                   (userDetails.email
-                    ? getUsernameFromEmail(userDetails.email)
+                    ? (userDetails.email)
                     : "You")
               )}
             </div>
@@ -205,14 +205,14 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
                       className={`flex items-center justify-center size-8 flex-none rounded-full text-white font-semibold ${getRandomColor(
                         comment.name ||
                           (comment.email
-                            ? getUsernameFromEmail(comment.email)
+                            ? (comment.email)
                             : "unanonymous")
                       )}`}
                     >
                       {getInitials(
                         comment.name ||
                           (comment.email
-                            ? getUsernameFromEmail(comment.email)
+                            ? (comment.email)
                             : "unanonymous")
                       )}
                     </div>
@@ -221,7 +221,7 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
                         <p className="text-sm/6 font-semibold text-white-900">
                           {comment.name ||
                             (comment.email
-                              ? getUsernameFromEmail(comment.email)
+                              ? (comment.email)
                               : "unanonymous")}
                         </p>
                         <p className="flex-none text-xs text-gray-300">
