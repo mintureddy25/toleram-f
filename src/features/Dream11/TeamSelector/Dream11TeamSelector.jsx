@@ -60,6 +60,15 @@ const Dream11TeamSelector = ({
           players.some((p) => p.player_id === player.id)
         );
         setSelectedPlayers(selectedPlayersData);
+
+        setCaptain(
+          players.find((player) => player.player_role === "captain")
+            ?.player_id || null
+        );
+        setViceCaptain(
+          players.find((player) => player.player_role === "vice-captain")
+            ?.player_id || null
+        );
       }
     } else {
     }
@@ -184,6 +193,15 @@ const Dream11TeamSelector = ({
   };
 
   const goToNextStep = () => {
+    const selectedIds = selectedPlayers.map((p) => p.id);
+
+    if (captain && !selectedIds.includes(captain)) {
+      setCaptain(null);
+    }
+    if (viceCaptain && !selectedIds.includes(viceCaptain)) {
+      setViceCaptain(null);
+    }
+
     if (step === 1 && isTeamValid()) {
       setStep(2);
     } else if (step === 2 && captain && viceCaptain) {
