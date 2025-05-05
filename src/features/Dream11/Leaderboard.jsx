@@ -12,7 +12,6 @@ import { getUsernameFromEmail } from "../../Utils/Helpers";
 function Dream11Leaderboard() {
   const userDetails = useSelector((state) => state.auth.user);
   const { data: leaderboard, isLoading } = useGetDream11LeaderboardQuery();
-  const [selectedUser, setSelectedUser] = useState(null);
 
   const getMedalDisplay = (rank) => {
     switch (rank) {
@@ -160,8 +159,8 @@ function Dream11Leaderboard() {
                 <div className="flex items-center bg-gray-800 rounded-full px-3 py-1 shadow-md">
                   <span className="text-gray-400 text-sm mr-2">Your Rank:</span>
                   <span className="text-white font-bold flex items-center">
-                    {userRank <= 3 ? (
-                      <span className="text-lg">
+                    {userRank < 4 ? (
+                      <span className="text-3xl">
                         {getMedalDisplay(userRank)}
                       </span>
                     ) : (
@@ -185,7 +184,17 @@ function Dream11Leaderboard() {
                   : "--/--/---- | --:--:-- --"}
               </span>
             </div>
-            <div className="divide-y divide-gray-700">
+            <div className="divide-y divide-gray-700 text-yellow-500 font-medium">
+              <div className="grid">
+                <div className="flex items-center justify-between p-4 bg-gray-800 rounded-t-lg">
+                  <div className="flex items-center space-x-3">
+                    <div className="">Rank</div>
+                    <div className="flex items-center"></div>
+                    <div className="">Team</div>
+                  </div>
+                  <div className="">Points</div>
+                </div>
+              </div>
               {displayLeaderboard.map((item, index) => {
                 if (item.isSeparator) {
                   return (
@@ -205,21 +214,22 @@ function Dream11Leaderboard() {
                 return (
                   <div
                     key={item.userId}
-                    className={`cursor-pointer transition-all duration-200 hover:bg-gray-700 ${
-                      selectedUser?.userId === item.userId ? "bg-gray-700" : ""
-                    } ${
+                    className={`cursor-pointer transition-all duration-200 hover:bg-gray-700  ${
                       item.userId === userDetails.id
-                        ? "bg-gray-800 border-l-4 border-yellow-500"
+                        ? "bg-gray-800 border-yellow-500"
                         : ""
                     }`}
-                    onClick={() => setSelectedUser(item)}
                   >
                     <div className="p-4 flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         <div
                           className={`flex items-center justify-center w-8 h-8 rounded-full shadow-md`}
                         >
-                          <span className="text-sm font-bold">
+                          <span
+                            className={`${
+                              item.rank < 4 ? "text-3xl" : "text-md"
+                            } font-bold`}
+                          >
                             {getMedalDisplay(item.rank)}
                           </span>
                         </div>
@@ -229,20 +239,28 @@ function Dream11Leaderboard() {
                               index
                             )} text-white shadow-md flex items-center justify-center mr-3 text-sm font-medium`}
                           >
-                            {(item.teamName || item.name || (item.email))
-                              .charAt(0)
-                              .toUpperCase()}
+                            {(item.teamName || item.name || item.email)
+                              ?.charAt(0)
+                              ?.toUpperCase()}
                           </div>
-                          <div className="font-medium text-white">
-                            {item.userId == userDetails.id ? (
-                              <span className="inline-flex items-center gap-1">
-                                <span className="bg-gradient-to-r from-yellow-500 to-amber-600 text-transparent bg-clip-text font-bold">
-                                  You
-                                </span>
+                          <div className=" text-white flex flex-col">
+                            <div className="inline-flex items-center gap-1 font-medium">
+                              <span
+                                className={`${
+                                  item.userId == userDetails.id
+                                    ? "bg-gradient-to-r from-yellow-500 to-amber-600 text-transparent bg-clip-text font-bold"
+                                    : " text-left"
+                                }`}
+                              >
+                                {item.teamName}
                               </span>
-                            ) : (
-                              item.teamName || item.name || (item.email)
-                            )}
+                            </div>
+
+                            <div className="text-gray-400 text-xs">
+                              {item.userId == userDetails.id
+                                ? ` by You`
+                                : `${item.email}`}
+                            </div>
                           </div>
                         </div>
                       </div>
