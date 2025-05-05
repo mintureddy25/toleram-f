@@ -6,6 +6,7 @@ const TeamPreview = ({
   captain,
   viceCaptain,
   getRoleColorClass,
+  teamName
 }) => {
   const captainPlayer = selectedPlayers.find((p) => p.id === captain);
   const viceCaptainPlayer = selectedPlayers.find((p) => p.id === viceCaptain);
@@ -16,7 +17,7 @@ const TeamPreview = ({
       <div className="flex-shrink-0">
         <div className="bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 p-4 rounded-lg mb-4">
           <h2 className="text-md font-bold text-white mb-2">
-            Your Dream 11 Team
+            Your {teamName} Team
           </h2>
           <p className="text-white text-xs">
             Review your team before submitting

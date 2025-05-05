@@ -138,7 +138,7 @@ function Index() {
                 <section class="animate-fade-in-up max-w-4xl mx-auto text-center">
                   <h1 class="text-4xl sm:text-7xl font-bold tracking-tight">
                     <span class="inline-block bg-gradient-to-r from-gray-200 via-indigo-300 to-gray-200 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
-                      Toleram Premier League
+                      Tolaram Premier League
                     </span>
                   </h1>
                   <p class="mt-8 text-pretty text-base sm:text-xl max-w-xl inline-block text-white bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
@@ -172,41 +172,43 @@ function Index() {
             />
           </div>
         </div>
-        {teams?.teams && <div className="py-12 sm:py-24 max-w-7xl mx-auto bg-gray-900">
-          <p class="mt-8 text-pretty text-2xl sm:text-4xl font-bold max-w-xl inline-block text-white bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
-            Watch Our Teams Play
-          </p>
-          <div className="mx-auto grid max-w-lg grid-cols-2 md:grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-5 py-12 sm:py-24">
-            {teams?.teams.map((t, index) => (
-              <Link
-                to={`/team/${t.id}`}
-                className="group flex flex-col items-center transition-all duration-300 hover:scale-110 animate-fade-slide-up"
-                style={{
-                  animationDelay: `${index * 150}ms`,
-                }}
-              >
-                <div
-                  key={t.team_name}
+        {teams?.teams && (
+          <div className="py-12 sm:py-24 max-w-7xl mx-auto bg-gray-900">
+            <p class="mt-8 text-pretty text-2xl sm:text-4xl font-bold max-w-xl inline-block text-white bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
+              Watch Our Teams Play
+            </p>
+            <div className="mx-auto grid max-w-lg grid-cols-2 md:grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-5 py-12 sm:py-24">
+              {teams?.teams.map((t, index) => (
+                <Link
+                  to={`/team/${t.id}`}
                   className="group flex flex-col items-center transition-all duration-300 hover:scale-110 animate-fade-slide-up"
                   style={{
                     animationDelay: `${index * 150}ms`,
                   }}
                 >
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 p-4 shadow-[0_0_15px_rgba(139,92,246,0.2)] group-hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] border border-purple-500/10 motion-safe:animate-pulse">
-                    <img
-                      className="h-28 w-24 object-contain"
-                      src={t.team_logo}
-                      alt={t.team_name}
-                    />
+                  <div
+                    key={t.team_name}
+                    className="group flex flex-col items-center transition-all duration-300 hover:scale-110 animate-fade-slide-up"
+                    style={{
+                      animationDelay: `${index * 150}ms`,
+                    }}
+                  >
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 p-4 shadow-[0_0_15px_rgba(139,92,246,0.2)] group-hover:shadow-[0_0_25px_rgba(139,92,246,0.4)] border border-purple-500/10 motion-safe:animate-pulse">
+                      <img
+                        className="h-28 w-24 object-contain"
+                        src={t.team_logo}
+                        alt={t.team_name}
+                      />
+                    </div>
+                    <div className="mt-4 text-base font-medium text-gray-300 group-hover:text-cyan-400 transition-colors">
+                      {t.team_name}
+                    </div>
                   </div>
-                  <div className="mt-4 text-base font-medium text-gray-300 group-hover:text-cyan-400 transition-colors">
-                    {t.team_name}
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>}
+        )}
       </div>
     </>
   );

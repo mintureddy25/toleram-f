@@ -20,6 +20,7 @@ const EditTeam = ({ teamData, handleEdit }) => {
         }
         return { playerId: player.id, roleType: "player", gender:player.gender, type: player.player_role, credits: player.credits };
       }),
+      teamName: selectedTeam.teamName
     };
     try {
       const response = await updateDream11Team({ teamData }).unwrap();
@@ -41,6 +42,7 @@ const EditTeam = ({ teamData, handleEdit }) => {
         players={teamData.team} 
         onSubmit={handleUpdateTeam}
         onClose={handleEdit}
+        super12TeamName={teamData.teamName}
       />
     </>
   );

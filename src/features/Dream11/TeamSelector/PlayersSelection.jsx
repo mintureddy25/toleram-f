@@ -107,7 +107,7 @@ const PlayerSelection = ({
                       : "bg-gray-800 text-gray-100 hover:bg-gray-700"
                   }`}
                 >
-                  female
+                  FEMALE
                 </button>
                 <button
                   onClick={() => {
@@ -120,7 +120,7 @@ const PlayerSelection = ({
                       : "bg-gray-800 text-gray-100 hover:bg-gray-700"
                   }`}
                 >
-                  batsman
+                  BATSMAN
                 </button>
                 <button
                   onClick={() => {
@@ -133,7 +133,7 @@ const PlayerSelection = ({
                       : "bg-gray-800 text-gray-100 hover:bg-gray-700"
                   }`}
                 >
-                  bowler
+                  BOWLER
                 </button>
                 <button
                   onClick={() => {
@@ -146,7 +146,7 @@ const PlayerSelection = ({
                       : "bg-gray-800 text-gray-100 hover:bg-gray-700"
                   }`}
                 >
-                  all-rounder
+                  ALL-ROUNDER
                 </button>
               </div>
             </div>

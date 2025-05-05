@@ -13,8 +13,14 @@ import {
 } from "../../../constants/teamLimits";
 import Dream11Header from "./Dream11Header";
 import { toast } from "react-toastify";
+import TeamNameInput from "./TeamNameSelector";
 
-const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
+const Dream11TeamSelector = ({
+  players,
+  onSubmit,
+  onClose,
+  super12TeamName = "",
+}) => {
   const [allPlayers, setAllPlayers] = useState([]);
   const [error, setError] = useState(null);
   const [step, setStep] = useState(1);
@@ -30,6 +36,11 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
   const [roleLimits] = useState(DEFAULT_ROLE_LIMITS);
   const [genderLimits] = useState(DEFAULT_GENDER_LIMITS);
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [teamName, setTeamName] = useState(super12TeamName || "");
+
+  const handleTeamNameChange = (e) => {
+    setTeamName(e.target.value);
+  };
 
   const {
     data: playerData,
@@ -177,6 +188,8 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
       setStep(2);
     } else if (step === 2 && captain && viceCaptain) {
       setStep(3);
+    } else if (step === 3 && teamName) {
+      setStep(4);
     }
   };
 
@@ -187,6 +200,11 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
       onClose();
     }
   };
+
+  const isNextDisabled =
+    (step === 1 && !isTeamValid()) ||
+    (step === 2 && (!captain || !viceCaptain)) ||
+    (step === 3 && !teamName);
 
   const getRoleColorClass = (role) => {
     switch (role) {
@@ -210,6 +228,7 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
         team: selectedPlayers,
         captain,
         viceCaptain,
+        teamName,
       });
       setButtonLoading(false);
     } else {
@@ -243,11 +262,9 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
           goToNextStep={goToNextStep}
           handleSubmit={handleSubmit}
           buttonLoading={buttonLoading}
-          isTeamValid={isTeamValid}
-          captain={captain}
-          viceCaptain={viceCaptain}
           usedCredits={usedCredits}
           totalCredits={totalCredits}
+          isNextDisabled={isNextDisabled}
         />
         {step === 1 && (
           <div className="flex w-full border border-gray-700 rounded-md overflow-hidden mb-2">
@@ -259,7 +276,7 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
                     : "bg-red-200 text-red-800"
                 }`}
               >
-                {filter} : {countByRole(filter)}/
+                {filter.toLocaleUpperCase()} : {countByRole(filter)}/
                 {`${roleLimits[filter].min} - ${roleLimits[filter].max}`}
               </div>
             ) : (
@@ -270,7 +287,7 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
                     : "bg-red-200 text-red-800"
                 }`}
               >
-                Female: {countByGender("female")}/{genderLimits.female.min}
+                FEMALE: {countByGender("female")}/{genderLimits.female.min}
               </div>
             )}
             <div
@@ -316,11 +333,18 @@ const Dream11TeamSelector = ({ players, onSubmit, onClose }) => {
             />
           )}
           {step === 3 && (
+            <TeamNameInput
+              teamName={teamName}
+              onChange={handleTeamNameChange}
+            />
+          )}
+          {step === 4 && (
             <TeamPreview
               selectedPlayers={selectedPlayers}
               captain={captain}
               viceCaptain={viceCaptain}
               getRoleColorClass={getRoleColorClass}
+              teamName={teamName}
             />
           )}
         </div>

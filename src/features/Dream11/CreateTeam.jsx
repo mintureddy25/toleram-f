@@ -20,6 +20,7 @@ const CreateTeam = () => {
         }
         return { playerId: player.id, roleType: "player", gender:player.gender, type: player.player_role, credits: player.credits };
       }),
+      teamName: selectedTeam.teamName
     };
     try {
       const response = await createDream11Team({ teamData }).unwrap();

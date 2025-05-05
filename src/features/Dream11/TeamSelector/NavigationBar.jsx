@@ -7,15 +7,11 @@ const NavigationBar = ({
   goToNextStep,
   handleSubmit,
   buttonLoading,
-  isTeamValid,
-  captain,
-  viceCaptain,
   usedCredits,
   totalCredits,
+  isNextDisabled
 }) => {
-  const isNextDisabled =
-    (step === 1 && !isTeamValid()) ||
-    (step === 2 && (!captain || !viceCaptain));
+
 
   return (
     <div className="flex justify-between items-center py-2 px-3 border-t bg-gray-900">
@@ -30,7 +26,7 @@ const NavigationBar = ({
         {totalCredits}
       </div>
 
-      {step < 3 ? (
+      {step < 4 ? (
         <button
           onClick={goToNextStep}
           disabled={isNextDisabled}
@@ -40,7 +36,7 @@ const NavigationBar = ({
               : "bg-indigo-600 text-white font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           }`}
         >
-          {step === 1 ? "Next" : "Preview Team"}
+          {step === 1 ? "Next" : step === 2 ? "Choose Team Name" : "Preview Team"}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
