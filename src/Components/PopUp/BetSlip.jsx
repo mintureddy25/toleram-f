@@ -181,7 +181,7 @@ function BetSlip({
             <button
               type="submit"
               form="bets"
-              className="bg-green-500 font-semibold text-lg text-white w-full py-2 rounded-b-xl"
+              className="bg-green-600 font-semibold text-lg text-white w-full py-2 rounded-b-xl"
             >
               Place Bet
             </button>

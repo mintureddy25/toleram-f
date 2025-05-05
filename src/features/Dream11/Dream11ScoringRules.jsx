@@ -9,14 +9,14 @@ export default function Dream11ScoringRules() {
         role: "Captain",
         multiplier: "2×",
         icon: "C",
-        bgColor: "bg-indigo-600",
+        bgColor: "bg-green-600",
       },
       {
         id: 2,
         role: "Vice-Captain",
         multiplier: "1.5×",
         icon: "VC",
-        bgColor: "bg-indigo-600",
+        bgColor: "bg-green-600",
       },
     ],
     categories: [
@@ -42,7 +42,7 @@ export default function Dream11ScoringRules() {
   return (
     <div className="max-w-3xl mx-auto bg-gray-900 rounded-lg shadow-md overflow-hidden text-sm">
   
-      <div className="bg-indigo-600 px-4 py-3 m-2 rounded-md">
+      <div className="bg-green-600 px-4 py-3 m-2 rounded-md">
         <h1 className="text-lg font-bold text-white">Super12 Scoring Rules</h1>
       </div>
 
@@ -103,7 +103,7 @@ export default function Dream11ScoringRules() {
           <h2 className="text-md font-bold text-gray-100">General Rules</h2>
           <ul className="list-disc list-inside space-y-1 text-sm">
             <li>Fixed bet amount: ₹20,000.</li>
-            <li>Select 10 male + 2 female players within 100 points.</li>
+            <li>Select 10 male + 2 female players within 100 credits.</li>
             <li>Bets are frozen before the first match starts.</li>
             <li>Do not share credentials. Finalized bets cannot be changed.</li>
           </ul>

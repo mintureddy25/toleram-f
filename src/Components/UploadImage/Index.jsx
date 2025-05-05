@@ -89,7 +89,7 @@ function Index({ placeholder, updateImageUrl, existingImageUrl }) {
                 <div className="mt-1 flex text-sm text-gray-400">
                   <label
                     htmlFor="file-upload"
-                    className="relative cursor-pointer rounded-md font-medium text-indigo-400 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-300"
+                    className="relative cursor-pointer rounded-md font-medium text-green-400 focus-within:outline-none focus-within:ring-2 focus-within:ring-green-500 focus-within:ring-offset-2 hover:text-green-300"
                   >
                     <span>Upload a file</span>
                     <input

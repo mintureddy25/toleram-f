@@ -69,7 +69,7 @@ export default function QuestionsPanel({ match, questions, setOpen, setQuestion,
                         <button
                             type="button"
                             onClick={() => { setOpen(true); setQuestion("") }}
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-white text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+                            className="rounded-md bg-green-600 px-3 py-2 text-white text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
                         >
                             Create question
                         </button>
@@ -105,7 +105,7 @@ export default function QuestionsPanel({ match, questions, setOpen, setQuestion,
                                                     <button
                                                         type="button"
                                                         onClick={() => { setOpen(true); setQuestion("") }}
-                                                        className="mt-6 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                                        className="mt-6 rounded-md bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                                                     >
                                                         Create Question
                                                     </button>
@@ -190,7 +190,7 @@ export default function QuestionsPanel({ match, questions, setOpen, setQuestion,
                                                                                                     className="flex items-center justify-center w-5 h-5 rounded-full border border-gray-400"
                                                                                                 >
                                                                                                     {+faq.correct_option === option.id && (
-                                                                                                        <div className="w-3 h-3 rounded-full bg-indigo-500"></div>
+                                                                                                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                                                                                     )}
                                                                                                 </div>
                                                                                             )}
@@ -210,7 +210,7 @@ export default function QuestionsPanel({ match, questions, setOpen, setQuestion,
                                                                                 setOpen(true);
                                                                                 setQuestion(faq);
                                                                             }}
-                                                                            className="text-indigo-400 text-sm hover:text-indigo-300"
+                                                                            className="text-green-400 text-sm hover:text-green-300"
                                                                         >
                                                                             + Edit Option
                                                                         </button>
@@ -234,7 +234,7 @@ export default function QuestionsPanel({ match, questions, setOpen, setQuestion,
                                                                                     e.stopPropagation();
                                                                                     setEditingQuestionId(faq.id);
                                                                                 }}
-                                                                                className="text-indigo-400 text-sm hover:text-indigo-300"
+                                                                                className="text-green-400 text-sm hover:text-green-300"
                                                                             >
                                                                                 Set Correct Option
                                                                             </button>
@@ -244,11 +244,11 @@ export default function QuestionsPanel({ match, questions, setOpen, setQuestion,
                                                                                 type="button"
                                                                                 onClick={(e) => handleSetVoidOption(e, faq.id)}
                                                                                 disabled={isSettingVoid[faq.id]}
-                                                                                className="text-indigo-400 text-sm hover:text-indigo-300 flex items-center gap-1"
+                                                                                className="text-green-400 text-sm hover:text-green-300 flex items-center gap-1"
                                                                             >
                                                                                 Set Void Option
                                                                                 {isSettingVoid[faq.id] && (
-                                                                                    <svg className="animate-spin h-4 w-4 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                                                    <svg className="animate-spin h-4 w-4 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                                                     </svg>

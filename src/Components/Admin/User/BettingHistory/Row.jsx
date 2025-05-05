@@ -7,7 +7,7 @@ const BettingHistoryRow = ({ entry, isExpanded, toggleExpand, index }) => {
     <>
       <tr className={index % 2 === 0 ? "bg-gray-800" : "bg-gray-900"}>
         <td className="px-6 py-4 tracking-tight">
-          <span className="bg-indigo-900 text-indigo-300 px-2 py-1 rounded text-xs">
+          <span className="bg-green-900 text-green-300 px-2 py-1 rounded text-xs">
             {entry.type}
           </span>
         </td>
@@ -19,7 +19,7 @@ const BettingHistoryRow = ({ entry, isExpanded, toggleExpand, index }) => {
         <td className="px-6 py-4 text-right">
           <button
             onClick={() => toggleExpand(entry.key)}
-            className="text-indigo-400 hover:underline text-xs"
+            className="text-green-400 hover:underline text-xs"
           >
             {isExpanded ? "Hide" : "View"} Details
           </button>

@@ -9,7 +9,7 @@ const Dream11Team = ({ dream11 }) => {
         <div className="flex-wrap flex items-center justify-between">
           <div className="flex items-center space-x-2 mb-2 sm:mb-0">
             <div className="p-1.5 bg-gray-800 rounded-lg">
-              <TrophyIcon className="size-6 text-indigo-600" />{" "}
+              <TrophyIcon className="size-6 text-green-600" />{" "}
             </div>
             <h3 className="text-xl font-bold text-white tracking-wide">
               Super12 Team
@@ -77,7 +77,7 @@ const Dream11Team = ({ dream11 }) => {
                     player.player_role === "captain"
                       ? "text-yellow-400"
                       : player.player_role === "vice-captain"
-                      ? "text-indigo-400"
+                      ? "text-green-400"
                       : "text-gray-400"
                   }`}
                 >

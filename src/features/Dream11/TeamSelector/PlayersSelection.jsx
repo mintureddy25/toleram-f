@@ -44,7 +44,7 @@ const PlayerSelection = ({
                       e.preventDefault();
                       setSearchQuery(e.target.value);
                     }}
-                    className="w-full pl-10 pr-2 py-2 bg-gray-800 text-white border text-xs rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full pl-10 pr-2 py-2 bg-gray-800 text-white border text-xs rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@ const PlayerSelection = ({
                   }}
                   className={`flex-1 py-2 text-xs font-medium ${
                     genderFilter === "female"
-                      ? "bg-indigo-600 text-white"
+                      ? "bg-green-600 text-white"
                       : "bg-gray-800 text-gray-100 hover:bg-gray-700"
                   }`}
                 >
@@ -116,7 +116,7 @@ const PlayerSelection = ({
                   }}
                   className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${
                     filter === "batsman"
-                      ? "bg-indigo-600 text-white"
+                      ? "bg-green-600 text-white"
                       : "bg-gray-800 text-gray-100 hover:bg-gray-700"
                   }`}
                 >
@@ -129,7 +129,7 @@ const PlayerSelection = ({
                   }}
                   className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${
                     filter === "bowler"
-                      ? "bg-indigo-600 text-white"
+                      ? "bg-green-600 text-white"
                       : "bg-gray-800 text-gray-100 hover:bg-gray-700"
                   }`}
                 >
@@ -142,7 +142,7 @@ const PlayerSelection = ({
                   }}
                   className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${
                     filter === "all-rounder"
-                      ? "bg-indigo-600 text-white"
+                      ? "bg-green-600 text-white"
                       : "bg-gray-800 text-gray-100 hover:bg-gray-700"
                   }`}
                 >
@@ -170,7 +170,7 @@ const PlayerSelection = ({
                       onClick={() => togglePlayerSelection(player)}
                       className={`rounded-lg overflow-hidden cursor-pointer transition-all ${
                         isSelected
-                          ? "border border-indigo-600 shadow-md shadow-green-500/20 bg-gray-800"
+                          ? "border border-green-600 shadow-md shadow-green-500/20 bg-gray-800"
                           : "border border-gray-200 hover:border-gray-300 hover:shadow-sm"
                       }`}
                     >
@@ -187,7 +187,7 @@ const PlayerSelection = ({
                             <h3 className="font-medium text-xs text-gray-100 flex items-center gap-1">
                               {player.name}
                               {isSelected && (
-                                <CheckBadgeIcon className="h-4 w-4 text-indigo-600" />
+                                <CheckBadgeIcon className="h-4 w-4 text-green-600" />
                               )}
                             </h3>
                             <div
@@ -214,7 +214,7 @@ const PlayerSelection = ({
                               {player.team_name}
                             </span>
                             <span className="ml-auto text-gray-100 font-semibold">
-                              +{player.credits} Pts
+                              +{player.credits} Cr
                             </span>
                           </div>
                         </div>

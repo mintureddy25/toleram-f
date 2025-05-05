@@ -29,10 +29,10 @@ function Header() {
   const isAdminRoute = location.pathname.startsWith('/admin');
   return (
     <>
-      <header className="bg-red-600 text-white sticky w-full inset-x top-0 z-20">
+      <header className="bg-green-900 text-white sticky w-full inset-x top-0 z-20">
         <div className="max-w-7xl mx-auto">
           <nav
-            className="flex items-center justify-between p-6 lg:px-8"
+            className="flex items-center justify-between p-4 lg:px-8"
             aria-label="Global"
           >
             <div className="flex lg:flex-1 flex-row">
@@ -43,10 +43,10 @@ function Header() {
                   src="/new_tpl_logo.png"
                   alt=""
                 />
-                <div className="text-white font-bold text-xl ml-3 text-center align-baseline text-left">
+                <div className="text-white font-bold text-2xl ml-3 text-center align-baseline text-left">
                   {" "}
-                  TOLARAM <br />
-                  <span className="text-sm">Premier League </span>
+                  <p className="">TOLARAM</p>
+                  <p className="text-sm">Premier League </p>
                 </div>
               </Link>
             </div>
@@ -60,7 +60,7 @@ function Header() {
                 <Link
                   onClick={() => setMobileMenuOpen(false)}
                   to="/login"
-                  className="text-xl font-semibold leading-6 border-2 border-white rounded-lg p-2"
+                  className="text-lg font-medium leading-6 border border-white rounded-lg py-2 px-8"
                 >
                   Log in
                 </Link>
@@ -105,18 +105,18 @@ const CustomMenu = () => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0  mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
+          <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-gray-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ">
             <div className="py-1">
               <Menu.Item>
                 {({ active }) => (
                   <Link
                     to={"/rules"}
                     className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      active ? "bg-gray-800 text-gray-100" : "text-gray-200",
                       "flex px-4 py-2 text-sm"
                     )}
                   >
-                    <HashtagIcon className="mr-3 h-5 w-5 text-gray-400" />
+                    <HashtagIcon className="mr-3 h-5 w-5 text-gray-100" />
                     <span>Rules</span>
                   </Link>
                 )}
@@ -128,7 +128,7 @@ const CustomMenu = () => {
                     <Link
                       to={"/admin/dashboard"}
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        active ? "bg-gray-800 text-gray-100" : "text-gray-200",
                         "flex px-4 py-2 text-sm"
                       )}
                     >
@@ -145,7 +145,7 @@ const CustomMenu = () => {
                     <Link
                       to={"/discussions"}
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        active ? "bg-gray-800 text-gray-100" : "text-gray-200",
                         "flex px-4 py-2 text-sm"
                       )}
                     >
@@ -163,7 +163,7 @@ const CustomMenu = () => {
                       dispatch(unsetCredentials());
                     }}
                     className={classNames(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                      active ? "bg-gray-800 text-gray-100" : "text-gray-200",
                       "flex px-4 py-2 text-sm"
                     )}
                   >

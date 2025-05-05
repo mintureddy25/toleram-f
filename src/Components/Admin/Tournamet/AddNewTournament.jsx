@@ -100,7 +100,7 @@ export default function AddNewTournament({ open, setOpen, round }) {
                       setRoundData({ ...roundData, roundName: e.target.value })
                     }
                     placeholder="Enter round name"
-                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
                   <input
                     type="number"
@@ -109,7 +109,7 @@ export default function AddNewTournament({ open, setOpen, round }) {
                       setRoundData({ ...roundData, maxBetAmount: e.target.value })
                     }
                     placeholder="Enter max bet amount (min. 1000)"
-                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function AddNewTournament({ open, setOpen, round }) {
               <button
                 type="button"
                 onClick={onSubmit}
-                className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
               >
                 {round
                   ? isUpdateRoundLoading

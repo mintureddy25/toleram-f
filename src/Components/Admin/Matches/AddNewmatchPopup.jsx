@@ -128,7 +128,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
                       setMatchData({ ...matchData, matchTitle: e.target.value })
                     }
                     placeholder="Enter match title"
-                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
 
                   <input
@@ -139,7 +139,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
                       setMatchData({ ...matchData, maxBetAmount: Number(e.target.value) })
                     }
                     placeholder="Enter max bet amount (min. 1000)"
-                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
 
                   <input
@@ -148,7 +148,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
                     onChange={(e) =>
                       setMatchData({ ...matchData, matchTime: e.target.value })
                     }
-                    className="datetime-picker w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="datetime-picker w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
 
                   <select
@@ -161,7 +161,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
                       }
                       setMatchData({ ...matchData, teamOneId: newTeamId });
                     }}
-                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   >
                     <option value="">Select Team One</option>
                     {teams?.teams.map((team) => (
@@ -181,7 +181,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
                       }
                       setMatchData({ ...matchData, teamTwoId: newTeamId });
                     }}
-                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                   >
                     <option value="">Select Team Two</option>
                     {teams?.teams.map((team) => (
@@ -197,7 +197,7 @@ export default function CreateNewMatch({ open, setOpen, matchId }) {
               <button
                 type="button"
                 onClick={onSubmit}
-                className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
               >
                 {match
                   ? isUpdateMatchLoading

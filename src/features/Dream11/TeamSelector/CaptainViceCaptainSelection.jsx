@@ -12,7 +12,7 @@ const CaptainViceCaptainSelection = ({
   return (
     <div className="flex flex-col h-full">
       <div className="flex-shrink-0">
-        <div className="bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 p-2 rounded-lg mb-4">
+        <div className="bg-green-600 text-white text-sm font-medium shadow-sm hover:bg-green-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 p-2 rounded-lg mb-4">
           <h2 className="text-md font-bold text-white mb-2">
             Choose Captain & Vice Captain
           </h2>
@@ -48,7 +48,7 @@ const CaptainViceCaptainSelection = ({
             return (
               <div
                 key={player.id}
-                className="border border-indigo-600 rounded-lg overflow-hidden"
+                className="border border-green-600 rounded-lg overflow-hidden"
               >
                 <div className="flex items-center p-3 bg-gray-800">
                   <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mr-3 relative">

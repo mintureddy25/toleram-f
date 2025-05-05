@@ -182,7 +182,7 @@ export default function CreateNewQuestionPopup({
                         placeholder={`Option ${index + 1}`}
                         className={`w-full bg-gray-800 rounded-md border ${
                           option.isCorrect
-                            ? "border-indigo-500"
+                            ? "border-green-500"
                             : "border-gray-700"
                         } px-2 sm:px-3 py-2 text-white text-sm sm:text-base`}
                       />
@@ -214,7 +214,7 @@ export default function CreateNewQuestionPopup({
                 <button
                   type="button"
                   onClick={addOption}
-                  className="text-indigo-400 text-sm hover:text-indigo-300"
+                  className="text-green-400 text-sm hover:text-green-300"
                 >
                   + Edit Option
                 </button>
@@ -223,7 +223,7 @@ export default function CreateNewQuestionPopup({
               <button
                 type="button"
                 onClick={onSubmit}
-                className="w-full bg-indigo-600 text-white rounded-md py-2 hover:bg-indigo-500 text-sm sm:text-base"
+                className="w-full bg-green-600 text-white rounded-md py-2 hover:bg-green-500 text-sm sm:text-base"
               >
                 {isAddQuestionLoading || isUpdateQuestionLoading
                   ? question

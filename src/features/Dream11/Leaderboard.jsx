@@ -28,7 +28,7 @@ function Dream11Leaderboard() {
 
   const getInitialBgColor = (index) => {
     const colors = [
-      "bg-indigo-600",
+      "bg-green-600",
       "bg-violet-600",
       "bg-fuchsia-600",
       "bg-purple-600",

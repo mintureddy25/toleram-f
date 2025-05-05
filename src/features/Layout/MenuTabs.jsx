@@ -53,8 +53,8 @@ export default function MenuTabs(props) {
                 key={tab.name}
                 to={tab.href}
                 className={classNames(
-                  tab.current
-                    ? "bg-indigo-600 text-white shadow-lg transform scale-105 transition-all duration-200"
+                  tab.current 
+                    ? "bg-gradient-to-r from-yellow-500 to-amber-600 bg-transparent text-white shadow-lg transform scale-105 transition-all duration-200"
                     : "text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-200",
                   "rounded-lg px-4 py-3 text-sm font-medium flex flex-col items-center space-y-1 min-w-[80px]"
                 )}

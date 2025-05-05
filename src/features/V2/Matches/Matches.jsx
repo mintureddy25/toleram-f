@@ -96,7 +96,7 @@ function Matches() {
                   <button
                     className={`${
                       match.can_bet == "1"
-                        ? "bg-green-500 font-semibold text-lg"
+                        ? "bg-gradient-to-r from-yellow-500 to-amber-600 bg-transparent font-bold text-lg"
                         : " bg-gray-500 "
                     } text-white w-full py-2 rounded-b-xl`}
                   >

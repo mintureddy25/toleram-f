@@ -32,7 +32,7 @@ export default function AdminMatches() {
                 <Tab.List className="flex space-x-4 px-4 sm:px-8 mb-6">
                     <Tab className={({ selected }) =>
                         `px-4 py-2 rounded-lg text-sm font-medium focus:outline-none ${selected
-                            ? 'bg-indigo-600 text-white'
+                            ? 'bg-green-600 text-white'
                             : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                         }`
                     }>
@@ -40,7 +40,7 @@ export default function AdminMatches() {
                     </Tab>
                     <Tab className={({ selected }) =>
                         `px-4 py-2 rounded-lg text-sm font-medium focus:outline-none ${selected
-                            ? 'bg-indigo-600 text-white'
+                            ? 'bg-green-600 text-white'
                             : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                         }`
                     }>

@@ -178,7 +178,7 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
                   <button
                     type="submit"
                     disabled={!room?.id || postLoading}
-                    className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-300"
+                    className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 disabled:bg-green-300"
                   >
                     {postLoading ? "Posting..." : "Post comment"}
                   </button>
@@ -246,7 +246,7 @@ const CommentsSection = ({ title = "", description = "", roomName }) => {
               {nextToken && (
                 <div className="flex justify-center mt-4">
                   <button
-                    className="inline-flex items-center px-3 py-1.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="inline-flex items-center px-3 py-1.5 text-sm font-semibold text-green-600 hover:text-green-500"
                     onClick={loadMoreComments}
                   >
                     Load more

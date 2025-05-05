@@ -14,8 +14,8 @@ const FullText = ({
   length,
 }) => {
   const classes = errors[name]
-    ? "appearance-none rounded-lg text-sm w-full px-3 pr-4 py-2 placeholder-gray-500 text-gray-900 focus:outline-none ring-1 ring-[#E45555] focus:ring-[#E45555] ring-offset-2 focus-visible:ring-[#E45555] hover:ring-[#E45555]"
-    : `appearance-none rounded-lg text-sm w-full px-3 pr-4 py-2 placeholder-gray-500 text-gray-900  ring-1 ring-[#e5e5e5] ring-offset-2 ${
+    ? "appearance-none bg-gray-900 rounded-lg text-sm w-full text-white px-3 pr-4 py-2 placeholder-gray-500 text-white focus:outline-none ring-1 ring-[#E45555] focus:ring-[#E45555] ring-offset-2 focus-visible:ring-[#E45555] hover:ring-[#E45555]"
+    : `appearance-none bg-gray-900 rounded-lg text-sm w-full text-white px-3 pr-4 py-2 placeholder-gray-500 text-white  ring-1 ring-[#e5e5e5] ring-offset-2 ${
         isReadOnly
           ? "cursor-not-allowed"
           : "focus:outline-none  focus:ring-[#899ada] focus-visible:ring-[#899ada] hover:ring-[#899ada]"

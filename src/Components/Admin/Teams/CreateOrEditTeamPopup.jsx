@@ -103,7 +103,7 @@ export default function CreateOrEditTeamPopup({ open, setOpen, selectedTeam }) {
                     setFormData((prev) => ({ ...prev, teamName: e.target.value }))
                   }
                   placeholder="Enter team name"
-                  className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full bg-gray-900 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                 />
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function CreateOrEditTeamPopup({ open, setOpen, selectedTeam }) {
             <button
               type="button"
               onClick={onSubmit}
-              className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
             >
               {isLoading
                 ? isEditMode

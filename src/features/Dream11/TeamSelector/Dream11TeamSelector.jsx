@@ -168,7 +168,7 @@ const Dream11TeamSelector = ({
 
     if (newTotalCredits > totalCredits) {
       toast.error(
-        `You need ${playerCredits} points, only ${
+        `You need ${playerCredits} credits, only ${
           totalCredits - usedCredits
         } left.`
       );

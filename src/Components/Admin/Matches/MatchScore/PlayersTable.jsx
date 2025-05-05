@@ -101,7 +101,7 @@ function ScoreDashboard({ team }) {
                               setOpen(true);
                               setPlayer(player);
                             }}
-                            className="text-indigo-600 hover:text-indigo-800"
+                            className="text-green-600 hover:text-green-800"
                           >
                             Edit<span className="sr-only">, {player.id}</span>
                           </div>

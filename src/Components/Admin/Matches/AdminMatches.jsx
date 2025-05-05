@@ -44,7 +44,7 @@ export default function AdminMatches() {
                     <button
                         type="button"
                         onClick={() => setOpen(true)}
-                        className="mt-6 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="mt-6 rounded-md bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                     >
                         Create Match
                     </button>
@@ -65,7 +65,7 @@ export default function AdminMatches() {
                                         <button
                                             type="button"
                                             onClick={() => setOpen(true)}
-                                            className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                                            className="block rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
                                         >
                                             Create Match
                                         </button>
@@ -139,7 +139,7 @@ export default function AdminMatches() {
                                                                     {/* Outer ring (track) */}
                                                                     <span
                                                                         aria-hidden="true"
-                                                                        className="pointer-events-none absolute mx-auto h-4 w-9 rounded-full bg-gray-700 transition-colors duration-200 ease-in-out group-data-[checked]:bg-indigo-500"
+                                                                        className="pointer-events-none absolute mx-auto h-4 w-9 rounded-full bg-gray-700 transition-colors duration-200 ease-in-out group-data-[checked]:bg-green-600"
                                                                     />
 
                                                                     {/* Inner dot (thumb) */}
@@ -237,7 +237,7 @@ function UpdateMatchStatusButton({match}) {
             id: match.id,
             betStatus: match.bet_status === "dont_process" ? "process" : "dont_process",
         });
-    }} className={`bg-indigo-500 text-white px-2 py-1 rounded-md ${match.can_bet === "1" ? "disabled:opacity-50 disabled:cursor-not-allowed" : ""}`}>
+    }} className={`bg-green-600 text-white px-2 py-1 rounded-md ${match.can_bet === "1" ? "disabled:opacity-50 disabled:cursor-not-allowed" : ""}`}>
 
 {betProcessStateCtaText[match.bet_status]}
 </CustomButton>

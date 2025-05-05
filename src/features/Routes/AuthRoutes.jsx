@@ -27,10 +27,14 @@ import Dream11Leaderboard from "../Dream11/Leaderboard";
 import Match from "../V2/Matches/Match";
 import Round from "../V2/Rounds/Round";
 import Discussions from "../Discussions";
+import Super12 from "../../Components/Admin/Super12";
+import TeamPlayers from "../Teams/Index";
+
 
 function AuthRoutes() {
   return (
     <Routes>
+      <Route path="/team/:teamId" Component={TeamPlayers} />
       <Route path="/matches">
         <Route path=":matchId" Component={Match} />
         <Route index Component={Matches} />
@@ -39,7 +43,6 @@ function AuthRoutes() {
         <Route path=":roundId" Component={Round} />
         <Route index Component={Rounds} />
       </Route>
-
       <Route path="/super12">
         <Route index Component={Dream11} />
       </Route>
@@ -63,6 +66,7 @@ function AuthRoutes() {
         <Route path="tournament" Component={Tournamet} />
         <Route path="match/:matchId/score" Component={ScoreDashboard} />
         <Route path="user" Component={User} />
+        <Route path="super12" Component={Super12} />
         <Route
           path="tournament/rounds/:roundId"
           Component={AdminRoundDetails}

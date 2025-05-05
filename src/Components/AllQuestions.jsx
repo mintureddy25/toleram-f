@@ -35,7 +35,7 @@ function AllQuestions({ questions, formData, setFormData, onSubmit, show, setSho
       })}
       <button
         onClick={() => setShow(true)}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 fixed right-0 bottom-10"
+        className="bg-gradient-to-r from-yellow-500 to-amber-600 bg-transparent text-white font-bold py-2 px-4 rounded mt-4 fixed right-0 bottom-10"
         // disabled={Object.keys(formData).length == 0}
       >
         <span className="px-2 py-1 rounded-full text-white bg-red-600">

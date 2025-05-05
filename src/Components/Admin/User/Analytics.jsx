@@ -103,7 +103,7 @@ const Analytics = ({ userData }) => {
               </p>
             </div>
           </div>
-          <div className="bg-indigo-600 bg-opacity-20 text-indigo-400 rounded-full px-3 py-1 text-sm font-medium">
+          <div className="bg-green-600 bg-opacity-20 text-green-400 rounded-full px-3 py-1 text-sm font-medium">
             {userData.user.role}
           </div>
         </div>
@@ -119,14 +119,14 @@ const Analytics = ({ userData }) => {
                 {calculateTotalBetAmount().toLocaleString()}
               </h3>
             </div>
-            <div className="bg-indigo-600 bg-opacity-20 p-3 rounded-full">
+            <div className="bg-green-600 bg-opacity-20 p-3 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6 text-indigo-400"
+                className="size-6 text-green-400"
               >
                 <path
                   strokeLinecap="round"
@@ -144,14 +144,14 @@ const Analytics = ({ userData }) => {
               <p className="text-sm text-gray-400">Win Rate</p>
               <h3 className="text-xl font-bold mt-1">{calculateWinRate()}%</h3>
             </div>
-            <div className="bg-indigo-600 bg-opacity-20 p-3 rounded-full">
+            <div className="bg-green-600 bg-opacity-20 p-3 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6 text-indigo-400"
+                className="size-6 text-green-400"
               >
                 <path
                   strokeLinecap="round"
@@ -171,14 +171,14 @@ const Analytics = ({ userData }) => {
                 {userData.dream11.totalPoints}
               </h3>
             </div>
-            <div className="bg-indigo-600 bg-opacity-20 p-3 rounded-full">
+            <div className="bg-green-600 bg-opacity-20 p-3 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6 text-indigo-400"
+                className="size-6 text-green-400"
               >
                 <path
                   strokeLinecap="round"
@@ -205,14 +205,14 @@ const Analytics = ({ userData }) => {
                   )}
               </h3>
             </div>
-            <div className="bg-indigo-600 bg-opacity-20 p-3 rounded-full">
+            <div className="bg-green-600 bg-opacity-20 p-3 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6 text-indigo-400"
+                className="size-6 text-green-400"
               >
                 <path
                   strokeLinecap="round"

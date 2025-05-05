@@ -14,7 +14,7 @@ const TabSwitcher = ({ tabs }) => {
               idx !== tabs.length - 1 ? 'border-r border-gray-700' : ''
             } ${
               activeTab === tab.label
-                ? 'bg-indigo-600 text-white'
+                ? 'bg-green-600 text-white'
                 : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
           >

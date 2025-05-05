@@ -39,7 +39,7 @@ export default function AdminRoundDetails() {
                         <button
                             type="button"
                             onClick={() => { setOpen(true); setQuestion("") }}
-                            className="rounded-md bg-indigo-600 px-3 py-2 text-white text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+                            className="rounded-md bg-green-600 px-3 py-2 text-white text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
                         >
                             Create question
                         </button>
@@ -75,7 +75,7 @@ export default function AdminRoundDetails() {
                                                     <button
                                                         type="button"
                                                         onClick={() => { setOpen(true); setQuestion("") }}
-                                                        className="mt-6 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                                        className="mt-6 rounded-md bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                                                     >
                                                         Create Question
                                                     </button>
@@ -161,7 +161,7 @@ export default function AdminRoundDetails() {
                                                                                                     className="flex items-center justify-center w-5 h-5 rounded-full border border-gray-400"
                                                                                                 >
                                                                                                     {+faq.correct_option === option.id && (
-                                                                                                        <div className="w-3 h-3 rounded-full bg-indigo-500"></div>
+                                                                                                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
                                                                                                     )}
                                                                                                 </div>
                                                                                             )}
@@ -181,7 +181,7 @@ export default function AdminRoundDetails() {
                                                                                 setOpen(true);
                                                                                 setQuestion(faq);
                                                                             }}
-                                                                            className="text-indigo-400 text-sm hover:text-indigo-300"
+                                                                            className="text-green-400 text-sm hover:text-green-300"
                                                                         >
                                                                             + Edit Option
                                                                         </button>
@@ -205,7 +205,7 @@ export default function AdminRoundDetails() {
                                                                                     e.stopPropagation();
                                                                                     setEditingQuestionId(faq.id);
                                                                                 }}
-                                                                                className="text-indigo-400 text-sm hover:text-indigo-300"
+                                                                                className="text-green-400 text-sm hover:text-green-300"
                                                                             >
                                                                                 Set Correct Option
                                                                             </button>

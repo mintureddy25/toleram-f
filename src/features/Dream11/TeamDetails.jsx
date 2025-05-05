@@ -52,7 +52,7 @@ const TeamDetails = ({ teamData, handleEdit }) => {
           {teamData?.canEdit && (
             <button
               onClick={handleEdit}
-              className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 py-2 px-4 w-full sm:w-auto justify-center"
+              className="inline-flex items-center gap-2 rounded-lg bg-green-600 text-white text-sm font-medium shadow-sm hover:bg-green-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 py-2 px-4 w-full sm:w-auto justify-center"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +144,7 @@ const TeamDetails = ({ teamData, handleEdit }) => {
 
         <div className="mb-6">
           <h2 className="text-md font-bold mb-4 text-center">
-            <span className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 text-white text-sm font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 px-4 py-2 rounded-full inline-block">
+            <span className="inline-flex items-center gap-2 rounded-lg bg-green-600 text-white text-sm font-medium shadow-sm hover:bg-green-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600 px-4 py-2 rounded-full inline-block">
               TEAM PLAYERS
             </span>
           </h2>
@@ -166,7 +166,7 @@ const PlayerBubble = ({ player }) => {
   return (
     <div className="flex flex-col items-center transform transition-transform hover:scale-105 group">
       <div className="relative">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-white/20 backdrop-blur-sm border-2 border-white/50 shadow-lg group-hover:border-indigo-600 transition-all duration-300">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden bg-white/20 backdrop-blur-sm border-2 border-white/50 shadow-lg group-hover:border-green-600 transition-all duration-300">
           <img
             src={player.player_logo || PLAYER_IMAGE}
             alt={player.player_name}

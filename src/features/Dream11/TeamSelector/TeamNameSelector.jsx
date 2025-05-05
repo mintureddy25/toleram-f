@@ -11,7 +11,7 @@ export default function TeamNameInput({ teamName, onChange }) {
     <div className="rounded-lg bg-gray-900 p-6 border border-gray-800 shadow-lg">
       <div className="flex items-center mb-4">
         <svg
-          className="h-5 w-5 text-indigo-400 mr-2"
+          className="h-5 w-5 text-green-400 mr-2"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -39,8 +39,8 @@ export default function TeamNameInput({ teamName, onChange }) {
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
             className={`block w-full rounded-md px-4 py-3 text-white bg-gray-800 border ${
-              focused ? "border-indigo-500" : "border-gray-700"
-            } shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-all duration-200`}
+              focused ? "border-green-500" : "border-gray-700"
+            } shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all duration-200`}
           />
         </div>
 
@@ -66,7 +66,7 @@ export default function TeamNameInput({ teamName, onChange }) {
       <div className="mt-6 pt-4 border-t border-gray-800">
         <div className="flex items-center text-sm text-gray-400">
           <svg
-            className="h-4 w-4 mr-2 text-indigo-400"
+            className="h-4 w-4 mr-2 text-green-400"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -86,7 +86,7 @@ export default function TeamNameInput({ teamName, onChange }) {
         <div className="text-center">
           <div className="flex justify-center mb-3">
             <svg
-              className="h-12 w-12 text-indigo-500"
+              className="h-12 w-12 text-green-500"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -100,7 +100,7 @@ export default function TeamNameInput({ teamName, onChange }) {
               />
             </svg>
           </div>
-          <h4 className="text-md font-bold text-indigo-400 mb-2">
+          <h4 className="text-md font-bold text-green-400 mb-2">
             Ready to dominate?
           </h4>
           <p className="text-sm text-gray-400 mb-4">
@@ -109,7 +109,7 @@ export default function TeamNameInput({ teamName, onChange }) {
 
           <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
             <svg
-              className="h-5 w-5 text-indigo-400"
+              className="h-5 w-5 text-green-400"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"

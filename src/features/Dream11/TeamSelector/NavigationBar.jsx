@@ -22,7 +22,7 @@ const NavigationBar = ({
         {step > 1 ? "Back" : "Cancel"}
       </button>
       <div className="text-sm font-semibold text-gray-100">
-        Points: <span className="text-green-400"> {usedCredits}</span> /{" "}
+        Credits: <span className="text-green-400"> {usedCredits}</span> /{" "}
         {totalCredits}
       </div>
 
@@ -33,7 +33,7 @@ const NavigationBar = ({
           className={`px-3 py-2 rounded-lg text-xs flex items-center ${
             isNextDisabled
               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-              : "bg-indigo-600 text-white font-medium shadow-sm hover:bg-indigo-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              : "bg-green-600 text-white font-medium shadow-sm hover:bg-green-500 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
           }`}
         >
           {step === 1 ? "Next" : step === 2 ? "Choose Team Name" : "Preview Team"}
