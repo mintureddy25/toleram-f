@@ -53,7 +53,7 @@ export default function Rules() {
     {
       title: "Match Rules:",
       points: [
-        <div>The maximum bet amount allowed per match is 500,000.</div>,
+        <div>The maximum bet amount allowed per match is 750k NGN.</div>,
         <div>
           The link to bet on a match will close 5 minutes before the toss of
           that match.
@@ -86,7 +86,7 @@ export default function Rules() {
     {
       title: "Tournament: Winners Rules",
       points: [
-        <div>The maximum bet amount allowed per round is 500,000.</div>,
+        <div>The maximum bet amount allowed per round is 200k NGN.</div>,
         <div>
           A maximum of 2 bets will be allowed per individual for the outcome of
           the winners of the tournament. There will be a fresh set of odds
@@ -101,7 +101,7 @@ export default function Rules() {
     {
       title: "Tournament: Top Players Rules",
       points: [
-        <div>The maximum bet amount allowed for this section is 500,000.</div>,
+        <div>The maximum bet amount allowed for this section is 200k NGN.</div>,
         <div>The bets will be frozen before the start of the tournament.</div>,
         <div>
           Player Odds: There are player odds next to a few named players for
