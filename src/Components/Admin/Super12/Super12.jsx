@@ -12,11 +12,12 @@ export default function Super12() {
   const [updateSuper12BetStatus, { isLoading: isUpdating }] =
     useUpdateSuper12BetStatusMutation();
 
+  const runSuper12BetsStatus = tournament?.tournament?.runSuper12Bets;
+  const isBetsOn = runSuper12BetsStatus === "yes";
+
   const toggleBets = async () => {
     if (isTournamentLoading || isUpdating) return;
-
-    const newStatus =
-      tournament?.tournament?.runSuper12Bets === "yes" ? "no" : "yes";
+    const newStatus = isBetsOn ? "no" : "yes";
     await updateSuper12BetStatus({ status: newStatus }).unwrap();
   };
 
@@ -30,29 +31,24 @@ export default function Super12() {
         <div className="flex items-center justify-between w-full mb-6">
           <span className="text-lg font-medium text-gray-300">
             Betting is currently:{" "}
-            {isTournamentLoading || isUpdating ? (
-              <span className="text-yellow-400 font-bold">Loading...</span>
-            ) : (
+            {runSuper12BetsStatus ? (
               <span
-                className={
-                  tournament?.tournament?.runSuper12Bets === "yes"
-                    ? "text-green-600 font-bold"
-                    : "text-red-600 font-bold"
-                }
+                className={`font-bold ${
+                  isBetsOn ? "text-green-600" : "text-red-600"
+                }`}
               >
-                {tournament?.tournament?.runSuper12Bets === "yes"
-                  ? " ON"
-                  : " OFF"}
+                {isBetsOn ? "ON" : "OFF"}
               </span>
-            )}
+            ) : null}
           </span>
 
           <div className="flex items-center">
-            {tournament?.tournament?.runSuper12Bets === "yes" ? (
-              <CheckCircleIcon className="w-6 h-6 text-green-500 mr-2" />
-            ) : (
-              <XCircleIcon className="w-6 h-6 text-red-500 mr-2" />
-            )}
+            {runSuper12BetsStatus &&
+              (isBetsOn ? (
+                <CheckCircleIcon className="w-6 h-6 text-green-500 mr-2" />
+              ) : (
+                <XCircleIcon className="w-6 h-6 text-red-500 mr-2" />
+              ))}
           </div>
         </div>
 
@@ -63,14 +59,12 @@ export default function Super12() {
           className={`flex items-center justify-center px-6 py-3 rounded-lg w-full transition-all duration-300 ${
             isTournamentLoading || isUpdating
               ? "bg-gray-400 cursor-not-allowed"
-              : tournament?.tournament?.runSuper12Bets === "yes"
+              : isBetsOn
               ? "bg-red-500 hover:bg-red-600 text-white"
               : "bg-green-500 hover:bg-green-600 text-white"
           }`}
         >
-          {tournament?.tournament?.runSuper12Bets === "yes"
-            ? "Turn OFF Bets"
-            : "Turn ON Bets"}
+          {isBetsOn ? "Turn OFF Bets" : "Turn ON Bets"}
         </CustomButton>
       </div>
     </div>
