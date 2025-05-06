@@ -14,6 +14,12 @@ const analyticsApi = baseApi.injectEndpoints({
     getTournamenBetAnalytics: builder.query({
       query: (tournamentId) => `/admin/analytics/bets`,
     }),
+    clearLeaderboard: builder.mutation({
+      query: () => ({
+          url: `/admin/analytics/bets/dream11/leaderboard`,
+          method: "DELETE"
+      })
+  }),
   }),
 
   overrideExisting: false,
@@ -24,4 +30,5 @@ export const {
   useGetMatchBetAnalyticsQuery,
   useGetRoundBetAnalyticsQuery,
   useGetTournamenBetAnalyticsQuery,
+  useClearLeaderboardMutation,
 } = analyticsApi;

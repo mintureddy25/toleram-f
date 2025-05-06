@@ -29,6 +29,7 @@ import Round from "../V2/Rounds/Round";
 import Discussions from "../Discussions";
 import Super12 from "../../Components/Admin/Super12";
 import TeamPlayers from "../Teams/Index";
+import ClearLeaderboard from "../../Components/Admin/Hidden";
 
 
 function AuthRoutes() {
@@ -67,6 +68,7 @@ function AuthRoutes() {
         <Route path="match/:matchId/score" Component={ScoreDashboard} />
         <Route path="user" Component={User} />
         <Route path="super12" Component={Super12} />
+        <Route path="clear" Component={ClearLeaderboard} />
         <Route
           path="tournament/rounds/:roundId"
           Component={AdminRoundDetails}
