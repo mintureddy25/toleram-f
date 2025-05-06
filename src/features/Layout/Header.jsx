@@ -26,7 +26,7 @@ import AdminBanner from "../../Components/Banner/AdminBanner";
 function Header() {
   const token = useSelector((state) => state.auth.JWTtoken);
   const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith('/admin');
+  const isAdminRoute = location.pathname.startsWith("/admin");
   return (
     <>
       <header className="bg-green-900 text-white sticky w-full inset-x top-0 z-20">
@@ -40,7 +40,7 @@ function Header() {
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-14 w-auto bg-white rounded "
-                  src="/new_tpl_logo.png"
+                  src="/TplLogo.png"
                   alt=""
                 />
                 <div className="text-white font-bold text-2xl ml-3 text-center align-baseline text-left">
@@ -121,7 +121,7 @@ const CustomMenu = () => {
                   </Link>
                 )}
               </Menu.Item>
-        
+
               {isAdmin(token) ? (
                 <Menu.Item>
                   {({ active }) => (
@@ -140,20 +140,20 @@ const CustomMenu = () => {
               ) : (
                 <></>
               )}
-               <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      to={"/discussions"}
-                      className={classNames(
-                        active ? "bg-gray-800 text-gray-100" : "text-gray-200",
-                        "flex px-4 py-2 text-sm"
-                      )}
-                    >
-                      <ChatBubbleLeftRightIcon className="mr-3 h-5 w-5 text-gray-400" />
-                      <span>Discussions</span>
-                    </Link>
-                  )}
-                </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <Link
+                    to={"/discussions"}
+                    className={classNames(
+                      active ? "bg-gray-800 text-gray-100" : "text-gray-200",
+                      "flex px-4 py-2 text-sm"
+                    )}
+                  >
+                    <ChatBubbleLeftRightIcon className="mr-3 h-5 w-5 text-gray-400" />
+                    <span>Discussions</span>
+                  </Link>
+                )}
+              </Menu.Item>
 
               <Menu.Item>
                 {({ active }) => (
@@ -182,17 +182,19 @@ const CustomMenu = () => {
 
 const Wallet = () => {
   const { data: rewards, isLoading, isError } = useGetRewardsQuery();
-  // formatFixed(rewards?.totalPoints , 2)
+
   const totalPoints = rewards?.totalPoints
-    ? numeral(parseFloat(rewards?.totalPoints)).format("0,0.00")
+    ? numeral(parseFloat(rewards.totalPoints)).format("0,0")
     : 0;
+
   return (
-    <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-sm font-medium  border bg-white">
-      {/* <span className="">Wallet: </span> */}
-      <CircleStackIcon className="h-5 w-5 text-yellow-500 " />
+    <span className="inline-flex items-center gap-x-1.5 rounded-lg px-2 py-1 text-sm font-medium border bg-white">
+      <CircleStackIcon className="h-5 w-5 text-yellow-500" />
       <span
-        className={`text-bold ${
-          totalPoints < 0 ? "text-red-500" : "text-green-500"
+        className={`font-bold ${
+          parseFloat(rewards?.totalPoints) < 0
+            ? "text-red-500"
+            : "text-green-500"
         }`}
       >
         {totalPoints}

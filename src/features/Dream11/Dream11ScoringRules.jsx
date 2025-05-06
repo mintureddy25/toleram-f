@@ -40,14 +40,43 @@ export default function Dream11ScoringRules() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-gray-900 rounded-lg shadow-md overflow-hidden text-sm">
-  
+    <div className="max-w-3xl mx-auto px-6 lg:px-8 bg-gray-900 rounded-lg shadow-md overflow-hidden text-sm">
       <div className="bg-green-600 px-4 py-3 m-2 rounded-md">
         <h1 className="text-lg font-bold text-white">Super12 Scoring Rules</h1>
       </div>
 
       <div className="p-3 space-y-4">
-        {/* Captain & Vice-Captain */}
+        <div className="space-y-2 text-gray-200">
+          <h2 className="text-md font-bold text-gray-100">Super12</h2>
+          <ul className="list-disc pl-4 space-y-1 text-sm">
+            <li>
+              Missed the chance to become an owner? No problem, we’ve got you
+              covered.
+            </li>
+            <li>
+              You can now create your own team of superheroes from the player
+              pool under the Super12 section of{" "}
+              <a
+                href="https://tplmania.org"
+                className="underline text-blue-400"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                tplmania.org
+              </a>
+              .
+            </li>
+            <li>
+              We also have a live leaderboard section that will let you know
+              who’s the BOSS.
+            </li>
+            <li>
+              <strong>Hurry up!</strong> Team entry window will close by{" "}
+              <strong>8th May, 8 am</strong>.
+            </li>
+          </ul>
+        </div>
+
         <div className="space-y-2">
           <h2 className="text-md font-bold text-gray-100 pb-1">
             Captain & Vice-Captain
@@ -59,7 +88,9 @@ export default function Dream11ScoringRules() {
                   <div
                     className={`w-8 h-8 ${role.bgColor} rounded-full flex items-center justify-center`}
                   >
-                    <span className="text-white text-sm font-bold">{role.icon}</span>
+                    <span className="text-white text-sm font-bold">
+                      {role.icon}
+                    </span>
                   </div>
                   <div className="ml-2">
                     <h3 className="font-bold text-sm">{role.role}</h3>
@@ -73,7 +104,6 @@ export default function Dream11ScoringRules() {
           </div>
         </div>
 
-        {/* Scoring Rules */}
         {rulesData.categories.map((category) => (
           <div key={category.id} className="space-y-2">
             <h2 className="text-md font-bold text-gray-100">{category.name}</h2>
@@ -81,15 +111,23 @@ export default function Dream11ScoringRules() {
               <table className="min-w-full divide-y divide-gray-300">
                 <thead className="bg-gray-800">
                   <tr>
-                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Action</th>
-                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-100 uppercase tracking-wider">Points</th>
+                    <th className="px-3 py-2 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">
+                      Action
+                    </th>
+                    <th className="px-3 py-2 text-right text-xs font-medium text-gray-100 uppercase tracking-wider">
+                      Points
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-gray-800 divide-y divide-gray-300">
                   {category.points.map((point) => (
                     <tr key={point.id}>
-                      <td className="px-3 py-2 text-left text-xs text-gray-200">{point.action}</td>
-                      <td className="px-3 py-2 text-right text-xs text-gray-200">{point.value}</td>
+                      <td className="px-3 py-2 text-left text-xs text-gray-200">
+                        {point.action}
+                      </td>
+                      <td className="px-3 py-2 text-right text-xs text-gray-200">
+                        {point.value}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -98,17 +136,18 @@ export default function Dream11ScoringRules() {
           </div>
         ))}
 
-        {/* Additional Rules */}
         <div className="space-y-3 text-gray-200">
           <h2 className="text-md font-bold text-gray-100">General Rules</h2>
           <ul className="list-disc list-inside space-y-1 text-sm">
-            <li>Fixed bet amount: ₹20,000.</li>
+            <li>Fixed bet amount: 50k NGN</li>
             <li>Select 10 male + 2 female players within 100 credits.</li>
             <li>Bets are frozen before the first match starts.</li>
             <li>Do not share credentials. Finalized bets cannot be changed.</li>
           </ul>
 
-          <h2 className="text-md font-bold text-gray-100 pt-2">Team Composition</h2>
+          <h2 className="text-md font-bold text-gray-100 pt-2">
+            Team Composition
+          </h2>
           <ul className="list-disc list-inside space-y-1 text-sm">
             <li>Minimum 3 to maximum 5 Batsmen</li>
             <li>Minimum 2 to maximum 4 Allrounders</li>
@@ -116,14 +155,14 @@ export default function Dream11ScoringRules() {
             <li>Exactly 2 Female Players</li>
           </ul>
 
-          <h2 className="text-md font-bold text-gray-100 pt-2">Prize Distribution</h2>
+          <h2 className="text-md font-bold text-gray-100 pt-2">
+            Prize Distribution
+          </h2>
           <ul className="list-disc list-inside space-y-1 text-sm">
-            <li>Rank 1: 250,000</li>
-            <li>Rank 2: 100,000</li>
-            <li>Rank 3: 60,000</li>
-            <li>Rank 4: 50,000</li>
-            <li>Rank 5: 40,000</li>
-            <li>Ranks 6–10: 30,000 each</li>
+            <li>Rank 1: 1 Million NGN</li>
+            <li>Rank 2: 500k NGN</li>
+            <li>Rank 3: 250k NGN</li>
+            <li>Ranks 4–8: 50k NGN each</li>
           </ul>
         </div>
       </div>

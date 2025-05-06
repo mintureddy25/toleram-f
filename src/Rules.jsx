@@ -66,28 +66,51 @@ export default function Rules() {
           ◦ Option A: Over 14.5 – Means 15 or more sixes will be hit
           <br />◦ Option B: Under 12.5 – Means 12 or less sixes will be hit
         </div>,
-        <div>In case of a super over, the winner of the super over will be declared the winner of the match for the purpose of betting.</div>,
-        <div>Player Odds: There are player odds next to a few named players for different events. In case you want to bet on a player that is not named on the odds list, the player will fall under the Other category and will have respective odds next to it.</div>,
-        <div>1st Innings Runs: In case you bet on a team scoring X runs in 1st innings, and that team bats 2nd, then the bet will be considered void, i.e. no profit no loss.</div>
+        <div>
+          In case of a super over, the winner of the super over will be declared
+          the winner of the match for the purpose of betting.
+        </div>,
+        <div>
+          Player Odds: There are player odds next to a few named players for
+          different events. In case you want to bet on a player that is not
+          named on the odds list, the player will fall under the Other category
+          and will have respective odds next to it.
+        </div>,
+        <div>
+          1st Innings Runs: In case you bet on a team scoring X runs in 1st
+          innings, and that team bats 2nd, then the bet will be considered void,
+          i.e. no profit no loss.
+        </div>,
       ],
     },
     {
       title: "Tournament: Winners Rules",
       points: [
         <div>The maximum bet amount allowed per round is 500,000.</div>,
-        <div>A maximum of 2 bets will be allowed per individual for the outcome of the winners of the tournament. There will be a fresh set of odds before Round 1 and Semi-finals.</div>,
-        <div>The bets for each round will be frozen before the 1st match of that round begins.</div>
-      ]
+        <div>
+          A maximum of 2 bets will be allowed per individual for the outcome of
+          the winners of the tournament. There will be a fresh set of odds
+          before Round 1 and Semi-finals.
+        </div>,
+        <div>
+          The bets for each round will be frozen before the 1st match of that
+          round begins.
+        </div>,
+      ],
     },
     {
-      title : "Tournament: Top Players Rules",
-      points : [
+      title: "Tournament: Top Players Rules",
+      points: [
         <div>The maximum bet amount allowed for this section is 500,000.</div>,
         <div>The bets will be frozen before the start of the tournament.</div>,
-        <div>Player Odds: There are player odds next to a few named players for different events. In case you want to bet on a player that is not named on the odds list, the player will fall under the Other category and will have respective odds next to it.</div>
-      ]
-    }
-
+        <div>
+          Player Odds: There are player odds next to a few named players for
+          different events. In case you want to bet on a player that is not
+          named on the odds list, the player will fall under the Other category
+          and will have respective odds next to it.
+        </div>,
+      ],
+    },
   ];
   return (
     <>
@@ -96,9 +119,9 @@ export default function Rules() {
         {rules.map((rule, index) => {
           return (
             <div className="mx-auto max-w-3xl text-base leading-7 mt-4">
-              <h1 className=" text-3xl font-bold tracking-tight  sm:text-4xl">
-                {rule.title}
-              </h1>
+              <div className="bg-green-600 px-4 py-3 m-2 rounded-md">
+                <h1 className="text-lg font-bold text-white">{rule.title}</h1>
+              </div>
               <p className="mt-6 text-xl leading-8"></p>
               <div className="mt-10 max-w-2xl">
                 <ul role="list" className="mt-8 max-w-xl space-y-8  text-left">
