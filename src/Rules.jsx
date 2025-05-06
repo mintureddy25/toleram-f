@@ -114,17 +114,19 @@ export default function Rules() {
   ];
   return (
     <>
-      <BackButton />
+      <div className="flex justify-start px-3 sm:px-0 max-w-3xl mx-auto">
+        <BackButton />
+      </div>
       <div className=" px-6 py-7 lg:px-8">
         {rules.map((rule, index) => {
           return (
             <div className="mx-auto max-w-3xl text-base leading-7 mt-4">
-              <div className="bg-green-600 px-4 py-3 m-2 rounded-md">
-                <h1 className="text-lg font-bold text-white">{rule.title}</h1>
+              <div className="bg-green-600 px-4 py-3 m-2">
+                <h1 className="text-xl font-bold text-white">{rule.title}</h1>
               </div>
               <p className="mt-6 text-xl leading-8"></p>
-              <div className="mt-10 max-w-2xl">
-                <ul role="list" className="mt-8 max-w-xl space-y-8  text-left">
+              <div className="mt-10 max-w-2xl mx-auto">
+                <ul role="list" className="mt-8 space-y-8 text-left">
                   {rule.points.map((point) => {
                     return <li className="flex gap-x-3">{point}</li>;
                   })}

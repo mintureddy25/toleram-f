@@ -3,16 +3,16 @@ import { PLAYER_IMAGE } from "../../constants/teamLimits";
 
 function PlayerList({ players, canShowEdit = false, editHandler = () => {} }) {
   return (
-    <div className="px-6 lg:px-8">
+    <div className="px-4 max-w-7xl mx-auto">
       {players?.length === 0 ? (
         <div className="mt-12 text-center">
-          <p className="text-xl text-gray-100">No players found in this team</p>
+          <p className="text-md sm:text-xl text-gray-100">No players found in this team</p>
         </div>
       ) : (
         <>
           <ul
             role="list"
-            className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-8 text-center sm:grid-cols-2 md:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-4 xl:grid-cols-4"
+            className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-4 sm:gap-8 text-center sm:grid-cols-2 md:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-4 xl:grid-cols-4"
           >
             {players?.map((player) => (
               <li

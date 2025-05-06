@@ -4,7 +4,7 @@ import CommentsSection from "../../Components/comments/CommentsSection";
 function Discussions() {
     console.log("Discussions");
   return (
-    <div className="px-4 sm:px-8">
+    <div className="px-4 sm:px-8 mt-2">
       <CommentsSection
         roomName={"tolaram-discussions"}
         title="Discussions"

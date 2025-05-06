@@ -1,6 +1,6 @@
 import React from "react";
 import { BarList } from "@tremor/react";
-import numeral from "numeral";
+import { formatToAbbreviation, toTitleCase } from "../../Utils/Helpers";
 
 export default function CustomAreaChart({
   title,
@@ -19,11 +19,12 @@ export default function CustomAreaChart({
       ) : (
         <BarList
           className="mx-5 mt-1"
-          data={chartdata?.map((item) => ({
-            name: item.name,
+          data={chartdata?.map((item, index) => ({
+            name: toTitleCase(item.name),
             value: item[categories[0]],
+            color: colors[index % colors.length],
           }))}
-          valueFormatter={(value) => numeral(value).format("0,0")}
+          valueFormatter={(value) => formatToAbbreviation(value)}
           showAnimation={true}
         />
       )}

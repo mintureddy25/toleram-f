@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 function BackButtonWithRules() {
   const navigate = useNavigate();
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between max-w-7xl mx-auto">
       <button
         onClick={() => navigate(-1)}
         className="inline-flex text-xs items-start gap-x-1.5 rounded-md  px-2.5 py-2 text-2xl font-medium border m-3 "

@@ -6,7 +6,30 @@ import {
   useGetTournamenBetAnalyticsQuery,
 } from "../../app/Services/Admin/analyticsApi";
 import Loader from "../Loader";
-import numeral from "numeral";
+import { formatToAbbreviation } from "../../Utils/Helpers";
+
+const basicColors = [
+  "blue-500",
+  "indigo-500",
+  "violet-500",
+  "purple-500",
+  "fuchsia-500",
+  "pink-500",
+  "rose-500",
+  "red-500",
+  "orange-500",
+  "amber-500",
+  "yellow-400", // slightly lighter for better contrast
+  "lime-400",
+  "green-500",
+  "emerald-500",
+  "teal-500",
+  "cyan-500",
+  "sky-500",
+  "blue-400",
+  "indigo-400",
+  "violet-400",
+];
 
 export default function AdminDashboard() {
   const { data: matchBets, isLoading: matchBetsLoading } =
@@ -38,6 +61,11 @@ export default function AdminDashboard() {
   if (matchBetsLoading || roundBetsLoading || tournamentBetsLoading) {
     return <Loader />;
   }
+  const getColors = (length) => {
+    const shuffledColors = basicColors.sort(() => 0.5 - Math.random());
+
+    return shuffledColors.map((color) => color.toLowerCase()).slice(0, length);
+  };
   return (
     <div className="mx-10 pl-0 sm:pl-10 my-10 pb-10">
       <h1 className="text-2xl font-bold">Tournament Dashboard</h1>
@@ -60,35 +88,31 @@ export default function AdminDashboard() {
             name: "Total Round Bet Amount",
             stat: tournamentBets?.totalRoundsBetAmount || 0,
           },
-          {
-            name: "Total Round Bet Amount",
-            stat: tournamentBets?.totalRoundsBetAmount || 0,
-          },
         ]}
       />
       <CustomAreaChart
         title={"Match Bets"}
         chartdata={matchData}
         categories={["bets"]}
-        colors={["blue"]}
+        colors={getColors(matchData.length)}
       />
       <CustomAreaChart
         title={"Match Amounts"}
         chartdata={matchData}
         categories={["amount"]}
-        colors={["yellow"]}
+        colors={getColors(matchData.length)}
       />
       <CustomAreaChart
         title={"Round Bets"}
         chartdata={roundData}
         categories={["bets"]}
-        colors={["pink"]}
+        colors={getColors(roundData.length)}
       />
       <CustomAreaChart
         title={"Round Amounts"}
         chartdata={roundData ? roundData : []}
         categories={["amount"]}
-        colors={["purple"]}
+        colors={getColors(roundData.length)}
       />
     </div>
   );
@@ -104,15 +128,15 @@ function Stats({ stats }) {
             return (
               <div
                 key={item.name}
-              className="overflow-hidden rounded-lg bg-gray-800 px-4 py-5 shadow sm:p-6"
-            >
-              <dt className="truncate text-sm font-medium text-gray-100">
-                {item.name}
-              </dt>
-              <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-200">
-                {numeral(item.stat).format("0,0")}
-              </dd>
-            </div>
+                className="overflow-hidden rounded-lg bg-gray-800 px-4 py-5 shadow sm:p-6"
+              >
+                <dt className="truncate text-sm font-medium text-gray-100">
+                  {item.name}
+                </dt>
+                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-200">
+                  {formatToAbbreviation(item.stat)}
+                </dd>
+              </div>
             );
           })
         ) : (

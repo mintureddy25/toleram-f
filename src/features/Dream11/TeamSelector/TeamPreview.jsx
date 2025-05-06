@@ -6,7 +6,7 @@ const TeamPreview = ({
   captain,
   viceCaptain,
   getRoleColorClass,
-  teamName
+  teamName,
 }) => {
   const captainPlayer = selectedPlayers.find((p) => p.id === captain);
   const viceCaptainPlayer = selectedPlayers.find((p) => p.id === viceCaptain);
@@ -72,7 +72,13 @@ const TeamPreview = ({
 
       <div className="flex-grow overflow-y-auto h-96">
         <div className="mb-4">
-          {["wicket-keeper", "batsman", "all-rounder", "bowler", "impact-player"].map((role) => {
+          {[
+            "wicket-keeper",
+            "batsman",
+            "all-rounder",
+            "bowler",
+            "impact-player",
+          ].map((role) => {
             const playersInRole = selectedPlayers.filter(
               (p) => p.player_role === role
             );
@@ -80,8 +86,9 @@ const TeamPreview = ({
 
             return (
               <div key={role} className="mb-4">
-                <h3 className="font-medium mb-2 text-gray-100">
-                  {role}s ({playersInRole.length})
+                <h3 className="font-medium mb-2 text-gray-100 capitalize">
+                  {role == "impact-player" ? "female player" : role}s (
+                  {playersInRole.length})
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {playersInRole.map((player) => {
