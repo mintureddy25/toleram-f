@@ -232,7 +232,7 @@ const Dream11TeamSelector = ({
         return "green";
       case "all-rounder":
         return "yellow";
-      case "wicket-keeper":
+      case "impact-player":
         return "blue";
       default:
         return "red";

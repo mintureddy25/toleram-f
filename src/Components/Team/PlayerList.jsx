@@ -30,7 +30,7 @@ function PlayerList({ players, canShowEdit = false, editHandler = () => {} }) {
                 <p className="text-sm text-gray-400">{player.player_role}</p>
                 {canShowEdit && (
                   <button
-                    onClick={editHandler}
+                    onClick={() => editHandler(player)}
                     className="mt-4 w-full rounded-md bg-gray-700 px-3 py-2 text-sm font-semibold text-gray-100 hover:bg-gray-600 transition-colors"
                   >
                     Edit Player

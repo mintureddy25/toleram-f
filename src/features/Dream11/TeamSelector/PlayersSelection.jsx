@@ -111,7 +111,7 @@ const PlayerSelection = ({
                 </button>
                 <button
                   onClick={() => {
-                    setGenderFilter("All");
+                    setGenderFilter("male");
                     setFilter("batsman");
                   }}
                   className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${
@@ -124,7 +124,7 @@ const PlayerSelection = ({
                 </button>
                 <button
                   onClick={() => {
-                    setGenderFilter("All");
+                    setGenderFilter("male");
                     setFilter("bowler");
                   }}
                   className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${
@@ -137,7 +137,7 @@ const PlayerSelection = ({
                 </button>
                 <button
                   onClick={() => {
-                    setGenderFilter("All");
+                    setGenderFilter("male");
                     setFilter("all-rounder");
                   }}
                   className={`flex-1 py-2 text-xs font-medium border-r border-gray-700 ${

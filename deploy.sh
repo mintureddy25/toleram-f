@@ -15,15 +15,22 @@ DEPLOY_DIR="/var/www/tplmania.org/html"
 echo "Navigating to project directory..."
 cd "$PROJECT_DIR"
 
-# Step 2: Build the React application
+#step 2: Pull the latest changes from the repository
+echo "Pulling the latest changes from the repository..."
+git pull
+
+# Step 3: Build the React application
 echo "Building the React application..."
 yarn install
 yarn run build
 
-# Step 3: Copy the build files to the deployment directory
+# Step 4: Copy the build files to the deployment directory
 echo "Deploying the build to $DEPLOY_DIR ..."
 sudo cp -r "$BUILD_DIR"/* "$DEPLOY_DIR"
 
 echo "✅ Deployment completed successfully."
-# Step 4: Restart the web server (if necessary)
+
+# Step 5: Restart the web server (if necessary)
+echo "Restarting the web server..."
 sudo systemctl restart nginx
+echo "✅ Web server restarted successfully."

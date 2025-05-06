@@ -58,9 +58,9 @@ export default function AdminTeamDetails() {
       <PlayerList
         players={players?.teamPlayers}
         canShowEdit={true}
-        editHandler={() => {
+        editHandler={(playerData) => {
+          setPlayer(playerData);
           setOpen(true);
-          setPlayer(player);
         }}
       />
       <AddTeamPlayerPopup

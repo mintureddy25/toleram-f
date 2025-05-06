@@ -189,6 +189,16 @@ export default function AddTeamPlayerPopup({ open, setOpen, player }) {
                   ? "Update Player"
                   : "Add Player"}
               </button>
+              <button
+                type="button"
+                onClick={() => {
+                  resetForm();
+                  setOpen(false);
+                }}
+                className="mt-2 inline-flex w-full justify-center rounded-md bg-gray-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-700"
+              >
+                Cancel
+              </button>
             </div>
           </DialogPanel>
         </div>

@@ -6,6 +6,7 @@ export const DEFAULT_ROLE_LIMITS = {
   bowler: { min: 3, max: 5 },
   "all-rounder": { min: 2, max: 4 },
   "wicket-keeper": { min: 0, max: 12 },
+  "impact-player": { min: 0, max: 12 },
 };
 
 export const DEFAULT_GENDER_LIMITS = {

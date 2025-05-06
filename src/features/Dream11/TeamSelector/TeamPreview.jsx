@@ -72,7 +72,7 @@ const TeamPreview = ({
 
       <div className="flex-grow overflow-y-auto h-96">
         <div className="mb-4">
-          {["wicket-keeper", "batsman", "all-rounder", "bowler"].map((role) => {
+          {["wicket-keeper", "batsman", "all-rounder", "bowler", "impact-player"].map((role) => {
             const playersInRole = selectedPlayers.filter(
               (p) => p.player_role === role
             );
