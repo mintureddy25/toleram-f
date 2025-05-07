@@ -24,6 +24,9 @@ export default function ClearLeaderboard() {
         <h2 className="text-2xl font-bold text-gray-100 mb-6">
           Super12 Leaderboard
         </h2>
+        <p className="text-gray-400 mb-4">
+          This action will clear the leaderboard and reset all scores.
+        </p>
 
         <CustomButton
           isLoading={clearing}
