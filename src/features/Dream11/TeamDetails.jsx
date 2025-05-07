@@ -154,7 +154,7 @@ const PlayerBubble = ({ player, isLast }) => {
   return (
     <div
       className={`flex flex-col items-center transform transition-all scale-110 group ${
-        isLast ? "col-start-2" : ""
+        isLast ? "col-start-2 sm:col-start-auto" : ""
       }`}
     >
       <div className="relative mb-2">
@@ -172,7 +172,7 @@ const PlayerBubble = ({ player, isLast }) => {
           {player.points}
         </div>
       </div>
-      <h3 className="font-medium text-xs text-left px-2 py-0.5 rounded-md w-full truncate transition-colors">
+      <h3 className="font-medium text-xs text-left sm:text-center px-2 py-0.5 rounded-md w-full truncate transition-colors">
         {player.player_name}
       </h3>
     </div>
