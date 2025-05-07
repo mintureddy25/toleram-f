@@ -163,9 +163,7 @@ const PlayerBubble = ({ player, isLast }) => {
             src={player.player_logo || PLAYER_IMAGE}
             alt={player.player_name}
             className="w-full h-full object-cover"
-            onError={(e) => {
-              e.target.src = "/api/placeholder/100/100";
-            }}
+    
           />
         </div>
         <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white text-xs font-bold rounded-lg w-7 h-6 px-1 flex items-center justify-center shadow-lg border border-gray-800">

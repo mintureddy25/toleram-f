@@ -78,13 +78,12 @@ function Dream11Leaderboard() {
       return originalLeaderboard;
     }
 
-    const startIndex = Math.max(0, userIndex - 1);
     const endIndex = Math.min(originalLeaderboard.length - 1, userIndex + 1);
-    const userContext = originalLeaderboard.slice(startIndex, endIndex + 1);
+    const userContext = originalLeaderboard.slice(10, endIndex + 1);
 
     const result = [
       ...topTenPlayers,
-      ...(userRank > 11 ? [{ isSeparator: true, id: "separator-1" }] : []),
+      ...(userRank > 12 ? [{ isSeparator: true, id: "separator-1" }] : []),
       ...userContext,
     ];
 
