@@ -26,7 +26,7 @@ const TeamDetails = ({ teamData, handleEdit }) => {
 
   return (
     <div className="min-h-screen text-white">
-      <div className="bg-gray-800/95 backdrop-blur-sm  p-3 sticky top-0 shadow-lg">
+      <div className="bg-gray-800/95 backdrop-blur-sm  p-3 shadow-lg">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 max-w-6xl mx-auto">
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <div className="bg-gradient-to-br from-gray-700 to-gray-800 p-2 rounded-lg shadow-inner">
