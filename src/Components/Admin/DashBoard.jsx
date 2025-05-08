@@ -115,8 +115,8 @@ export default function AdminDashboard() {
         colors={getStatusColors(matchData)}
         showLegend={true}
         legendItems={[
-          { label: "Profit", color: "red-500" },
-          { label: "Loss", color: "green-500" },
+          { label: "Profit", color: "green-500" },
+          { label: "Loss", color: "red-500" },
         ]}
       />
       <CustomAreaChart
@@ -138,8 +138,8 @@ export default function AdminDashboard() {
         colors={getStatusColors(roundData)}
         showLegend={true}
         legendItems={[
-          { label: "Profit", color: "red" },
-          { label: "Loss", color: "green" },
+          { label: "Profit", color: "green-500" },
+          { label: "Loss", color: "red-500" },
         ]}
       />
     </div>
