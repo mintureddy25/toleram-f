@@ -255,7 +255,7 @@ function Dream11Leaderboard() {
                               </span>
                             </div>
 
-                            <div className="text-gray-400 text-xs">
+                            <div className="text-gray-400 text-xs text-left">
                               {item.userId == userDetails.id
                                 ? ` by You`
                                 : `${item.email}`}
