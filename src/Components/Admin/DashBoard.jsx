@@ -31,6 +31,10 @@ const basicColors = [
   "violet-400",
 ];
 
+const getStatusColors = (data) => {
+  return data.map((item) => (item.points < 0 ? "green-500" : "red-500"));
+};
+
 export default function AdminDashboard() {
   const { data: matchBets, isLoading: matchBetsLoading } =
     useGetMatchBetAnalyticsQuery();
@@ -47,6 +51,7 @@ export default function AdminDashboard() {
       name: item.matchTitle,
       bets: item.totalBets,
       amount: item.totalAmount,
+      points: item.totalPoints,
     }));
   }, [matchBets]);
   const roundData = useMemo(() => {
@@ -55,6 +60,7 @@ export default function AdminDashboard() {
       name: item.roundName,
       bets: item.totalBets,
       amount: item.totalAmount,
+      points: item.totalPoints,
     }));
   }, [roundBets]);
 
@@ -102,6 +108,17 @@ export default function AdminDashboard() {
         categories={["amount"]}
         colors={getColors(matchData.length)}
       />
+       <CustomAreaChart
+        title={"Match Analysis"}
+        chartdata={matchData ? matchData : []}
+        categories={["points"]}
+        colors={getStatusColors(matchData)}
+        showLegend={true}
+        legendItems={[
+          { label: "Profit", color: "red-500" },
+          { label: "Loss", color: "green-500" },
+        ]}
+      />
       <CustomAreaChart
         title={"Round Bets"}
         chartdata={roundData}
@@ -113,6 +130,17 @@ export default function AdminDashboard() {
         chartdata={roundData ? roundData : []}
         categories={["amount"]}
         colors={getColors(roundData.length)}
+      />
+      <CustomAreaChart
+        title={"Round Analysis"}
+        chartdata={roundData ? roundData : []}
+        categories={["points"]}
+        colors={getStatusColors(roundData)}
+        showLegend={true}
+        legendItems={[
+          { label: "Profit", color: "red" },
+          { label: "Loss", color: "green" },
+        ]}
       />
     </div>
   );
