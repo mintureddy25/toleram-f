@@ -17,7 +17,7 @@ function BetHistory() {
   ) {
     return (
       <div className="max-w-7xl mx-auto p-6">
-        <div className="bg-gray-900 rounded-xl p-8 text-center shadow-xl">
+        <div className="bg-gray-900 p-8 text-center shadow-xl">
           <h1 className="text-3xl font-bold text-gray-200">
             🎲 No Betting History Yet
           </h1>

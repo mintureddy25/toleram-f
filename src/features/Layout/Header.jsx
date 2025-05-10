@@ -88,7 +88,6 @@ const CustomMenu = () => {
         <div>
           <Menu.Button className="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600">
             <span className="sr-only">Open options</span>
-            {/* <Bars3Icon className="h-6 w-6 text-white" aria-hidden="true" /> */}
             <EllipsisVerticalIcon
               className="h-6 w-6 text-white"
               aria-hidden="true"
