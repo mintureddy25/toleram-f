@@ -43,6 +43,7 @@ export default function CustomAreaChart({
           }))}
           valueFormatter={(value) => formatToAbbreviation(value)}
           showAnimation={true}
+          sortOrder="none"
         />
       )}
     </div>
